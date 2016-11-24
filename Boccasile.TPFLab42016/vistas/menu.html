@@ -12,7 +12,6 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li><a ui-sref="producto.alta()" ng-if="logeado && nuevoProducto" style="color: #ffffff;">Agregar un Producto</a></li>
                 <li><a ui-sref="login.registro()" ng-if="logeado && admin" style="color: #ffffff;">Agregar un Usuario</a></li>
                 <li><a ng-click="Salir()" ng-if="logeado" style="color: #ffffff;">Cerrar sesión</a></li>
             </ul>
@@ -25,19 +24,8 @@
 	<br><br></br>
 	<h1><font color="white">Listados:</font></h1>
         <div class="row" style="margin-top:5%">
-            <a ui-sref="producto.productos()" ng-if="logeado" style="margin:1%">
-				<input type="submit" value="Productos" class="btnLogin2" style="width:30%">
-            </a>
             <a ui-sref="login.usuarios()" ng-if="logeado && admin" style="margin:1%">
                 <input type="submit" value="Usuarios" class="btnLogin2" style="width:30%">
-            </a>
-        </div>
-        <div class="row" style="margin-top:1%">
-            <a ui-sref="producto.productosDirectiva()" ng-if="logeado" style="margin:1%"> 
-                <input type="submit" value="Productos Directiva" class="btnLogin2" style="width:30%">
-            </a>
-            <a ui-sref="login.usuariosDirectiva()" ng-if="logeado && admin" style="margin:1%">
-                <input type="submit" value="Usuarios Directiva" class="btnLogin2" style="width:30%">
             </a>
         </div>
     </div>

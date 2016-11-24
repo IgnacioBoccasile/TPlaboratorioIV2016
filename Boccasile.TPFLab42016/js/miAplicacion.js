@@ -2,7 +2,7 @@ var miApp = angular.module('SPBOCCASILE', ['ui.router', 'angularFileUpload','sat
 
 miApp.config(function($stateProvider, $urlRouterProvider, $authProvider){
 	//proveedor de autentificacion.
-	$authProvider.loginUrl = 'http://localhost/Boccasile.TPFLab42016/PROYECTO/ws/jwt/php/auth.php';
+	$authProvider.loginUrl = 'http://localhost/Boccasile.TPFLab42016/ws/jwt/php/auth.php';
 	$authProvider.tokenName = 'MiTokenGeneradoEnPHP';
 	$authProvider.tokenPrefix = 'Aplicacion';
 	//$authProvider.authReader = 'data';
@@ -43,7 +43,7 @@ miApp.config(function($stateProvider, $urlRouterProvider, $authProvider){
 				}
 			}
 		)
-
+		
 		.state(
 			"login.registro",
 			{
@@ -85,73 +85,7 @@ miApp.config(function($stateProvider, $urlRouterProvider, $authProvider){
 				}
 			}
 		)
-
-		.state(
-			"login.usuariosDirectiva",
-			{
-				url:"/usuarios",
-				cache:false,
-				views:{
-					"contenido": {
-					templateUrl:"vistas/usuario/usuariosConDirectiva.html",
-					controller:"UsuariosCtrl"
-					}
-				}
-			}
-		)
-
-		.state(
-			"producto",
-			{
-				url:"/producto",
-				cache:false,
-				abstract:true, 
-				templateUrl:"vistas/producto/abstractaProducto.html"
-			}
-		)
-
-		.state(
-			"producto.alta",
-			{
-				url:"/alta",
-				cache:false,
-				views:{
-					"contenido": {
-					templateUrl:"vistas/producto/altaProducto.html",
-					controller:"ProductoAltaCtrl"
-					}
-				}
-			}
-		)
-
-		.state(
-			"producto.productos",
-			{
-				url:"/productos",
-				cache:false,
-				views:{
-					"contenido": {
-					templateUrl:"vistas/producto/productos.html",
-					controller:"ProductosCtrl"
-					}
-				}
-			}
-		)
-
-		.state(
-			"producto.productosDirectiva",
-			{
-				url:"/productos",
-				cache:false,
-				views:{
-					"contenido": {
-					templateUrl:"vistas/producto/productosConDirectiva.html",
-					controller:"ProductosCtrl"
-					}
-				}
-			}
-		)
-
+		
 		.state(
 			"menu",
 			{

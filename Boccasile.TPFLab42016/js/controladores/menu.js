@@ -5,14 +5,6 @@ angular
 	{
 		$scope.usuarioLogeado = jwtHelper.decodeToken($auth.getToken());
 		$scope.logeado = true;
-		if ($scope.usuarioLogeado.perfil != "cliente")
-		{
-			$scope.nuevoProducto = true;
-		}
-		else
-		{
-			$scope.nuevoProducto = false;
-		}
 
 		if ($scope.usuarioLogeado.perfil == "admin")
 			$scope.admin = true;
