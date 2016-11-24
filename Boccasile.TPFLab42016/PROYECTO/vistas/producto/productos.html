@@ -1,0 +1,14 @@
+<div class="container animated bounceInDown" style="margin-top:5%" align="center">
+    <div class="{{resultado.estilo}}" ng-show="resultado.ver">
+        <span style="font-size:20px;">{{resultado.mensaje}}</span>
+    </div>
+	<h1>Productos Cargados</h1>
+	<br>
+	<font color = "black">
+	<div class="divListaProductos" style="width:50%" ng-repeat="producto in ListadoProductos">
+		<h4 style="font-size:28px">{{producto.nombre}}</h4>
+		<p style="font-size:18px">Descripción: {{producto.descripcion}}</p>
+		<p style="font-size:18px">Precio: ${{producto.precio}}</p>
+		<input type="submit" value="Borrar" class="btnLogin3" style="width:32%" ng-click="Borrar(producto)" ng-if="borrarProducto">
+	</div></font>
+</div>	
