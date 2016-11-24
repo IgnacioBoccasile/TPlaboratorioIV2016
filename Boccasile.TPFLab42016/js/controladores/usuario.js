@@ -2,9 +2,9 @@ angular
 .module('SPBOCCASILE')
 .controller('LoginCtrl', function($scope, $state, $auth, jwtHelper) {
 	$scope.usuario = {};
-	$scope.usuario.nombre = "Administrador";
-	$scope.usuario.correo = "admin@admin.com";
-	$scope.usuario.clave = "123456";
+	$scope.usuario.nombre = "";
+	$scope.usuario.correo = "";
+	$scope.usuario.clave = "";
 	$scope.resultado = {};
 	$scope.resultado.ver = false;
 	$scope.Verificar = function(){
@@ -20,7 +20,7 @@ angular
 					{
 						$scope.resultado.ver = true;
 						$scope.resultado.estilo = "alert alert-danger";
-						$scope.resultado.mensaje = "Los datos ingresados son incorrectos.";
+						$scope.resultado.mensaje = "Usuario no existente o datos incorrectos";
 					}
 					
 				}).catch(function(response){
@@ -33,10 +33,8 @@ angular
 		}
 	}
 
-	$scope.Acceso = function(nombre, correo, clave){
-		$scope.usuario.correo = correo;
-		$scope.usuario.clave = clave;
-		$scope.usuario.nombre = nombre;
+	$scope.Acceso = function(perfil){
+		$scope.usuario.perfil = perfil;
 	}
 })
 

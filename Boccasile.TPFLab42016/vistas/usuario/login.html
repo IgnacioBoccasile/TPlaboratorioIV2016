@@ -6,21 +6,28 @@
     </div>
   <div class="row">
     <div>
-      <h2 class="h2Login">Iniciar sesión como:</h2>
+	  <form id="loginForm" name="loginForm" enctype="multipart/form-data" novalidate>
+      <h2 class="h2Login">Iniciar Sesión:</h2>
       <font color="black"><input type="text" placeholder="Nombre" class="txtLogin" name="nombre" ng-model="usuario.nombre" required></font>
       <font color="black"><input type="text" placeholder="Correo" class="txtLogin" name="correo" ng-model="usuario.correo" required></font>
       <font color="black"><input type="password" placeholder="Clave" class="txtLogin" name="clave" ng-model="usuario.clave" required></font>
-      <input type="submit" value="Loguearse" ng-disabled="loginForm.$invalid" class="btnLogin" ng-click="Verificar()">
-      <br/>
+	  <font color="purple">Perfil:</font> <font color="black" name="perfil" ng-model="usuario.perfil" ng-model="usuario.perfil" required>{{usuario.perfil}}</font>
+      <input type="submit" value="Loguearse" ng-if="!loginForm.$invalid" class="btnLogin" ng-click="Verificar()">
+	  </form>
+
     </div>
   </div>
   <div align="center">
-    <input type="submit" value="Soy Admin" class="btnLogin" style="width:49%; display:inline" ng-click="Acceso('Administrador','admin@admin.com', '123456')">
-    <input type="submit" value="Soy Encargado" class="btnLogin" style="width:49%; display:inline" ng-click="Acceso('Encargado','encargado@encargado.com', '123456')">
+    <input type="submit" value="Soy Admin" class="btnLogin" style="width:49%; display:inline" ng-click="Acceso('admin')">
+    <input type="submit" value="Soy Encargado" class="btnLogin" style="width:49%; display:inline" ng-click="Acceso('encargado')">
     </div>
 	<div align="center">
-	<input type="submit" value="Soy Empleado" class="btnLogin" style="width:49%; display:inline" ng-click="Acceso('Empleado','empleado@empleado.com', '123456')">
-	<input type="submit" value="Soy Cliente" class="btnLogin" style="width:49%; display:inline" ng-click="Acceso('Cliente','cliente@cliente.com', '123456')">
+	<input type="submit" value="Soy Empleado" class="btnLogin" style="width:49%; display:inline" ng-click="Acceso('empleado')">
+	<input type="submit" value="Soy Cliente" class="btnLogin" style="width:49%; display:inline" ng-click="Acceso('cliente')">
   </div>
+  	   <p class="text-center text-muted">
+	  <br><br>
+        Si todavía no tenés una cuenta: <small><a ui-sref="login.registro()">Registrate!!</a></small>
+      </p>
 </div>
 </div>
