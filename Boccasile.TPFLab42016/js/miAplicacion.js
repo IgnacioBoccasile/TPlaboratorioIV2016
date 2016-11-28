@@ -57,7 +57,35 @@ miApp.config(function($stateProvider, $urlRouterProvider, $authProvider){
 				}
 			}
 		)
-
+		
+		.state(
+			"login.registroEC",
+			{
+				url:"/registroEC",
+				cache:false,
+				views:{
+					"contenido": {
+					templateUrl:"vistas/usuario/registroEC.html",
+					controller:"RegistroECCtrl"
+					}
+				}
+			}
+		)
+		
+		.state(
+			"login.registroEEC",
+			{
+				url:"/registroEEC",
+				cache:false,
+				views:{
+					"contenido": {
+					templateUrl:"vistas/usuario/registroEEC.html",
+					controller:"RegistroEECCtrl"
+					}
+				}
+			}
+		)
+		
 		.state(
 			"login.usuario",
 			{

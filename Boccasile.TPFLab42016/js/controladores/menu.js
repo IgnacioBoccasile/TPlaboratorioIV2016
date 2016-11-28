@@ -10,6 +10,21 @@ angular
 			$scope.admin = true;
 		else
 			$scope.admin = false;
+		
+		if ($scope.usuarioLogeado.perfil == "encargado")
+			$scope.encargado = true;
+		else
+			$scope.encargado = false;
+		
+		if ($scope.usuarioLogeado.perfil == "empleado")
+			$scope.empleado = true;
+		else
+			$scope.empleado = false;
+		
+		if ($scope.usuarioLogeado.perfil == "cliente")
+			$scope.cliente = true;
+		else
+			$scope.cliente = false;
 	}
 
 	$scope.Salir = function(){

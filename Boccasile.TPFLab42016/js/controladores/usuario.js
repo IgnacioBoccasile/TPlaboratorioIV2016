@@ -2,9 +2,9 @@ angular
 .module('SPBOCCASILE')
 .controller('LoginCtrl', function($scope, $state, $auth, jwtHelper) {
 	$scope.usuario = {};
-	$scope.usuario.nombre = "";
-	$scope.usuario.correo = "";
-	$scope.usuario.clave = "";
+	$scope.usuario.nombre = "Administrador";
+	$scope.usuario.correo = "admin@admin.com";
+	$scope.usuario.clave = "123456";
 	$scope.resultado = {};
 	$scope.resultado.ver = false;
 	$scope.Verificar = function(){
@@ -33,8 +33,19 @@ angular
 		}
 	}
 
-	$scope.Acceso = function(perfil){
-		$scope.usuario.perfil = perfil;
+	$scope.Acceso = function(nombre, correo, clave){
+		$scope.usuario.nombre = nombre;
+		$scope.usuario.correo = correo;
+		$scope.usuario.clave = clave;
+		if($scope.usuario.nombre == "Cliente")
+		{
+			$scope.mibandera=true;
+		}
+		
+		else
+		{
+			$scope.mibandera=false;
+		}
 	}
 })
 
@@ -47,14 +58,97 @@ angular
 	    $scope.usuario.nombre = "";
 	    $scope.usuario.correo = "";
 	    $scope.usuario.clave = "";
-	    $scope.usuario.claveRepetida = "";
 	    $scope.usuario.perfil = "admin";
 
 		if ($auth.isAuthenticated())
 		{
 			$scope.usuarioLogeado = jwtHelper.decodeToken($auth.getToken());
-			$scope.logeado = true;
-			$scope.admin = true;
+		}
+
+	}
+	catch(error)
+	{
+		console.info(error);
+	}
+	$scope.Guardar = function(){
+		try
+		{
+			FactoryUsuario.Guardar($scope.usuario).then(
+				function(respuesta) { 
+					$scope.resultado.ver = true;   	
+			    	$scope.resultado.estilo = "alert alert-success";
+					$scope.resultado.mensaje = "Usuario guardado exitosamente";
+				},function(error) {
+					console.log(error);
+					$scope.resultado.ver = true;
+					$scope.resultado.estilo = "alert alert-danger";
+					$scope.resultado.mensaje = "Error al guardar el usuario";
+		 	});
+	 	}
+	 	catch(error)
+	 	{
+	 		console.info(error);
+	 	}
+	};
+})
+
+.controller("RegistroECCtrl", function($scope, $auth, $state, jwtHelper, FactoryUsuario, FactoryRutas) {
+	try
+	{
+		$scope.resultado = {};
+		$scope.resultado.ver = false;
+		$scope.usuario={};
+	    $scope.usuario.nombre = "";
+	    $scope.usuario.correo = "";
+	    $scope.usuario.clave = "";
+	    $scope.usuario.perfil = "cliente";
+
+		if ($auth.isAuthenticated())
+		{
+			$scope.usuarioLogeado = jwtHelper.decodeToken($auth.getToken());
+		}
+
+	}
+	catch(error)
+	{
+		console.info(error);
+	}
+	$scope.Guardar = function(){
+		try
+		{
+			FactoryUsuario.Guardar($scope.usuario).then(
+				function(respuesta) { 
+					$scope.resultado.ver = true;   	
+			    	$scope.resultado.estilo = "alert alert-success";
+					$scope.resultado.mensaje = "Usuario guardado exitosamente";
+				},function(error) {
+					console.log(error);
+					$scope.resultado.ver = true;
+					$scope.resultado.estilo = "alert alert-danger";
+					$scope.resultado.mensaje = "Error al guardar el usuario";
+		 	});
+	 	}
+	 	catch(error)
+	 	{
+	 		console.info(error);
+	 	}
+	};
+})
+
+.controller("RegistroEECCtrl", function($scope, $auth, $state, jwtHelper, FactoryUsuario, FactoryRutas) {
+	try
+	{
+		$scope.resultado = {};
+		$scope.resultado.ver = false;
+		$scope.usuario={};
+	    $scope.usuario.nombre = "";
+	    $scope.usuario.correo = "";
+	    $scope.usuario.clave = "";
+	    $scope.usuario.perfil = "empleado";
+
+		if ($auth.isAuthenticated())
+		{
+			$scope.usuarioLogeado = jwtHelper.decodeToken($auth.getToken());
 		}
 
 	}

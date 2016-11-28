@@ -12,8 +12,11 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li><a ui-sref="login.registro()" ng-if="logeado && admin" style="color: #ffffff;">Agregar un Usuario</a></li>
-                <li><a ng-click="Salir()" ng-if="logeado" style="color: #ffffff;">Cerrar sesión</a></li>
+                <li><a ui-sref="login.registro()" ng-if="logeado && admin" style="color: #ffffff;">Agregar Usuario</a></li>
+				<li><a ui-sref="login.registroEC()" ng-if="logeado && cliente" style="color: #ffffff;">Agregar Usuario</a></li>
+				<li><a ui-sref="login.registroEC()" ng-if="logeado && empleado" style="color: #ffffff;">Agregar Usuario</a></li>
+				<li><a ui-sref="login.registroEEC()" ng-if="logeado && encargado" style="color: #ffffff;">Agregar Usuario</a></li>
+                <li><a ng-click="Salir()" style="color: #ffffff;">Cerrar sesión</a></li>
             </ul>
         </div>
     </div>

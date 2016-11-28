@@ -15,9 +15,6 @@
 	    	<font color="black"><input type="password" placeholder="Clave" class="txtLogin" name="clave" ng-model='usuario.clave' required></font>
 	    	<font color="black">
 			<font color="black"><select ng-model="usuario.perfil" class="txtLogin">
-				<option value="admin">Administrador</option>
-		    	<option value="encargado">Encargado</option>
-		    	<option value="empleado">Empleado</option>
 		    	<option value="cliente">Cliente</option>
 		    </select></font>
 	    	<input type="submit" value="Guardar Datos" class="btnLogin" ng-if="!formAlta.$invalid" ng-click="Guardar()">
