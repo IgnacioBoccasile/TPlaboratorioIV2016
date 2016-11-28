@@ -303,6 +303,36 @@ angular
 			$scope.resultado.mensaje = "Error al bucar por perfil";
 	 	}
  	}
+})
+.controller("ClientesCtrl", function($scope, $state, $auth, $timeout, jwtHelper, FactoryUsuario) {
+	try
+	{
+		$scope.resultado = {};
+		$scope.resultado.ver = true;
+		$scope.buscarPerfil = "cliente";
+		if ($auth.isAuthenticated())
+		{
+			$scope.usuario = jwtHelper.decodeToken($auth.getToken());
+			$scope.usuario.logeado = true;
+		    $scope.editar = false;
+		}
+		else
+		{
+			$state.go("inicio");
+		}
+
+	 	$scope.ListadoUsuarios = [];
+	 			FactoryUsuario.BuscarPor("usuariosPorPerfil", $scope.buscarPerfil).then(
+			 		function(respuesta) {     	
+			  			$scope.ListadoUsuarios = respuesta;
+			    	},function(error) {
+			 			$scope.ListadoUsuarios= [];
+			 	});
+	}
+	catch(error)
+	{
+		console.info(error);
+	}
 });
 
 ;//Cierre modulo

@@ -216,6 +216,14 @@ a:hover{
 	color: #33FCFF;
 }
 
+.h2Login3{
+	text-align: center;
+	margin-bottom: 5px;
+	margin-top: 5px;
+	color: black;
+	font-family: Algerian;
+}
+
 .txtLogin {
 	display: block;
 	padding: 10px;

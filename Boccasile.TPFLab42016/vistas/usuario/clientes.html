@@ -1,19 +1,9 @@
-<head><title>Listado de Usuarios</title></head>
+<head><title>Listado de Clientes</title></head>
 <div class="container animated bounceInDown" style="margin-top:5%">
     <div class="{{resultado.estilo}}" ng-show="resultado.ver">
         <span style="font-size:20px;">{{resultado.mensaje}}</span>
     </div>
-	<div align="center"><h1>Usuarios Cargados</h1></div><br>
-	
-		<div align="center" class="row"><font color="black"><select ng-click="Buscar()" ng-model="buscarPerfil" class="txtLogin" style="width:30%; margin-left:1%">
-			<option value="todos">Todos</option>
-	    	<option value="admin"><div >Administrador</div></option>
-	    	<option value="encargado">Encargado</option>
-	    	<option value="empleado">Empleado</option>
-			<option value="cliente">Cliente</option>
-	    </select></font></div></br>
-		
-	
+	<div align="center"><h1>Clientes Cargados</h1></div><br>
 	<div class="divListaUsuarios" ng-repeat="usuario in ListadoUsuarios" align="center" style="width:50%">
 		<div class="row" >
 			<div>

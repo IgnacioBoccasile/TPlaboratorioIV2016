@@ -115,6 +115,20 @@ miApp.config(function($stateProvider, $urlRouterProvider, $authProvider){
 		)
 		
 		.state(
+			"login.clientes",
+			{
+				url:"/clientes",
+				cache:false,
+				views:{
+					"contenido": {
+					templateUrl:"vistas/usuario/clientes.html",
+					controller:"ClientesCtrl"
+					}
+				}
+			}
+		)
+		
+		.state(
 			"menu",
 			{
 				url:"/menu",
