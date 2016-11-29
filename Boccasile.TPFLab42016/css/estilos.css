@@ -206,7 +206,8 @@ a:hover{
 	text-align: center;
 	margin-bottom: 5px;
 	margin-top: 5px;
-	color: #4F33FF;
+	color: #C70104;
+	font-family: Algerian;
 }
 
 .h2Login2{
@@ -237,7 +238,7 @@ a:hover{
 	width: 100%;
 	margin: 30px 0;
 	font-size: 20px;
-	background: linear-gradient(#4F33FF, #3481B5);
+	background: linear-gradient(#C70104, #C70104);
 	border: 0;
 	color: #fff;
 	opacity: 0.8;
@@ -259,7 +260,7 @@ a:hover{
 	width: 100%;
 	margin: 30px 0;
 	font-size: 20px;
-	background: linear-gradient(#333FFF, #3481B5);
+	background: linear-gradient(#C70104, #C70104);
 	border: 0;
 	color: #fff;
 	opacity: 0.8;
