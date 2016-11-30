@@ -4,8 +4,8 @@
 	<div class="divListaUsuarios" ng-repeat="usuario in ListadoUsuarios" style="width:50%">
 			<h4 class="h2Login">{{usuario.nombre}}</h4>
 			<p style="font-size:13px"><font color="gray">{{usuario.correo}}</font></p>
-			<p style="font-size:13px" ><font color="green" ng-if="usuario.id<5">Usuario por defecto (inalterable)</font></p>
-			<p style="font-size:13px" ng-if="usuario.agregado==0"><font color = "red">Usuario Bloqueado</font></p>
+			<p style="font-size:13px" ><font color="green" ng-if="usuario.id<5">Cliente por defecto (inalterable)</font></p>
+			<p style="font-size:13px" ng-if="usuario.agregado==0"><font color = "red">Cliente Bloqueado</font></p>
 	</div>
 </div>
 </div>

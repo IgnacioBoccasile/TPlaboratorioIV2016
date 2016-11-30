@@ -10,7 +10,7 @@ $DatosDelModelPorPost = file_get_contents('php://input');
 
 $user = json_decode($DatosDelModelPorPost);
 
-$usuarioBuscado = Usuario::Verificar($user->correo, $user->clave, $user->nombre);
+$usuarioBuscado = Usuario::Verificar($user->correo, $user->clave, $user->nombre, $user->agregado);//sacar agregado
 
 if ($usuarioBuscado != null)
 {

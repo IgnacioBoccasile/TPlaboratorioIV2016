@@ -139,6 +139,12 @@ $app->delete('/usuarioEliminar/{id}', function ($request, $response, $args)
     return $response;
 });
 
+$app->delete('/usuarioDesbloquear/{id}', function ($request, $response, $args)
+ {
+    Usuario::Desbloquear($args['id']);
+	
+    return $response;
+});
 
 $app->delete('/producto/{id}', function ($request, $response, $args) 
 {

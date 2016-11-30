@@ -9,6 +9,7 @@ angular
     objeto.Cargar = Cargar;
     objeto.Bloquear = Bloquear;
 	objeto.Eliminar = Eliminar;
+	objeto.Desbloquear = Desbloquear;
     objeto.Editar = Editar;    
 
     function BuscarPor(entidad, parametro){
@@ -28,11 +29,15 @@ angular
     }    
 
     function Bloquear(parametro){
-      return Servicio.Borrar('usuario', parametro);
+      return Servicio.Bloquear('usuario', parametro);
     } 
 	
 	function Eliminar(parametro){
       return Servicio.Eliminar('usuarioEliminar', parametro);
+    } 
+	
+	function Desbloquear(parametro){
+      return Servicio.Desbloquear('usuarioDesbloquear', parametro);
     } 
 
     function Guardar(parametro){

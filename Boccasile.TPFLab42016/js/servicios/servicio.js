@@ -9,6 +9,7 @@ angular
     this.Editar = Editar;
     this.Bloquear = Bloquear;
 	this.Eliminar = Eliminar;
+	this.Desbloquear = Desbloquear;
     
     var url = FactoryRutas.UrlWebService;
 
@@ -53,6 +54,17 @@ angular
     }
 
     function Bloquear(entidad, parametro){
+      return $http.delete(TraerUrl(entidad, parametro)).then(
+        function (respuesta){
+          return respuesta.data;
+        },
+        function (error){
+          return error;
+        }
+      );
+    }
+	
+	function Desbloquear(entidad, parametro){
       return $http.delete(TraerUrl(entidad, parametro)).then(
         function (respuesta){
           return respuesta.data;

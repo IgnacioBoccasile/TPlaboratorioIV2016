@@ -5,52 +5,40 @@ angular
 	$scope.resultado = {};
 	$scope.resultado.ver = false;
 	$scope.Verificar = function(){
-		
-		try
-		{
-			$auth.login($scope.usuario)
-				.then(function(response){
-					if ($auth.isAuthenticated())
-					{
-						if($scope.usuario.clave != "bloqueado")
-						{
-							$state.go("menu");
-						}
-						
-						else
-						{
-							$scope.resultado.ver = true;
-							$scope.resultado.estilo = "alert alert-danger";
-							$scope.resultado.mensaje = "Usuario no existente o bloqueado";
-							console.log($scope.usuario);
-						}							
-					}
-					
-					else
-					{
-						$scope.resultado.ver = true;
-						$scope.resultado.estilo = "alert alert-danger";
-						$scope.resultado.mensaje = "Usuario no existente o bloqueado";
-						console.log($scope.usuario);
-					}
+	try{
+		$auth.login($scope.usuario)
+			.then(function(response){
+				if ($auth.isAuthenticated())
+				{		
+					$state.go("menu");			
+				}
+				
+				else
+				{
+					$scope.resultado.ver = true;
+					$scope.resultado.estilo = "COLORERROR";
+					$scope.resultado.mensaje = "Los datos no coinciden o probablemente usted haya sido bloqueado.";
+				}
 					
 				}).catch(function(response){
 					console.info("Error", response);
 				});
+				
+				
 		}
 		catch(error)
 		{
 			console.info(error);
 		}
 		
-	}
+}
 
-	$scope.Acceso = function(nombre, correo, clave, agregado, bloqueado){
+	$scope.Acceso = function(nombre, correo, clave, agregado, copiadeclave){
 		$scope.usuario.nombre = nombre;
 		$scope.usuario.correo = correo;
 		$scope.usuario.clave = clave;
 		$scope.usuario.agregado = agregado;
-		$scope.usuario.bloqueado = bloqueado;
+		$scope.usuario.copiadeclave = copiadeclave
 		if($scope.usuario.nombre == "Cliente")
 		{
 			$scope.mibandera=true;
@@ -63,7 +51,7 @@ angular
 	}
 })
 
-.controller("RegistroCtrl", function($scope, $auth, $state, jwtHelper, FactoryUsuario, FactoryRutas) {
+.controller("RegistroCtrl", function($scope, $auth, $state, $timeout, jwtHelper, FactoryUsuario, FactoryRutas) {
 	try
 	{
 		$scope.resultado = {};
@@ -72,13 +60,11 @@ angular
 	    $scope.usuario.nombre = "";
 	    $scope.usuario.correo = "";
 	    $scope.usuario.clave = "";
-	    $scope.usuario.perfil = "admin";
+	    $scope.usuario.perfil = "encargado";
 
 		if ($auth.isAuthenticated())
 		{
 			$scope.usuarioLogeado = jwtHelper.decodeToken($auth.getToken());
-			$scope.logeado = true;
-			$scope.admin = true;
 		}
 
 	}
@@ -92,13 +78,19 @@ angular
 			FactoryUsuario.Guardar($scope.usuario).then(
 				function(respuesta) { 
 					$scope.resultado.ver = true;   	
-			    	$scope.resultado.estilo = "alert alert-success";
+			    	$scope.resultado.estilo = "COLORBIEN";
 					$scope.resultado.mensaje = "Usuario guardado exitosamente";
+					$timeout(function(){
+	 			$state.go('inicio');
+	 		}, 2000);
 				},function(error) {
 					console.log(error);
 					$scope.resultado.ver = true;
-					$scope.resultado.estilo = "alert alert-danger";
+					$scope.resultado.estilo = "COLORERROR";
 					$scope.resultado.mensaje = "Error al guardar el usuario";
+					$timeout(function(){
+	 			$state.go('inicio');
+	 		}, 2000);
 		 	});
 	 	}
 	 	catch(error)
@@ -135,7 +127,7 @@ angular
 			FactoryUsuario.Guardar($scope.usuario).then(
 				function(respuesta) { 
 					$scope.resultado.ver = true;   	
-			    	$scope.resultado.estilo = "alert alert-success";
+			    	$scope.resultado.estilo = "COLORBIEN";
 					$scope.resultado.mensaje = "Usuario guardado exitosamente";
 					$timeout(function(){
 	 			$state.go('inicio');
@@ -143,8 +135,11 @@ angular
 				},function(error) {
 					console.log(error);
 					$scope.resultado.ver = true;
-					$scope.resultado.estilo = "alert alert-danger";
+					$scope.resultado.estilo = "COLORMAL";
 					$scope.resultado.mensaje = "Error al guardar el usuario";
+					$timeout(function(){
+	 			$state.go('inicio');
+	 		}, 2000);
 		 	});
 	 	}
 	 	catch(error)
@@ -154,7 +149,7 @@ angular
 	};
 })
 
-.controller("RegistroEECCtrl", function($scope, $auth, $state, jwtHelper, FactoryUsuario, FactoryRutas) {
+.controller("RegistroEECCtrl", function($scope, $auth, $state, $timeout, jwtHelper, FactoryUsuario, FactoryRutas) {
 	try
 	{
 		$scope.resultado = {};
@@ -181,13 +176,19 @@ angular
 			FactoryUsuario.Guardar($scope.usuario).then(
 				function(respuesta) { 
 					$scope.resultado.ver = true;   	
-			    	$scope.resultado.estilo = "alert alert-success";
+			    	$scope.resultado.estilo = "COLORBIEN";
 					$scope.resultado.mensaje = "Usuario guardado exitosamente";
+					$timeout(function(){
+	 			$state.go('inicio');
+	 		}, 2000);
 				},function(error) {
 					console.log(error);
 					$scope.resultado.ver = true;
-					$scope.resultado.estilo = "alert alert-danger";
+					$scope.resultado.estilo = "COLORMAL";
 					$scope.resultado.mensaje = "Error al guardar el usuario";
+					$timeout(function(){
+	 			$state.go('inicio');
+	 		}, 2000);
 		 	});
 	 	}
 	 	catch(error)
@@ -223,11 +224,11 @@ angular
 		{
 			FactoryUsuario.Editar($scope.usuario);
 			$scope.resultado.ver = true;
-	 		$scope.resultado.estilo = "alert alert-success";
+	 		$scope.resultado.estilo = "COLORBIEN";
 			$scope.resultado.mensaje = "Usuario editado exitosamente";
 			$timeout(function(){
 	 			$state.go('inicio');
-	 		}, 1000);
+	 		}, 2000);
 	 	}
 		catch(error)
 		{
@@ -274,15 +275,21 @@ angular
  		{
  			FactoryUsuario.Bloquear(usuario.id);
 			$scope.resultado.ver = true;
-	 		$scope.resultado.estilo = "alert alert-success";
+	 		$scope.resultado.estilo = "COLORBIEN";
 			$scope.resultado.mensaje = "Usuario bloqueado exitosamente";
+			$timeout(function(){
+	 			$state.go('inicio');
+	 		}, 2000);
  		}
 	 	catch(error)
 	 	{
 	 		console.info(error);
 	 		$scope.resultado.ver = true;
-	 		$scope.resultado.estilo = "alert alert-danger";
+	 		$scope.resultado.estilo = "COLORMAL";
 			$scope.resultado.mensaje = "Error al bloquear un usuario";
+			$timeout(function(){
+	 			$state.go('inicio');
+	 		}, 2000);
 	 	}
  	}
 	
@@ -291,17 +298,46 @@ angular
  		{
  			FactoryUsuario.Eliminar(usuario.id);
 			$scope.resultado.ver = true;
-	 		$scope.resultado.estilo = "alert alert-success";
+	 		$scope.resultado.estilo = "COLORBIEN";
 			$scope.resultado.mensaje = "Usuario eliminado exitosamente";
+			$timeout(function(){
+	 			$state.go('inicio');
+	 		}, 2000);
  		}
 	 	catch(error)
 	 	{
 	 		console.info(error);
 	 		$scope.resultado.ver = true;
-	 		$scope.resultado.estilo = "alert alert-danger";
+	 		$scope.resultado.estilo = "COLORMAL";
 			$scope.resultado.mensaje = "Error al eliminar un usuario";
+			$timeout(function(){
+	 			$state.go('inicio');
+	 		}, 2000);
 	 	}
  	}
+	
+	$scope.Desbloquear = function(usuario){
+		try
+ 		{
+ 			FactoryUsuario.Desbloquear(usuario.id);
+			$scope.resultado.ver = true;
+	 		$scope.resultado.estilo = "COLORBIEN";
+			$scope.resultado.mensaje = "Usuario desbloqueado exitosamente";
+			$timeout(function(){
+	 			$state.go('inicio');
+	 		}, 2000);
+ 		}
+	 	catch(error)
+	 	{
+	 		console.info(error);
+	 		$scope.resultado.ver = true;
+	 		$scope.resultado.estilo = "COLORMAL";
+			$scope.resultado.mensaje = "Error al desbloquear un usuario";
+			$timeout(function(){
+	 			$state.go('inicio');
+	 		}, 2000);
+	 	}
+	}
  	$scope.Buscar = function(){
  		try
  		{
@@ -330,8 +366,11 @@ angular
 	 	{
 	 		console.info(error);
 	 		$scope.resultado.ver = true;
-	 		$scope.resultado.estilo = "alert alert-danger";
+	 		$scope.resultado.estilo = "COLORMAL";
 			$scope.resultado.mensaje = "Error al bucar por perfil";
+			$timeout(function(){
+	 			$state.go('inicio');
+	 		}, 2000);
 	 	}
  	}
 })

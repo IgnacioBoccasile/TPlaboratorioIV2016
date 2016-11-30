@@ -1,26 +1,26 @@
 <head><title>Listado de Usuarios</title></head>
 <div class="intro-header5">
-<div class="animated bounceInDown" style="margin-top:2%" align="center">
-    <div class="{{resultado.estilo}}" ng-show="resultado.ver">
-        <span style="font-size:20px;">{{resultado.mensaje}}</span>
-    </div>
-		<div align="center"><font color="black"><select ng-click="Buscar()" ng-model="buscarPerfil" class="txtLogin" style="width:20%; margin-left:1%">
+<div class="animated bounceInDown" style="margin-top:1%" align="center">
+		<div align="center"><font color="black"><select ng-click="Buscar()" ng-model="buscarPerfil" class="txtLogin" style="width:20%;">
 			<option value="todos">Todos los usuarios</option>
 	    	<option value="admin"><div >Filtrar por Administrador</div></option>
 	    	<option value="encargado">Filtrar por Encargado</option>
 	    	<option value="empleado">Filtrar por Empleado</option>
 			<option value="cliente">Filtrar por Cliente</option>
-	    </select></font></div><br>
+	    </select></font></div>
 		
-	
+	<div class="{{resultado.estilo}}" ng-show="resultado.ver">
+				<span style="font-size:13px;">{{resultado.mensaje}}</span><br><br>
+			</div>
 	<div class="divListaUsuarios" ng-repeat="usuario in ListadoUsuarios" style="width:50%">
+			
 			<h4 class="h2Login">{{usuario.nombre}}</h4>
-			<p style="font-size:13px"><font color="gray">{{usuario.correo}}</font></p>
-			<p style="font-size:13px" ><font color="gray">Es de tipo {{usuario.perfil}}</font></p>
-			<p style="font-size:13px" ><font color="green" ng-if="usuario.id<5">Usuario por defecto (inalterable)</font></p>
-			<p style="font-size:13px" ng-if="usuario.agregado==0"><font color = "red">Usuario Bloqueado</font></p>
+			<p style="font-size:13px"><font color="gray">Su correo es {{usuario.correo}}. Su perfil es {{usuario.perfil}}.</font></p>
+			<p style="font-size:13px" ng-if="usuario.id<5"><font color="red">Al estar cargado por defecto, NO se puede modificar.</font></p>
+			<p style="font-size:13px" ng-if="usuario.agregado==0"><font color = "red">No le está permitido el ingreso al sistema, ha sido bloqueado.</font></p>
 			<input type="submit" value="Modificar" class="btnLogin" style="width:32%" ng-click="Modificar(usuario)" ng-if="usuario.id>4">
-			<input type="submit" value="Bloquear" class="btnLogin" style="width:32%" ng-click="Bloquear(usuario)" ng-if="usuario.id>4">
+			<input type="submit" value="Bloquear" class="btnLogin" style="width:32%" ng-click="Bloquear(usuario)" ng-if="usuario.id>4 && usuario.agregado==1">
+			<input type="submit" value="Desbloquear" class="btnLogin" style="width:32%" ng-click="Desbloquear(usuario)" ng-if="usuario.id>4 && usuario.agregado==0">
 			<input type="submit" value="Eliminar" class="btnLogin" style="width:32%" ng-click="Eliminar(usuario)" ng-if="usuario.id>4">
 	</div>
 </div>

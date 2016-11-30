@@ -30,17 +30,19 @@ class Usuario
 		return $usuarioBuscado;	
 	}
 
-	public static function Verificar($correo, $clave, $nombre) 
+	public static function Verificar($correo, $clave, $nombre, $agregado) //sacar lo de agregado
 	{	
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 		
-		$consulta =$objetoAccesoDato->RetornarConsulta("SELECT * FROM usuario WHERE correo =:correo AND clave =:clave AND nombre =:nombre");
+		$consulta =$objetoAccesoDato->RetornarConsulta("SELECT * FROM usuario WHERE correo =:correo AND clave =:clave AND nombre =:nombre AND agregado =:agregado");
 		
 		$consulta->bindValue(':correo', $correo, PDO::PARAM_STR);
 		
 		$consulta->bindValue(':clave', $clave, PDO::PARAM_STR);
 		
 		$consulta->bindValue(':nombre', $nombre, PDO::PARAM_STR);
+		
+		$consulta->bindValue(':agregado', $agregado, PDO::PARAM_STR);
 		
 		$consulta->execute();
 		
@@ -81,7 +83,20 @@ class Usuario
 	{	
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 		
-		$consulta =$objetoAccesoDato->RetornarConsulta("UPDATE usuario SET agregado=0, clave='bloqueado' WHERE id=:id");	
+		$consulta =$objetoAccesoDato->RetornarConsulta("UPDATE usuario SET agregado=0 WHERE id=:id");
+		
+		$consulta->bindValue(':id',$id, PDO::PARAM_INT);
+		
+		$consulta->execute();
+		
+		return $consulta->rowCount();
+	}
+	
+	public static function Desbloquear($id)
+	{	
+		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
+		
+		$consulta =$objetoAccesoDato->RetornarConsulta("UPDATE usuario SET agregado=1 WHERE id=:id");
 		
 		$consulta->bindValue(':id',$id, PDO::PARAM_INT);
 		
