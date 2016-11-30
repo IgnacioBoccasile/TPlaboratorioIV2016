@@ -153,11 +153,11 @@ a:hover{
 /*Login*/
 
 .divLogin {
-	margin: auto;
+	margin:auto;
 	margin-top: 5%;
 	width: 60%;
 	max-width: 600px;
-	background: #F3F3F3;
+	background: black;
 	padding: 30px;
 	border: 1px solid rgba(0,0,0.2);
 	box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);
@@ -166,9 +166,9 @@ a:hover{
 .divListaUsuarios {
 	margin: auto;
 	width: 100%;
-	margin-top: 1%;
-	background: #F3F3F3;
-	padding: 30px;
+	margin-top: 0%;
+	background: black;
+	padding: 10px;
 	border: 1px solid rgba(0,0,0.2);
 	box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);
 }
@@ -176,9 +176,9 @@ a:hover{
 .divListaProductos {
 	margin: auto;
 	width: 100%;
-	margin-top: 1%;
-	background: #F3F3F3;
-	padding: 30px;
+	margin-top: 0%;
+	background: black;
+	padding: 10px;
 	border: 1px solid rgba(0,0,0.2);
 	box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);
 }
@@ -206,7 +206,7 @@ a:hover{
 	text-align: center;
 	margin-bottom: 5px;
 	margin-top: 5px;
-	color: #C70104;
+	color: white;
 	font-family: Algerian;
 }
 
@@ -234,10 +234,10 @@ a:hover{
 }
 
 .btnLogin{
-	padding: 10px;
+	padding: 5px;
 	width: 100%;
-	margin: 30px 0;
-	font-size: 20px;
+	margin: 15px 0;
+	font-size: 15px;
 	background: linear-gradient(#C70104, #C70104);
 	border: 0;
 	color: #fff;
@@ -245,6 +245,7 @@ a:hover{
 	cursor: pointer;
 	border-radius: 10px;
 	margin-bottom: 0;
+	margin-top: 0%;
 }
 
 .btnLogin:hover {
@@ -262,7 +263,7 @@ a:hover{
 	font-size: 20px;
 	background: linear-gradient(#C70104, #C70104);
 	border: 0;
-	color: #fff;
+	color: white;
 	opacity: 0.8;
 	cursor: pointer;
 	border-radius: 10px;

@@ -1,5 +1,5 @@
 <head><title>Menú Principal</title></head>
-<nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation" style="background-color:C70104;border-color:C70104">
+<nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation" style="background-color:black;border-color:black">
     <div class="container topnav">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -8,15 +8,16 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <font class="navbar-brand topnav" style="color:#ffffff" ng-if="logeado">Bienvenido {{usuarioLogeado.usuario}}!!</font>
+            <font class="navbar-brand topnav" style="color:white" ng-if="logeado">Bienvenido {{usuarioLogeado.usuario}}!!</font>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li><a ui-sref="login.registro()" ng-if="logeado && admin" style="color: #ffffff;">Agregar Usuario</a></li>
-				<li><a ui-sref="login.registroEC()" ng-if="logeado && cliente" style="color: #ffffff;">Agregar Cliente</a></li>
-				<li><a ui-sref="login.registroEC()" ng-if="logeado && empleado" style="color: #ffffff;">Agregar Cliente</a></li>
-				<li><a ui-sref="login.registroEEC()" ng-if="logeado && encargado" style="color: #ffffff;">Agregar Usuario</a></li>
-                <li><a ng-click="Salir()" style="color: #ffffff;">Cerrar sesión</a></li>
+				<li><a ui-sref="producto.alta()" ng-if="logeado && nuevoProducto" style="color: white">Agregar un Producto</a></li>
+                <li><a ui-sref="login.registro()" ng-if="logeado && admin" style="color: white">Agregar Usuario</a></li>
+				<li><a ui-sref="login.registroEC()" ng-if="logeado && cliente" style="color: white">Agregar Cliente</a></li>
+				<li><a ui-sref="login.registroEC()" ng-if="logeado && empleado" style="color: white">Agregar Cliente</a></li>
+				<li><a ui-sref="login.registroEEC()" ng-if="logeado && encargado" style="color: white">Agregar Usuario</a></li>
+                <li><a ng-click="Salir()" style="color: white">Cerrar sesión</a></li>
             </ul>
         </div>
     </div>
@@ -24,14 +25,15 @@
 
 <div class="intro-header3"> 
     <div class="container animated bounceInDown">
-	<br><br></br>
-	<h1><font color="white" style="font-family: Algerian;">Listados:</font></h1>
-        <div class="row" style="margin-top:5%">
-            <a ui-sref="login.usuarios()" ng-if="logeado && admin" style="margin:1%">
-                <input type="submit" value="Usuarios" class="btnLogin2" style="width:30%">
+        <div class="row" style="margin-top:1%">
+			<a ui-sref="producto.productos()" ng-if="logeado && !cliente && !empleado" style="margin:1%">
+				<input type="submit" value="Lista de Productos" class="btnLogin2" style="width:30%">
+            </a>
+            <a ui-sref="login.usuarios()" ng-if="logeado && (admin || encargado)" style="margin:1%">
+                <input type="submit" value="Lista de Usuarios" class="btnLogin2" style="width:30%">
             </a>
 			<a ui-sref="login.clientes()" ng-if="logeado && empleado" style="margin:1%">
-                <input type="submit" value="Clientes" class="btnLogin2" style="width:30%">
+                <input type="submit" value="Lista de Clientes" class="btnLogin2" style="width:30%">
             </a>
         </div>
     </div>

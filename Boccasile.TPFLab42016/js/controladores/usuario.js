@@ -1,26 +1,37 @@
 angular
-.module('SPBOCCASILE')
+.module('TPFBOCCASILE')
 .controller('LoginCtrl', function($scope, $state, $auth, jwtHelper) {
 	$scope.usuario = {};
-	$scope.usuario.nombre = "Administrador";
-	$scope.usuario.correo = "admin@admin.com";
-	$scope.usuario.clave = "123456";
 	$scope.resultado = {};
 	$scope.resultado.ver = false;
 	$scope.Verificar = function(){
+		
 		try
 		{
 			$auth.login($scope.usuario)
 				.then(function(response){
 					if ($auth.isAuthenticated())
 					{
-						$state.go("menu");
+						if($scope.usuario.clave != "bloqueado")
+						{
+							$state.go("menu");
+						}
+						
+						else
+						{
+							$scope.resultado.ver = true;
+							$scope.resultado.estilo = "alert alert-danger";
+							$scope.resultado.mensaje = "Usuario no existente o bloqueado";
+							console.log($scope.usuario);
+						}							
 					}
+					
 					else
 					{
 						$scope.resultado.ver = true;
 						$scope.resultado.estilo = "alert alert-danger";
-						$scope.resultado.mensaje = "Usuario no existente o datos incorrectos";
+						$scope.resultado.mensaje = "Usuario no existente o bloqueado";
+						console.log($scope.usuario);
 					}
 					
 				}).catch(function(response){
@@ -31,12 +42,15 @@ angular
 		{
 			console.info(error);
 		}
+		
 	}
 
-	$scope.Acceso = function(nombre, correo, clave){
+	$scope.Acceso = function(nombre, correo, clave, agregado, bloqueado){
 		$scope.usuario.nombre = nombre;
 		$scope.usuario.correo = correo;
 		$scope.usuario.clave = clave;
+		$scope.usuario.agregado = agregado;
+		$scope.usuario.bloqueado = bloqueado;
 		if($scope.usuario.nombre == "Cliente")
 		{
 			$scope.mibandera=true;
@@ -63,6 +77,8 @@ angular
 		if ($auth.isAuthenticated())
 		{
 			$scope.usuarioLogeado = jwtHelper.decodeToken($auth.getToken());
+			$scope.logeado = true;
+			$scope.admin = true;
 		}
 
 	}
@@ -92,7 +108,7 @@ angular
 	};
 })
 
-.controller("RegistroECCtrl", function($scope, $auth, $state, jwtHelper, FactoryUsuario, FactoryRutas) {
+.controller("RegistroECCtrl", function($scope, $auth, $timeout, $state, jwtHelper, FactoryUsuario, FactoryRutas) {
 	try
 	{
 		$scope.resultado = {};
@@ -121,6 +137,9 @@ angular
 					$scope.resultado.ver = true;   	
 			    	$scope.resultado.estilo = "alert alert-success";
 					$scope.resultado.mensaje = "Usuario guardado exitosamente";
+					$timeout(function(){
+	 			$state.go('inicio');
+	 		}, 2000);
 				},function(error) {
 					console.log(error);
 					$scope.resultado.ver = true;
@@ -250,27 +269,39 @@ angular
     	$state.go('login.usuario', {usuario:param});
  	}
 
- 	$scope.Borrar = function(usuario){
+ 	$scope.Bloquear = function(usuario){
  		try
  		{
- 			FactoryUsuario.Borrar(usuario.id);
+ 			FactoryUsuario.Bloquear(usuario.id);
 			$scope.resultado.ver = true;
 	 		$scope.resultado.estilo = "alert alert-success";
-			$scope.resultado.mensaje = "Usuario eliminado exitosamente";
-
-	 		$timeout(function(){
-	 			$state.go('inicio');
-	 		}, 1000);
+			$scope.resultado.mensaje = "Usuario bloqueado exitosamente";
  		}
 	 	catch(error)
 	 	{
 	 		console.info(error);
 	 		$scope.resultado.ver = true;
 	 		$scope.resultado.estilo = "alert alert-danger";
-			$scope.resultado.mensaje = "Error al borrar un usuario";
+			$scope.resultado.mensaje = "Error al bloquear un usuario";
 	 	}
  	}
-
+	
+	$scope.Eliminar = function(usuario){
+ 		try
+ 		{
+ 			FactoryUsuario.Eliminar(usuario.id);
+			$scope.resultado.ver = true;
+	 		$scope.resultado.estilo = "alert alert-success";
+			$scope.resultado.mensaje = "Usuario eliminado exitosamente";
+ 		}
+	 	catch(error)
+	 	{
+	 		console.info(error);
+	 		$scope.resultado.ver = true;
+	 		$scope.resultado.estilo = "alert alert-danger";
+			$scope.resultado.mensaje = "Error al eliminar un usuario";
+	 	}
+ 	}
  	$scope.Buscar = function(){
  		try
  		{

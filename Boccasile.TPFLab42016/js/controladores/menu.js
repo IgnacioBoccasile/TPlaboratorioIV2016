@@ -1,5 +1,5 @@
 angular
-  .module('SPBOCCASILE')
+  .module('TPFBOCCASILE')
   .controller('MenuCtrl', function($scope, $state, $auth, jwtHelper) {
   	if ($auth.isAuthenticated())
 	{
@@ -7,24 +7,46 @@ angular
 		$scope.logeado = true;
 
 		if ($scope.usuarioLogeado.perfil == "admin")
+		{
 			$scope.admin = true;
-		else
+		}
+			
+		else 
+		{
 			$scope.admin = false;
-		
+		}
+			
 		if ($scope.usuarioLogeado.perfil == "encargado")
+		{
+			$scope.nuevoProducto = true;
 			$scope.encargado = true;
+		}
+			
 		else
+		{
 			$scope.encargado = false;
-		
+		}
+			
 		if ($scope.usuarioLogeado.perfil == "empleado")
+		{
+			$scope.nuevoProducto = true;
 			$scope.empleado = true;
+		}
+			
 		else
+		{
 			$scope.empleado = false;
-		
+		}
+			
 		if ($scope.usuarioLogeado.perfil == "cliente")
+		{
 			$scope.cliente = true;
+		}
+			
 		else
+		{
 			$scope.cliente = false;
+		}		
 	}
 
 	$scope.Salir = function(){

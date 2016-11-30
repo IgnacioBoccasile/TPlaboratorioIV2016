@@ -13,8 +13,8 @@ class Usuario
 	
   	public $perfil;
 	
-  	public $activo;
-
+	public $agregado;
+	
 	public static function Cargar($idParametro) 
 	{	
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
@@ -34,7 +34,7 @@ class Usuario
 	{	
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 		
-		$consulta =$objetoAccesoDato->RetornarConsulta("SELECT * FROM usuario WHERE correo =:correo AND clave =:clave AND nombre =:nombre AND agregado = 1");
+		$consulta =$objetoAccesoDato->RetornarConsulta("SELECT * FROM usuario WHERE correo =:correo AND clave =:clave AND nombre =:nombre");
 		
 		$consulta->bindValue(':correo', $correo, PDO::PARAM_STR);
 		
@@ -53,7 +53,7 @@ class Usuario
 	{
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 		
-		$consulta =$objetoAccesoDato->RetornarConsulta("SELECT * FROM usuario WHERE agregado = 1");
+		$consulta =$objetoAccesoDato->RetornarConsulta("SELECT * FROM usuario");
 		
 		$consulta->execute();
 		
@@ -66,7 +66,7 @@ class Usuario
 	{
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
 		
-		$consulta =$objetoAccesoDato->RetornarConsulta("SELECT * FROM usuario WHERE perfil=:perfil AND agregado = 1");
+		$consulta =$objetoAccesoDato->RetornarConsulta("SELECT * FROM usuario WHERE perfil=:perfil");
 		
 		$consulta->bindValue(':perfil',$perfil, PDO::PARAM_STR);
 		
@@ -77,11 +77,11 @@ class Usuario
 		return $arrUsuarios;
 	}
 
-	public static function Borrar($id)
+	public static function Bloquear($id)
 	{	
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 		
-		$consulta =$objetoAccesoDato->RetornarConsulta("UPDATE usuario SET agregado=0 WHERE id=:id");	
+		$consulta =$objetoAccesoDato->RetornarConsulta("UPDATE usuario SET agregado=0, clave='bloqueado' WHERE id=:id");	
 		
 		$consulta->bindValue(':id',$id, PDO::PARAM_INT);
 		
@@ -90,11 +90,25 @@ class Usuario
 		return $consulta->rowCount();
 	}
 	
+	public static function Eliminar($id)
+	{	
+		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
+		
+		$consulta =$objetoAccesoDato->RetornarConsulta("DELETE FROM usuario WHERE id=:id");	
+		
+		$consulta->bindValue(':id',$id, PDO::PARAM_INT);
+		
+		$consulta->execute();
+		
+		return $consulta->rowCount();
+	}
+	
+	
 	public static function Editar($usuario)
 	{
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 		
-		$consulta =$objetoAccesoDato->RetornarConsulta("UPDATE usuario SET nombre=:nombre, correo=:correo, agregado=:agregado WHERE id=:id");
+		$consulta =$objetoAccesoDato->RetornarConsulta("UPDATE usuario SET nombre=:nombre, correo=:correo WHERE id=:id");
 		
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
 		
@@ -103,8 +117,6 @@ class Usuario
 		$consulta->bindValue(':nombre',$usuario->nombre, PDO::PARAM_STR);
 		
 		$consulta->bindValue(':correo',$usuario->correo, PDO::PARAM_STR);
-		
-		$consulta->bindValue(':agregado',$usuario->agregado, PDO::PARAM_INT);
 		
 		return $consulta->execute();
 	}

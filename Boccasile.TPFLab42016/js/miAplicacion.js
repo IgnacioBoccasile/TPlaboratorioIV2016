@@ -1,4 +1,4 @@
-var miApp = angular.module('SPBOCCASILE', ['ui.router', 'angularFileUpload','satellizer', 'angular-jwt']);
+var miApp = angular.module('TPFBOCCASILE', ['ui.router', 'angularFileUpload','satellizer', 'angular-jwt']);
 
 miApp.config(function($stateProvider, $urlRouterProvider, $authProvider){
 	//proveedor de autentificacion.
@@ -123,6 +123,44 @@ miApp.config(function($stateProvider, $urlRouterProvider, $authProvider){
 					"contenido": {
 					templateUrl:"vistas/usuario/clientes.html",
 					controller:"ClientesCtrl"
+					}
+				}
+			}
+		)
+		
+		.state(
+			"producto",
+			{
+				url:"/producto",
+				cache:false,
+				abstract:true, 
+				templateUrl:"vistas/producto/abstractaProducto.html"
+			}
+		)
+
+		.state(
+			"producto.alta",
+			{
+				url:"/alta",
+				cache:false,
+				views:{
+					"contenido": {
+					templateUrl:"vistas/producto/altaProducto.html",
+					controller:"ProductoAltaCtrl"
+					}
+				}
+			}
+		)
+
+		.state(
+			"producto.productos",
+			{
+				url:"/productos",
+				cache:false,
+				views:{
+					"contenido": {
+					templateUrl:"vistas/producto/productos.html",
+					controller:"ProductosCtrl"
 					}
 				}
 			}

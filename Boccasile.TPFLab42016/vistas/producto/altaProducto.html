@@ -1,0 +1,19 @@
+<head><title>Alta de Productos</title></head>
+<div class="intro-header4">
+<div class="divLogin animated bounceInUp" style="margin-top:2%;">
+	    <div class="{{resultado.estilo}}" ng-show="resultado.ver">
+	        <span style="font-size:20px;">{{resultado.mensaje}}</span>
+	    </div>
+        <h2 class="h2Login">Complete los campos:</h2>
+    <div class="row">
+	    <div class="col-lg-12">
+			<form id="formProducto" name="formProducto" enctype="multipart/form-data" novalidate>
+    		<font color="black"><input type="text" placeholder="Nombre" class="txtLogin" name="nombre" ng-model='producto.nombre' required></font>
+	    	<font color="black"><input type="text" placeholder="Descripcion" class="txtLogin" name="descripcion" ng-model='producto.descripcion' required></font>
+	    	<font color="black"><input type="text" placeholder="Precio" class="txtLogin" name="precio" ng-model='producto.precio' required></font>
+	    	<input type="submit" value="Guardar" class="btnLogin" ng-if="!formProducto.$invalid" ng-click="Guardar()">
+			</form>
+    	</div>
+	</div>
+</div>
+</div>

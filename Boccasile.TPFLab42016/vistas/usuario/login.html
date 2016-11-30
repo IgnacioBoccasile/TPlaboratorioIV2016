@@ -1,7 +1,7 @@
 <head><title>Login</title></head>
 <div class="intro-header2">
-<div class="divLogin animated bounceInLeft" name="loginForm" style="margin-top:3%">
-  <div class="{{resultado.estilo}}" ng-show="resultado.ver">
+<div class="divLogin animated bounceInLeft" name="loginForm" style="margin-top:2%">
+ <div class="{{resultado.estilo}}" ng-show="resultado.ver">
         <span style="font-size:20px;">{{resultado.mensaje}}</span>
     </div>
   <div class="row">
@@ -11,21 +11,21 @@
       <font color="black"><input type="text" placeholder="Nombre" class="txtLogin" name="nombre" ng-model="usuario.nombre" required></font>
       <font color="black"><input type="email" placeholder="Correo" class="txtLogin" name="correo" ng-model="usuario.correo" required></font>
       <font color="black"><input type="password" placeholder="Clave" class="txtLogin" name="clave" ng-model="usuario.clave" required></font>
-      <input type="submit" value="Loguearse" ng-if="!loginForm.$invalid" class="btnLogin" ng-click="Verificar()">
+      <input type="submit" value="Loguearse" ng-if="!loginForm.$invalid" class="btnLogin" ng-click="Verificar()"><br><br>
 	  </form>
     </div>
   </div>
   <div align="center">
-    <input type="submit" value="Soy Admin" class="btnLogin" style="width:49%; display:inline" ng-click="Acceso('Administrador','admin@admin.com', '123456')">
-    <input type="submit" value="Soy Encargado" class="btnLogin" style="width:49%; display:inline" ng-click="Acceso('Encargado','encargado@encargado.com', '123456')">
+    <input type="submit" value="Soy Admin" class="btnLogin" style="width:49%; display:inline" ng-click="Acceso('Administrador','admin@admin.com', '123456', '1', 'no')">
+    <input type="submit" value="Soy Encargado" class="btnLogin" style="width:49%; display:inline" ng-click="Acceso('Encargado','encargado@encargado.com', '123456', '1', 'no')">
     </div>
 	<div align="center">
-	<input type="submit" value="Soy Empleado" class="btnLogin" style="width:49%; display:inline" ng-click="Acceso('Empleado','empleado@empleado.com', '123456')">
-	<input type="submit" value="Soy Cliente" class="btnLogin" style="width:49%; display:inline" ng-click="Acceso('Cliente','cliente@cliente.com', '123456')">
+	<br><input type="submit" value="Soy Empleado" class="btnLogin" style="width:49%; display:inline" ng-click="Acceso('Empleado','empleado@empleado.com', '123456', '1', 'no')">
+	<input type="submit" value="Soy Cliente" class="btnLogin" style="width:49%; display:inline" ng-click="Acceso('Cliente','cliente@cliente.com', '123456', '1', 'no')">
   </div>
        <p class="text-center text-muted" ng-if="mibandera">
-	  <br><br>
-        Si todavía no tenés una cuenta: <small><a ui-sref="login.registroEC()"><font color="#C70104">Registrate!!</font></a></small>
+	   <br>
+        Si todavía no tenés una cuenta: <small><a ui-sref="login.registroEC()"><font color="white">Registrate!!</font></a></small>
       </p>
 </div>
 </div>

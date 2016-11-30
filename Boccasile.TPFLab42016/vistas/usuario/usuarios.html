@@ -1,31 +1,27 @@
 <head><title>Listado de Usuarios</title></head>
-<div class="container animated bounceInDown" style="margin-top:5%">
+<div class="intro-header5">
+<div class="animated bounceInDown" style="margin-top:2%" align="center">
     <div class="{{resultado.estilo}}" ng-show="resultado.ver">
         <span style="font-size:20px;">{{resultado.mensaje}}</span>
     </div>
-	<div align="center"><h1>Usuarios Cargados</h1></div><br>
-	
-		<div align="center" class="row"><font color="black"><select ng-click="Buscar()" ng-model="buscarPerfil" class="txtLogin" style="width:30%; margin-left:1%">
-			<option value="todos">Todos</option>
-	    	<option value="admin"><div >Administrador</div></option>
-	    	<option value="encargado">Encargado</option>
-	    	<option value="empleado">Empleado</option>
-			<option value="cliente">Cliente</option>
-	    </select></font></div></br>
+		<div align="center"><font color="black"><select ng-click="Buscar()" ng-model="buscarPerfil" class="txtLogin" style="width:20%; margin-left:1%">
+			<option value="todos">Todos los usuarios</option>
+	    	<option value="admin"><div >Filtrar por Administrador</div></option>
+	    	<option value="encargado">Filtrar por Encargado</option>
+	    	<option value="empleado">Filtrar por Empleado</option>
+			<option value="cliente">Filtrar por Cliente</option>
+	    </select></font></div><br>
 		
 	
-	<div class="divListaUsuarios" ng-repeat="usuario in ListadoUsuarios" align="center" style="width:50%">
-		<div class="row" >
-			<div>
-				<h4 style="width:100%; font-size:28px">{{usuario.nombre}}</h4>
-				<p style="font-size:18px">Correo: {{usuario.correo}}</p>
-				<p style="font-size:18px">Perfil: {{usuario.perfil}}</p>
-			</div><br>
-			<div align="center">
-			<input type="submit" value="Modificar" class="btnLogin" style="width:32%" ng-click="Modificar(usuario)">
-			<input type="submit" value="Borrar" class="btnLogin" style="width:32%" ng-click="Borrar(usuario)">
-			</div>
-		</div>
+	<div class="divListaUsuarios" ng-repeat="usuario in ListadoUsuarios" style="width:50%">
+			<h4 class="h2Login">{{usuario.nombre}}</h4>
+			<p style="font-size:13px"><font color="gray">{{usuario.correo}}</font></p>
+			<p style="font-size:13px" ><font color="gray">Es de tipo {{usuario.perfil}}</font></p>
+			<p style="font-size:13px" ><font color="green" ng-if="usuario.id<5">Usuario por defecto (inalterable)</font></p>
+			<p style="font-size:13px" ng-if="usuario.agregado==0"><font color = "red">Usuario Bloqueado</font></p>
+			<input type="submit" value="Modificar" class="btnLogin" style="width:32%" ng-click="Modificar(usuario)" ng-if="usuario.id>4">
+			<input type="submit" value="Bloquear" class="btnLogin" style="width:32%" ng-click="Bloquear(usuario)" ng-if="usuario.id>4">
+			<input type="submit" value="Eliminar" class="btnLogin" style="width:32%" ng-click="Eliminar(usuario)" ng-if="usuario.id>4">
 	</div>
 </div>
 </div>

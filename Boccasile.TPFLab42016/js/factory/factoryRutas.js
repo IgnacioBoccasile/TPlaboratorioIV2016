@@ -1,5 +1,5 @@
 angular
-  .module('SPBOCCASILE')
+  .module('TPFBOCCASILE')
   .factory('FactoryRutas', function () {
     var objeto = {};
     objeto.Nombre = "Factory Rutas";

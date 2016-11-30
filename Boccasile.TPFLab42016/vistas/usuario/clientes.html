@@ -1,21 +1,11 @@
 <head><title>Listado de Clientes</title></head>
-<div class="container animated bounceInDown" style="margin-top:5%">
-    <div class="{{resultado.estilo}}" ng-show="resultado.ver">
-        <span style="font-size:20px;">{{resultado.mensaje}}</span>
-    </div>
-	<div align="center"><h1>Clientes Cargados</h1></div><br>
-	<div class="divListaUsuarios" ng-repeat="usuario in ListadoUsuarios" align="center" style="width:50%">
-		<div class="row" >
-			<div>
-				<h4 style="width:100%; font-size:28px">{{usuario.nombre}}</h4>
-				<p style="font-size:18px">Correo: {{usuario.correo}}</p>
-				<p style="font-size:18px">Perfil: {{usuario.perfil}}</p>
-			</div><br>
-			<div align="center">
-			<input type="submit" value="Modificar" class="btnLogin" style="width:32%" ng-click="Modificar(usuario)">
-			<input type="submit" value="Borrar" class="btnLogin" style="width:32%" ng-click="Borrar(usuario)">
-			</div>
-		</div>
+<div class="intro-header5">
+<div class="animated bounceInDown" style="margin-top:2%" align="center">
+	<div class="divListaUsuarios" ng-repeat="usuario in ListadoUsuarios" style="width:50%">
+			<h4 class="h2Login">{{usuario.nombre}}</h4>
+			<p style="font-size:13px"><font color="gray">{{usuario.correo}}</font></p>
+			<p style="font-size:13px" ><font color="green" ng-if="usuario.id<5">Usuario por defecto (inalterable)</font></p>
+			<p style="font-size:13px" ng-if="usuario.agregado==0"><font color = "red">Usuario Bloqueado</font></p>
 	</div>
 </div>
 </div>

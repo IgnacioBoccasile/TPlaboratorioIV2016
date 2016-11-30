@@ -1,5 +1,5 @@
 angular
-  .module('SPBOCCASILE')
+  .module('TPFBOCCASILE')
   .factory('FactoryUsuario', function (Servicio) {
     var objeto = {};
     objeto.Nombre = "Factory Usuario";
@@ -7,7 +7,8 @@ angular
     objeto.BuscarPor = BuscarPor;
     objeto.Guardar = Guardar;
     objeto.Cargar = Cargar;
-    objeto.Borrar = Borrar;
+    objeto.Bloquear = Bloquear;
+	objeto.Eliminar = Eliminar;
     objeto.Editar = Editar;    
 
     function BuscarPor(entidad, parametro){
@@ -26,8 +27,12 @@ angular
       return Servicio.Editar('usuario', JSON.stringify(parametro));
     }    
 
-    function Borrar(parametro){
+    function Bloquear(parametro){
       return Servicio.Borrar('usuario', parametro);
+    } 
+	
+	function Eliminar(parametro){
+      return Servicio.Eliminar('usuarioEliminar', parametro);
     } 
 
     function Guardar(parametro){

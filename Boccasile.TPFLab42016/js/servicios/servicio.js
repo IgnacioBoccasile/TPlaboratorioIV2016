@@ -1,5 +1,5 @@
 angular
-  .module('SPBOCCASILE')
+  .module('TPFBOCCASILE')
   .service('Servicio', function ($http, FactoryRutas) {
     this.Nombre = "Servicio";
     this.BuscarTodos = BuscarTodos;
@@ -7,7 +7,8 @@ angular
     this.Cargar = Cargar;
     this.Guardar = Guardar;
     this.Editar = Editar;
-    this.Borrar = Borrar;
+    this.Bloquear = Bloquear;
+	this.Eliminar = Eliminar;
     
     var url = FactoryRutas.UrlWebService;
 
@@ -51,7 +52,18 @@ angular
       );
     }
 
-    function Borrar(entidad, parametro){
+    function Bloquear(entidad, parametro){
+      return $http.delete(TraerUrl(entidad, parametro)).then(
+        function (respuesta){
+          return respuesta.data;
+        },
+        function (error){
+          return error;
+        }
+      );
+    }
+	
+	function Eliminar(entidad, parametro){
       return $http.delete(TraerUrl(entidad, parametro)).then(
         function (respuesta){
           return respuesta.data;
