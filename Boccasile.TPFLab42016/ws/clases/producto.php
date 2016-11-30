@@ -41,7 +41,7 @@ class Producto
 		return $arrProducto;
 	}
 	
-	public static function Borrar($id)
+	public static function Bloquear($id)
 	{	
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
 		
@@ -54,11 +54,37 @@ class Producto
 		return $consulta->rowCount();	
 	}
 	
+	public static function Desbloquear($id)
+	{	
+		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
+		
+		$consulta =$objetoAccesoDato->RetornarConsulta("UPDATE producto SET vigente=1 WHERE id=:id");
+		
+		$consulta->bindValue(':id',$id, PDO::PARAM_INT);
+		
+		$consulta->execute();
+		
+		return $consulta->rowCount();
+	}
+	
+	public static function Eliminar($id)
+	{	
+		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
+		
+		$consulta =$objetoAccesoDato->RetornarConsulta("DELETE FROM producto WHERE id=:id");	
+		
+		$consulta->bindValue(':id',$id, PDO::PARAM_INT);
+		
+		$consulta->execute();
+		
+		return $consulta->rowCount();
+	}
+	
 	public static function Editar($producto)
 	{
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
 			
-			$consulta =$objetoAccesoDato->RetornarConsulta("UPDATE producto SET nombre=:nombre, descripcion=:descripcion, precio=:precio, vigente=:vigente WHERE id=:id");
+			$consulta =$objetoAccesoDato->RetornarConsulta("UPDATE producto SET nombre=:nombre, descripcion=:descripcion, precio=:precio WHERE id=:id");
 			
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
 			
@@ -69,8 +95,6 @@ class Producto
 			$consulta->bindValue(':descripcion',$producto->descripcion, PDO::PARAM_STR);
 			
 			$consulta->bindValue(':precio',$producto->precio, PDO::PARAM_STR);
-			
-			$consulta->bindValue(':vigente',$producto->vigente, PDO::PARAM_STR);
 			
 			return $consulta->execute();
 	}

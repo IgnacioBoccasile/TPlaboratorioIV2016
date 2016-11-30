@@ -167,6 +167,22 @@ miApp.config(function($stateProvider, $urlRouterProvider, $authProvider){
 		)
 		
 		.state(
+			"producto.producto",
+			{
+				url:"/producto/:producto",
+				cache:false,
+				views:{
+					"contenido": {
+					templateUrl:"vistas/producto/modificarProducto.html",
+					controller:"ProductoModificarCtrl"
+					}
+				}
+			}
+		)
+		
+		
+		
+		.state(
 			"menu",
 			{
 				url:"/menu",

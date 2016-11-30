@@ -206,7 +206,6 @@ angular
 		if ($auth.isAuthenticated())
 		{
 			$scope.usuarioLogeado = jwtHelper.decodeToken($auth.getToken());
-			$scope.logeado = true;
 			$scope.usuario = JSON.parse($stateParams.usuario);
 		}
 		else

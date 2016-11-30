@@ -118,9 +118,9 @@ $app->put('/usuario/{usuario}', function ($request, $response, $args)
     return $response;
 });
 
-$app->put('/producto/{usuario}', function ($request, $response, $args) 
+$app->put('/producto/{producto}', function ($request, $response, $args) 
 {
-    Producto::Editar(json_decode($args['usuario']));
+    Producto::Editar(json_decode($args['producto']));
 	
     return $response;
 });
@@ -146,9 +146,23 @@ $app->delete('/usuarioDesbloquear/{id}', function ($request, $response, $args)
     return $response;
 });
 
+$app->delete('/productoEliminar/{id}', function ($request, $response, $args)
+ {
+    Producto::Eliminar($args['id']);
+	
+    return $response;
+});
+
+$app->delete('/productoDesbloquear/{id}', function ($request, $response, $args)
+ {
+    Producto::Desbloquear($args['id']);
+	
+    return $response;
+});
+
 $app->delete('/producto/{id}', function ($request, $response, $args) 
 {
-    Producto::Borrar($args['id']);
+    Producto::Bloquear($args['id']);
 	
     return $response;
 });

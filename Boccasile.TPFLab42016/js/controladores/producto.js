@@ -23,8 +23,11 @@ angular
  	catch(error)
  	{
  		console.info(error);
- 		$scope.resultado.estilo = "alert alert-danger";
+ 		$scope.resultado.estilo = "COLORERROR";
 		$scope.resultado.mensaje = "Error en el controlador producto.";
+		$timeout(function(){
+		 			$state.go('inicio');
+		 		}, 2000);
  	}
 	$scope.Guardar = function(){
 		try
@@ -32,25 +35,67 @@ angular
 			FactoryProducto.Guardar($scope.producto).then(
 				function(respuesta) {  
 					$scope.resultado.ver = true;   	
-			    	$scope.resultado.estilo = "alert alert-success";
+			    	$scope.resultado.estilo = "COLORBIEN";
 					$scope.resultado.mensaje = "Producto guardado exitosamente";
+					$timeout(function(){
+		 			$state.go('inicio');
+		 		}, 2000);
 				},function(error) {
 					$scope.resultado.ver = true;
-					$scope.resultado.estilo = "alert alert-danger";
+					$scope.resultado.estilo = "COLORERROR";
 					$scope.resultado.mensaje = "Error al guardar el producto";
 					console.log(error);
+					$timeout(function(){
+		 			$state.go('inicio');
+		 		}, 2000);
 			 });
 		}
 	 	catch(error)
 	 	{
 	 		console.info(error);
 	 	}
-		
-		$timeout(function(){
-		 			$state.go('inicio');
-		 		}, 3000);
 	};
   })
+  
+  .controller("ProductoModificarCtrl", function($scope, $auth, $state, $stateParams, $timeout, jwtHelper, FileUploader, FactoryProducto) {
+
+	try
+	{
+		$scope.resultado = {};
+		$scope.resultado.ver = false;
+		if ($auth.isAuthenticated())
+		{
+			$scope.elproducto = jwtHelper.decodeToken($auth.getToken());
+			$scope.producto = JSON.parse($stateParams.producto);
+		}
+		else
+		{
+			$state.go("inicio");
+		}
+	}
+	catch(error)
+	{
+		console.info(error);
+	}
+
+	
+	$scope.Guardar = function(){
+		try
+		{
+			FactoryProducto.Editar($scope.producto);
+			$scope.resultado.ver = true;
+	 		$scope.resultado.estilo = "COLORBIEN";
+			$scope.resultado.mensaje = "Producto editado exitosamente";
+			$timeout(function(){
+	 			$state.go('inicio');
+	 		}, 2000);
+	 	}
+		catch(error)
+		{
+			console.info(error);
+		}
+	};
+})
   .controller("ProductosCtrl", function($scope, $http, $state, $auth, $timeout, jwtHelper, FactoryProducto) {
 		try
 		{
@@ -58,16 +103,10 @@ angular
 			$scope.resultado.ver = false;
 			if ($auth.isAuthenticated())
 			{
-				$scope.usuarioLogeado = jwtHelper.decodeToken($auth.getToken());
-				$scope.logeado = true;
-				if ($scope.usuarioLogeado.perfil == 'vendedor' || $scope.usuarioLogeado.perfil == 'admin')
-					$scope.borrarProducto = true;
-				else
-					$scope.borrarProducto = false;
+				$scope.usuarioLogeado = jwtHelper.decodeToken($auth.getToken());	
 			}
 			else
 			{
-				$scope.logeado = false;
 				$state.go("inicio");
 			}
 
@@ -82,30 +121,86 @@ angular
 	 	{
 	 		console.info(error);
 	 		$scope.resultado.ver = true;
-	 		$scope.resultado.estilo = "alert alert-danger";
+	 		$scope.resultado.estilo = "COLORERROR";
 		    $scope.resultado.mensaje = "Error en el controlador productos.";
+			$timeout(function(){
+		 			$state.go('inicio');
+		 		}, 2000);
 	 	}
+		$scope.Modificar = function(producto){
+ 		var param = JSON.stringify(producto);
+    	$state.go('producto.producto', {producto:param});
+ 	}
 
-	 	$scope.Borrar = function(producto){
+	 	$scope.Bloquear = function(producto){
 	 		try
 	 		{
-	 			FactoryProducto.Borrar(producto.id);
+	 			FactoryProducto.Bloquear(producto.id);
  				$scope.resultado.ver = true;
-		 		$scope.resultado.estilo = "alert alert-success";
-				$scope.resultado.mensaje = "Producto eliminado exitosamente";
+		 		$scope.resultado.estilo = "COLORBIEN";
+				$scope.resultado.mensaje = "Producto inhabilitado exitosamente";
 
 		 		$timeout(function(){
 		 			$state.go('inicio');
-		 		}, 3000);
+		 		}, 2000);
 	 		}
 		 	catch(error)
 		 	{
 		 		console.info(error);
 		 		$scope.resultado.ver = true;
-		 		$scope.resultado.estilo = "alert alert-danger";
-				$scope.resultado.mensaje = "Error al borrar un producto";
+		 		$scope.resultado.estilo = "COLORERROR";
+				$scope.resultado.mensaje = "Error al inhabilitar un producto";
+				$timeout(function(){
+		 			$state.go('inicio');
+		 		}, 2000);
 		 	}
 	 	}
+		
+		$scope.Eliminar = function(producto){
+ 		try
+ 		{
+ 			FactoryProducto.Eliminar(producto.id);
+			$scope.resultado.ver = true;
+	 		$scope.resultado.estilo = "COLORBIEN";
+			$scope.resultado.mensaje = "Producto eliminado exitosamente";
+			$timeout(function(){
+	 			$state.go('inicio');
+	 		}, 2000);
+ 		}
+	 	catch(error)
+	 	{
+	 		console.info(error);
+	 		$scope.resultado.ver = true;
+	 		$scope.resultado.estilo = "COLORMAL";
+			$scope.resultado.mensaje = "Error al eliminar un producto";
+			$timeout(function(){
+	 			$state.go('inicio');
+	 		}, 2000);
+	 	}
+ 	}
+		
+		$scope.Desbloquear = function(producto){
+		try
+ 		{
+ 			FactoryProducto.Desbloquear(producto.id);
+			$scope.resultado.ver = true;
+	 		$scope.resultado.estilo = "COLORBIEN";
+			$scope.resultado.mensaje = "Producto habilitado exitosamente";
+			$timeout(function(){
+	 			$state.go('inicio');
+	 		}, 2000);
+ 		}
+	 	catch(error)
+	 	{
+	 		console.info(error);
+	 		$scope.resultado.ver = true;
+	 		$scope.resultado.estilo = "COLORMAL";
+			$scope.resultado.mensaje = "Error al habilitar un producto";
+			$timeout(function(){
+	 			$state.go('inicio');
+	 		}, 2000);
+	 	}
+	}
   });
 
 ;// cierra modulo

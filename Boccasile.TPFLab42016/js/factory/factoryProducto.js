@@ -7,7 +7,10 @@ angular
     objeto.BuscarPor = BuscarPor;
     objeto.Guardar = Guardar;
     objeto.Cargar = Cargar;
-    objeto.Borrar = Borrar;
+    objeto.Bloquear = Bloquear;
+	objeto.Eliminar = Eliminar;
+	objeto.Desbloquear = Desbloquear;
+	objeto.Editar = Editar;
 
     function BuscarPor(entidad, parametro){
       return Servicio.BuscarPor(entidad, parametro);
@@ -20,10 +23,22 @@ angular
     function Cargar(parametro){
       return Servicio.Cargar('producto', parametro);
     }
-
-    function Borrar(parametro){
-      return Servicio.Borrar('producto', parametro);
+	
+	function Editar(parametro){
+      return Servicio.Editar('producto', JSON.stringify(parametro));
     }    
+
+    function Bloquear(parametro){
+      return Servicio.Bloquear('producto', parametro);
+    }  
+
+	function Eliminar(parametro){
+      return Servicio.Eliminar('productoEliminar', parametro);
+    } 	
+	
+	function Desbloquear(parametro){
+      return Servicio.Desbloquear('productoDesbloquear', parametro);
+    } 
 
     function Guardar(parametro){
       return Servicio.Guardar('producto', JSON.stringify(parametro));

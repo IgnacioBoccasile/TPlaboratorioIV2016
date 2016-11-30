@@ -1,4 +1,4 @@
-<div class="intro-header2">
+<div class="intro-header4">
 <div class="divLogin animated bounceInRight" name="loginForm" style="margin-top:1%;">
     <div class="{{resultado.estilo}}" ng-show="resultado.ver">
         <span style="font-size:13px;">{{resultado.mensaje}}</span><br><br>
@@ -6,12 +6,12 @@
     <font color="black">
 	<div class="row">
 		<form id="formAlta" name="formAlta" enctype="multipart/form-data" novalidate>
-        <h2 class="h2Login">Modificar cuenta:</h2>
-    	<input type="text" placeholder="Nombre" class="txtLogin" name="nombre" ng-model='usuario.nombre' required>
-	    <input type="email" placeholder="Email" class="txtLogin" name="correo" ng-model='usuario.correo' required>
+        <h2 class="h2Login">Modificar producto:</h2>
+    	<input type="text" placeholder="Nombre" class="txtLogin" name="nombre" ng-model='producto.nombre' required>
+	    <input type="text" placeholder="Descripcion" class="txtLogin" name="descripcion" ng-model='producto.descripcion' required>
+		<input type="text" placeholder="Precio" class="txtLogin" name="precio" ng-model='producto.precio' required>
 	    <input type="submit" value="Guardar Datos" class="btnLogin" ng-if="!formAlta.$invalid" ng-click="Guardar()">
 		</form>
     </div>
 	</font>
 </div>
-
