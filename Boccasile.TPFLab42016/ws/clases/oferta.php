@@ -107,7 +107,7 @@ class Oferta
 	{
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 		
-		$consulta =$objetoAccesoDato->RetornarConsulta("INSERT INTO oferta (descripcion,precio,vigente,fechaInicio,fechaFin) VALUES (:descripcion,:precio,1,:fechaInicio,:fechaFin)");
+		$consulta =$objetoAccesoDato->RetornarConsulta("INSERT INTO oferta (descripcion,precio,disponible,fechaInicio,fechaFin) VALUES (:descripcion,:precio,1,:fechaInicio,:fechaFin)");
 		
 		$consulta->bindValue(':descripcion',$oferta->descripcion, PDO::PARAM_STR);
 		

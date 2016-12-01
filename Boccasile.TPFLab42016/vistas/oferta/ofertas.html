@@ -7,6 +7,7 @@
 	<div class="divListaProductos" style="width:50%;" ng-repeat="oferta in ListadoOfertas">
 		<h4 class="h2Login">${{oferta.precio}}</h4>
 		<p style="font-size:13px"><font color="gray">{{oferta.descripcion}}. Inicia el {{oferta.fechaInicio}}. Finaliza el {{oferta.fechaFin}}.</font></font></p>
+		<p style="font-size:13px" ng-if="oferta.disponible==1"><font color = "green">Vigente</font></p>
 		<p style="font-size:13px" ng-if="oferta.disponible==0"><font color = "red">No está en vigencia</font></p>
 		<input type="submit" value="Modificar" class="btnLogin" style="width:32%" ng-click="Modificar(oferta)">
 		<input type="submit" value="Deshabilitar" class="btnLogin" style="width:32%" ng-click="Bloquear(oferta)" ng-if="oferta.disponible==1">
