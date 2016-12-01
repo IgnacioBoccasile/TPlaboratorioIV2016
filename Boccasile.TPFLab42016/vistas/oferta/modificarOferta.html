@@ -1,0 +1,19 @@
+<head><title>Modificación de Ofertas</title></head>
+<div class="intro-header6">
+<div class="divLogin animated bounceInRight" name="loginForm" style="margin-top:1%;">
+    <div class="{{resultado.estilo}}" ng-show="resultado.ver">
+        <span style="font-size:13px;">{{resultado.mensaje}}</span><br><br>
+    </div>
+    <font color="black">
+	<div class="row">
+		<form id="formAlta" name="formAlta" enctype="multipart/form-data" novalidate>
+        <h2 class="h2Login">Modificar oferta:</h2>
+    	<input type="text" placeholder="Descripcion" class="txtLogin" name="descripcion" ng-model='oferta.descripcion' required>
+	    <input type="text" placeholder="Precio" class="txtLogin" name="precio" ng-model='oferta.precio' required>
+		<input type="date" class="txtLogin" name="fechaInicio" ng-model='oferta.fechaInicio' required>
+		<input type="date" class="txtLogin" name="fechaFin" ng-model='oferta.fechaFin' required>
+	    <input type="submit" value="Guardar datos" class="btnLogin" ng-if="!formAlta.$invalid" ng-click="Guardar()">
+		</form>
+    </div>
+	</font>
+</div>

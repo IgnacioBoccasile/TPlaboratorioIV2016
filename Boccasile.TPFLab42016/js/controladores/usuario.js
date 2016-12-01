@@ -79,7 +79,7 @@ angular
 				function(respuesta) { 
 					$scope.resultado.ver = true;   	
 			    	$scope.resultado.estilo = "COLORBIEN";
-					$scope.resultado.mensaje = "Usuario guardado exitosamente";
+					$scope.resultado.mensaje = "Usuario guardado exitosamente.";
 					$timeout(function(){
 	 			$state.go('inicio');
 	 		}, 2000);
@@ -87,7 +87,7 @@ angular
 					console.log(error);
 					$scope.resultado.ver = true;
 					$scope.resultado.estilo = "COLORERROR";
-					$scope.resultado.mensaje = "Error al guardar el usuario";
+					$scope.resultado.mensaje = "Error al guardar el usuario.";
 					$timeout(function(){
 	 			$state.go('inicio');
 	 		}, 2000);
@@ -128,7 +128,7 @@ angular
 				function(respuesta) { 
 					$scope.resultado.ver = true;   	
 			    	$scope.resultado.estilo = "COLORBIEN";
-					$scope.resultado.mensaje = "Usuario guardado exitosamente";
+					$scope.resultado.mensaje = "Usuario guardado exitosamente.";
 					$timeout(function(){
 	 			$state.go('inicio');
 	 		}, 2000);
@@ -136,7 +136,7 @@ angular
 					console.log(error);
 					$scope.resultado.ver = true;
 					$scope.resultado.estilo = "COLORMAL";
-					$scope.resultado.mensaje = "Error al guardar el usuario";
+					$scope.resultado.mensaje = "Error al guardar el usuario.";
 					$timeout(function(){
 	 			$state.go('inicio');
 	 		}, 2000);
@@ -177,7 +177,7 @@ angular
 				function(respuesta) { 
 					$scope.resultado.ver = true;   	
 			    	$scope.resultado.estilo = "COLORBIEN";
-					$scope.resultado.mensaje = "Usuario guardado exitosamente";
+					$scope.resultado.mensaje = "Usuario guardado exitosamente.";
 					$timeout(function(){
 	 			$state.go('inicio');
 	 		}, 2000);
@@ -185,7 +185,7 @@ angular
 					console.log(error);
 					$scope.resultado.ver = true;
 					$scope.resultado.estilo = "COLORMAL";
-					$scope.resultado.mensaje = "Error al guardar el usuario";
+					$scope.resultado.mensaje = "Error al guardar el usuario.";
 					$timeout(function(){
 	 			$state.go('inicio');
 	 		}, 2000);
@@ -224,7 +224,7 @@ angular
 			FactoryUsuario.Editar($scope.usuario);
 			$scope.resultado.ver = true;
 	 		$scope.resultado.estilo = "COLORBIEN";
-			$scope.resultado.mensaje = "Usuario editado exitosamente";
+			$scope.resultado.mensaje = "Usuario editado exitosamente.";
 			$timeout(function(){
 	 			$state.go('inicio');
 	 		}, 2000);
@@ -275,7 +275,7 @@ angular
  			FactoryUsuario.Bloquear(usuario.id);
 			$scope.resultado.ver = true;
 	 		$scope.resultado.estilo = "COLORBIEN";
-			$scope.resultado.mensaje = "Usuario bloqueado exitosamente";
+			$scope.resultado.mensaje = "Usuario bloqueado exitosamente.";
 			$timeout(function(){
 	 			$state.go('inicio');
 	 		}, 2000);
@@ -285,7 +285,7 @@ angular
 	 		console.info(error);
 	 		$scope.resultado.ver = true;
 	 		$scope.resultado.estilo = "COLORMAL";
-			$scope.resultado.mensaje = "Error al bloquear un usuario";
+			$scope.resultado.mensaje = "Error al bloquear un usuario.";
 			$timeout(function(){
 	 			$state.go('inicio');
 	 		}, 2000);
@@ -298,7 +298,7 @@ angular
  			FactoryUsuario.Eliminar(usuario.id);
 			$scope.resultado.ver = true;
 	 		$scope.resultado.estilo = "COLORBIEN";
-			$scope.resultado.mensaje = "Usuario eliminado exitosamente";
+			$scope.resultado.mensaje = "Usuario eliminado exitosamente.";
 			$timeout(function(){
 	 			$state.go('inicio');
 	 		}, 2000);
@@ -308,7 +308,7 @@ angular
 	 		console.info(error);
 	 		$scope.resultado.ver = true;
 	 		$scope.resultado.estilo = "COLORMAL";
-			$scope.resultado.mensaje = "Error al eliminar un usuario";
+			$scope.resultado.mensaje = "Error al eliminar un usuario.";
 			$timeout(function(){
 	 			$state.go('inicio');
 	 		}, 2000);
@@ -321,7 +321,7 @@ angular
  			FactoryUsuario.Desbloquear(usuario.id);
 			$scope.resultado.ver = true;
 	 		$scope.resultado.estilo = "COLORBIEN";
-			$scope.resultado.mensaje = "Usuario desbloqueado exitosamente";
+			$scope.resultado.mensaje = "Usuario desbloqueado exitosamente.";
 			$timeout(function(){
 	 			$state.go('inicio');
 	 		}, 2000);
@@ -331,7 +331,7 @@ angular
 	 		console.info(error);
 	 		$scope.resultado.ver = true;
 	 		$scope.resultado.estilo = "COLORMAL";
-			$scope.resultado.mensaje = "Error al desbloquear un usuario";
+			$scope.resultado.mensaje = "Error al desbloquear un usuario.";
 			$timeout(function(){
 	 			$state.go('inicio');
 	 		}, 2000);
@@ -366,7 +366,7 @@ angular
 	 		console.info(error);
 	 		$scope.resultado.ver = true;
 	 		$scope.resultado.estilo = "COLORMAL";
-			$scope.resultado.mensaje = "Error al bucar por perfil";
+			$scope.resultado.mensaje = "Error al bucar por perfil.";
 			$timeout(function(){
 	 			$state.go('inicio');
 	 		}, 2000);
@@ -403,6 +403,4 @@ angular
 		console.info(error);
 	}
 });
-
-;//Cierre modulo
-
+;

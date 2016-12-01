@@ -1,8 +1,8 @@
 angular
   .module('TPFBOCCASILE')
-  .factory('FactoryProducto', function (Servicio) {
+  .factory('FactoryOferta', function (Servicio) {
     var objeto = {};
-    objeto.Nombre = "Factory Producto";
+    objeto.Nombre = "Factory Oferta";
     objeto.BuscarTodos = BuscarTodos;
     objeto.BuscarPor = BuscarPor;
     objeto.Guardar = Guardar;
@@ -17,31 +17,31 @@ angular
     }
 
     function BuscarTodos(){
-      return Servicio.BuscarTodos('productos');
+      return Servicio.BuscarTodos('ofertas');
     }
 
     function Cargar(parametro){
-      return Servicio.Cargar('producto', parametro);
+      return Servicio.Cargar('oferta', parametro);
     }
 	
 	function Editar(parametro){
-      return Servicio.Editar('producto', JSON.stringify(parametro));
+      return Servicio.Editar('oferta', JSON.stringify(parametro));
     }    
 
     function Bloquear(parametro){
-      return Servicio.Bloquear('producto', parametro);
+      return Servicio.Bloquear('oferta', parametro);
     }  
 
 	function Eliminar(parametro){
-      return Servicio.Eliminar('productoEliminar', parametro);
+      return Servicio.Eliminar('ofertaEliminar', parametro);
     } 	
 	
 	function Desbloquear(parametro){
-      return Servicio.Desbloquear('productoDesbloquear', parametro);
+      return Servicio.Desbloquear('ofertaDesbloquear', parametro);
     } 
 
     function Guardar(parametro){
-      return Servicio.Guardar('producto', JSON.stringify(parametro));
+      return Servicio.Guardar('oferta', JSON.stringify(parametro));
     }
 
     return objeto;

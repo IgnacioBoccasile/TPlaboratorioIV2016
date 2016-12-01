@@ -5,6 +5,8 @@ require 'clases/usuario.php';
 
 require 'clases/producto.php'; 
 
+require 'clases/oferta.php'; 
+
 $app = new Slim\App();
 
 $app->get('/', function ($request, $response, $args) 
@@ -30,18 +32,6 @@ $app->get('/usuariosPorPerfil/{perfil}', function ($request, $response, $args)
     $response->write(json_encode($listado));
     
     return $response;
-});
-
-$app->get('/productos[/]', function ($request, $response, $args) 
-{
-    $datos=Producto::Buscar();
-	
-    for ($i = 0; $i < count($datos); $i++ )
-	{
-        $datos[$i]->foto=json_decode($datos[$i]->foto);
-    }
-	
-    return $response->write(json_encode($datos));
 });
 
 $app->get('/usuario/{id}', function ($request, $response, $args) 
@@ -82,6 +72,46 @@ $app->post('/usuario/{usuario}', function ($request, $response, $args)
     return $response->write(Usuario::Guardar($usuario));
 });
 
+$app->put('/usuario/{usuario}', function ($request, $response, $args) 
+{
+    Usuario::Editar(json_decode($args['usuario']));
+	
+    return $response;
+});
+
+$app->delete('/usuario/{id}', function ($request, $response, $args)
+ {
+    Usuario::Bloquear($args['id']);
+	
+    return $response;
+});
+
+$app->delete('/usuarioEliminar/{id}', function ($request, $response, $args)
+ {
+    Usuario::Eliminar($args['id']);
+	
+    return $response;
+});
+
+$app->delete('/usuarioDesbloquear/{id}', function ($request, $response, $args)
+ {
+    Usuario::Desbloquear($args['id']);
+	
+    return $response;
+});
+
+$app->get('/productos[/]', function ($request, $response, $args) 
+{
+    $datos=Producto::Buscar();
+	
+    for ($i = 0; $i < count($datos); $i++ )
+	{
+        $datos[$i]->foto=json_decode($datos[$i]->foto);
+    }
+	
+    return $response->write(json_encode($datos));
+});
+
 $app->post('/producto/{producto}', function ($request, $response, $args)
  {
     $producto=json_decode($args['producto']);
@@ -111,37 +141,9 @@ $app->post('/producto/{producto}', function ($request, $response, $args)
     return $response->write(Producto::Guardar($producto));
 });
 
-$app->put('/usuario/{usuario}', function ($request, $response, $args) 
-{
-    Usuario::Editar(json_decode($args['usuario']));
-	
-    return $response;
-});
-
 $app->put('/producto/{producto}', function ($request, $response, $args) 
 {
     Producto::Editar(json_decode($args['producto']));
-	
-    return $response;
-});
-
-$app->delete('/usuario/{id}', function ($request, $response, $args)
- {
-    Usuario::Bloquear($args['id']);
-	
-    return $response;
-});
-
-$app->delete('/usuarioEliminar/{id}', function ($request, $response, $args)
- {
-    Usuario::Eliminar($args['id']);
-	
-    return $response;
-});
-
-$app->delete('/usuarioDesbloquear/{id}', function ($request, $response, $args)
- {
-    Usuario::Desbloquear($args['id']);
 	
     return $response;
 });
@@ -163,6 +165,52 @@ $app->delete('/productoDesbloquear/{id}', function ($request, $response, $args)
 $app->delete('/producto/{id}', function ($request, $response, $args) 
 {
     Producto::Bloquear($args['id']);
+	
+    return $response;
+});
+
+$app->get('/ofertas[/]', function ($request, $response, $args) 
+{
+    $datos=Oferta::Buscar();
+	
+	$response->write(json_encode($datos));
+	
+    return $response;
+});
+
+$app->post('/oferta/{oferta}', function ($request, $response, $args)
+ {
+    $oferta=json_decode($args['oferta']);
+	
+	$response->write(Oferta::Guardar($oferta));
+
+    return $response;
+});
+
+$app->delete('/ofertaEliminar/{id}', function ($request, $response, $args)
+ {
+    Oferta::Eliminar($args['id']);
+	
+    return $response;
+});
+
+$app->delete('/ofertaDesbloquear/{id}', function ($request, $response, $args)
+ {
+    Oferta::Desbloquear($args['id']);
+	
+    return $response;
+});
+
+$app->delete('/oferta/{id}', function ($request, $response, $args) 
+{
+    Oferta::Bloquear($args['id']);
+	
+    return $response;
+});
+
+$app->put('/oferta/{oferta}', function ($request, $response, $args) 
+{
+    Oferta::Editar(json_decode($args['oferta']));
 	
     return $response;
 });

@@ -180,6 +180,58 @@ miApp.config(function($stateProvider, $urlRouterProvider, $authProvider){
 			}
 		)
 		
+		.state(
+			"oferta",
+			{
+				url:"/oferta",
+				cache:false,
+				abstract:true, 
+				templateUrl:"vistas/oferta/abstractaOferta.html"
+			}
+		)
+
+		.state(
+			"oferta.alta",
+			{
+				url:"/alta",
+				cache:false,
+				views:{
+					"contenido": {
+					templateUrl:"vistas/oferta/altaOferta.html",
+					controller:"OfertaAltaCtrl"
+					}
+				}
+			}
+		)
+
+		.state(
+			"oferta.ofertas",
+			{
+				url:"/ofertas",
+				cache:false,
+				views:{
+					"contenido": {
+					templateUrl:"vistas/oferta/ofertas.html",
+					controller:"OfertasCtrl"
+					}
+				}
+			}
+		)
+		
+		.state(
+			"oferta.oferta",
+			{
+				url:"/oferta/:oferta",
+				cache:false,
+				views:{
+					"contenido": {
+					templateUrl:"vistas/oferta/modificarOferta.html",
+					controller:"OfertaModificarCtrl"
+					}
+				}
+			}
+		)
+		
 		
 		
 		.state(
@@ -194,7 +246,3 @@ miApp.config(function($stateProvider, $urlRouterProvider, $authProvider){
 
 	$urlRouterProvider.otherwise("/inicio");
 });
-
-
-
-

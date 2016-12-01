@@ -4,7 +4,8 @@
 	<div class="divListaUsuarios" ng-repeat="usuario in ListadoUsuarios" style="width:50%">
 			<h4 class="h2Login">{{usuario.nombre}}</h4>
 			<p style="font-size:13px"><font color="gray">{{usuario.correo}}</font></p>
-			<p style="font-size:13px" ><font color="green" ng-if="usuario.id<5">Al estar cargado por defecto, NO se puede modificar.</font></p>
+			<p style="font-size:13px" ><font color="red" ng-if="usuario.id<5">Al estar cargado por defecto, NO se puede modificar.</font></p>
+			<p style="font-size:13px" ng-if="usuario.id>4 && usuario.agregado==1"><font color = "green">Usuario libre de ingreso.</font></p>
 			<p style="font-size:13px" ng-if="usuario.agregado==0"><font color = "red">No le está permitido ingresar al sistema, ha sido bloqueado.</font></p>
 	</div>
 </div>

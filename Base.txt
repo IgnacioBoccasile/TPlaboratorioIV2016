@@ -17,6 +17,14 @@ CREATE TABLE `producto`
   `vigente` tinyint(1) NOT NULL ,  PRIMARY KEY (`id`)) 
   ENGINE = InnoDB CHARACTER SET latin1 COLLATE latin1_spanish_ci;
 
+CREATE TABLE `oferta` 
+( `id` INT NOT NULL AUTO_INCREMENT , 
+  `descripcion` VARCHAR(250) NOT NULL , 
+  `precio` FLOAT NOT NULL ,  
+  `disponible` tinyint(1) NOT NULL ,
+  `fechaInicio` DATETIME NOT NULL ,
+  `fechaFin` DATETIME NOT NULL ,  PRIMARY KEY (`id`)) 
+  ENGINE = InnoDB CHARACTER SET latin1 COLLATE latin1_spanish_ci;
 
 INSERT INTO `usuario` (`id`, `correo`, `clave`, `nombre`, `perfil`, `agregado`) VALUES
 (1, 'admin@admin.com', '123456', 'Administrador', 'admin', 1),

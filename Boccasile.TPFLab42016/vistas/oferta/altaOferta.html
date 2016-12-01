@@ -1,0 +1,20 @@
+<head><title>Alta de Ofertas</title></head>
+<div class="intro-header6">
+<div class="divLogin animated bounceInUp" style="margin-top:1%;">
+	    <div class="{{resultado.estilo}}" ng-show="resultado.ver">
+	        <span style="font-size:13px;">{{resultado.mensaje}}</span><br><br>
+	    </div>
+        <h2 class="h2Login">Complete los campos:</h2>
+    <div class="row">
+	    <div class="col-lg-12">
+			<form id="formOferta" name="formOferta" enctype="multipart/form-data" novalidate>
+    		<font color="black"><input type="text" placeholder="Descripcion" class="txtLogin" name="descripcion" ng-model='oferta.descripcion' required></font>
+	    	<font color="black"><input type="text" placeholder="Precio" class="txtLogin" name="precio" ng-model='oferta.precio' required></font>
+	    	<font color="black"><input type="date" class="txtLogin" name="fechaInicio" ng-model='oferta.fechaInicio' required></font>
+			<font color="black"><input type="date" class="txtLogin" name="fechaFin" ng-model='oferta.fechaFin' required></font>
+	    	<input type="submit" value="Guardar oferta" class="btnLogin" ng-if="!formOferta.$invalid" ng-click="Guardar()">
+			</form>
+    	</div>
+	</div>
+</div>
+</div>

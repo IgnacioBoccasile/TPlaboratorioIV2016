@@ -45,4 +45,4 @@ angular
     }
 
     return objeto;
-  })//Cierra Factory Usuario
+  })
