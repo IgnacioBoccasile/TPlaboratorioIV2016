@@ -98,8 +98,6 @@ class Pedido
 			
 			$consulta->bindValue(':unidades',$pedido->unidades, PDO::PARAM_STR);
 			
-			$consulta->bindValue(':fechaPedido',$pedido->fechaPedido, PDO::PARAM_STR);
-			
 			return $consulta->execute();
 	}
 

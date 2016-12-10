@@ -1,0 +1,21 @@
+<head><title>Alta de Locales</title></head>
+<div class="intro-header8">
+<div class="divLogin animated bounceInUp" style="margin-top:1%;">
+	    <div class="{{resultado.estilo}}" ng-show="resultado.ver">
+	        <span style="font-size:13px;">{{resultado.mensaje}}</span><br><br>
+	    </div>
+        <h2 class="h2Login">Complete los campos:</h2>
+    <div class="row">
+	    <div class="col-lg-12">
+			<form id="formLocal" name="formLocal" enctype="multipart/form-data" novalidate>
+    		<font color="black"><input type="text" placeholder="Localidad" class="txtLogin" name="localidad" ng-model='local.localidad' required></font>
+			<font color="black"><input type="text" placeholder="Calle" class="txtLogin" name="calle" ng-model='local.calle' required></font>
+	    	<font color="black"><input type="text" placeholder="Nro" class="txtLogin" name="numero" ng-model='local.numero' required></font>
+	    	<font color="black"><input type="text" placeholder="Latitud" class="txtLogin" name="latitud" ng-model='local.latitud' required></font>
+	    	<font color="black"><input type="text" placeholder="Longitud" class="txtLogin" name="longitud" ng-model='local.longitud' required></font>
+	    	<input type="submit" value="Guardar local" class="btnLogin" ng-if="!formLocal.$invalid" ng-click="Guardar()">
+			</form>
+    	</div>
+	</div>
+</div>
+</div>

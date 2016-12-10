@@ -35,6 +35,15 @@ CREATE TABLE `pedido`
   `fechaPedido` DATETIME NOT NULL ,PRIMARY KEY (`id`)) 
   ENGINE = InnoDB CHARACTER SET latin1 COLLATE latin1_spanish_ci;
 
+CREATE TABLE `local` 
+( `idLocal` INT NOT NULL AUTO_INCREMENT , 
+  `localidad` VARCHAR(250) NOT NULL , 
+  `calle` VARCHAR(250) NOT NULL ,
+  `numero` INT NOT NULL , 
+  `latitud` DECIMAL(65,30) NOT NULL ,
+  `longitud` DECIMAL(65,30) NOT NULL , PRIMARY KEY (`idLocal`)) 
+  ENGINE = InnoDB CHARACTER SET latin1 COLLATE latin1_spanish_ci;
+
 INSERT INTO `usuario` (`id`, `correo`, `clave`, `nombre`, `perfil`, `agregado`) VALUES
 (1, 'admin@admin.com', '123456', 'Administrador', 'admin', 1),
 (2, 'encargado@encargado.com', '123456', 'Encargado', 'encargado', 1),

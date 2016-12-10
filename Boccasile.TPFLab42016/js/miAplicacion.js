@@ -299,6 +299,58 @@ miApp.config(function($stateProvider, $urlRouterProvider, $authProvider){
 		)
 		
 		.state(
+			"local",
+			{
+				url:"/local",
+				cache:false,
+				abstract:true, 
+				templateUrl:"vistas/local/abstractaLocal.html"
+			}
+		)
+
+		.state(
+			"local.alta",
+			{
+				url:"/alta",
+				cache:false,
+				views:{
+					"contenido": {
+					templateUrl:"vistas/local/altaLocal.html",
+					controller:"LocalAltaCtrl"
+					}
+				}
+			}
+		)
+
+		.state(
+			"local.locales",
+			{
+				url:"/locales",
+				cache:false,
+				views:{
+					"contenido": {
+					templateUrl:"vistas/local/locales.html",
+					controller:"LocalesCtrl"
+					}
+				}
+			}
+		)
+		
+		.state(
+			"local.local",
+			{
+				url:"/local/:local",
+				cache:false,
+				views:{
+					"contenido": {
+					templateUrl:"vistas/local/modificarLocal.html",
+					controller:"LocalModificarCtrl"
+					}
+				}
+			}
+		)
+		
+		.state(
 			"menu",
 			{
 				url:"/menu",

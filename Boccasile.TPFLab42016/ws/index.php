@@ -9,6 +9,8 @@ require 'clases/oferta.php';
 
 require 'clases/pedido.php';
 
+require 'clases/local.php';
+
 $app = new Slim\App();
 
 $app->get('/', function ($request, $response, $args) 
@@ -259,6 +261,38 @@ $app->delete('/pedido/{id}', function ($request, $response, $args)
 $app->put('/pedido/{pedido}', function ($request, $response, $args) 
 {
     Pedido::Editar(json_decode($args['pedido']));
+    
+    return $response;
+});
+
+$app->get('/locales[/]', function ($request, $response, $args) 
+{
+    $datos=Local::Buscar();
+    
+    $response->write(json_encode($datos));
+    
+    return $response;
+});
+
+$app->post('/local/{local}', function ($request, $response, $args)
+ {
+    $local=json_decode($args['local']);
+    
+    $response->write(Local::Guardar($local));
+
+    return $response;
+});
+
+$app->delete('/localEliminar/{idLocal}', function ($request, $response, $args)
+ {
+    Local::Eliminar($args['idLocal']);
+    
+    return $response;
+});
+
+$app->put('/local/{local}', function ($request, $response, $args) 
+{
+    Local::Editar(json_decode($args['local']));
     
     return $response;
 });

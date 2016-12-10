@@ -12,6 +12,7 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
+				<li><a ui-sref="local.alta()" ng-if="logeado && admin" style="color: white">Agregar un Local</a></li>
 			    <li><a ui-sref="pedido.alta()" ng-if="logeado && (empleado || encargado)" style="color: white">Agregar un Pedido</a></li>
 				<li><a ui-sref="oferta.alta()" ng-if="logeado && (empleado || encargado)" style="color: white">Agregar una Oferta</a></li>
 				<li><a ui-sref="producto.alta()" ng-if="logeado && !cliente && !admin" style="color: white">Agregar un Producto</a></li>
@@ -29,6 +30,9 @@
 <br><br><br><br><br><br><br><br>
     <div class="container animated bounceInDown">
         <div class="row" style="margin-top:1%">
+			<a ui-sref="local.locales()" ng-if="logeado && admin" style="margin:1%">
+				<input type="submit" value="Lista de Locales" class="btnLogin2" style="width:30%">
+            </a>
 			<a ui-sref="producto.productos()" ng-if="logeado && !cliente && !empleado && !admin" style="margin:1%">
 				<input type="submit" value="Lista de Productos" class="btnLogin2" style="width:30%">
             </a>

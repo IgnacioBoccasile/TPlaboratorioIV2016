@@ -1,0 +1,20 @@
+<head><title>Modificación de Locales</title></head>
+<div class="intro-header8">
+<div class="divLogin animated bounceInRight" name="loginForm" style="margin-top:1%;">
+    <div class="{{resultado.estilo}}" ng-show="resultado.ver">
+        <span style="font-size:13px;">{{resultado.mensaje}}</span><br><br>
+    </div>
+    <font color="black">
+	<div class="row">
+		<form id="formAlta" name="formAlta" enctype="multipart/form-data" novalidate>
+        <h2 class="h2Login">Modificar local:</h2>
+    	<input type="text" placeholder="Localidad" class="txtLogin" name="localidad" ng-model='local.localidad' required>
+		<input type="text" placeholder="Calle" class="txtLogin" name="calle" ng-model='local.calle' required>
+		<input type="text" placeholder="Nro" class="txtLogin" name="numero" ng-model='local.numero' required>
+		<input type="text" placeholder="Latitud" class="txtLogin" name="latitud" ng-model='local.latitud' required>
+		<input type="text" placeholder="Longitud" class="txtLogin" name="longitud" ng-model='local.longitud' required>
+	    <input type="submit" value="Guardar datos" class="btnLogin" ng-if="!formAlta.$invalid" ng-click="Guardar()">
+		</form>
+    </div>
+	</font>
+</div>
