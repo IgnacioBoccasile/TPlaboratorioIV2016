@@ -402,5 +402,108 @@ angular
 	{
 		console.info(error);
 	}
+})
+.controller("EmpleadosCtrl", function($scope, $state, $auth, $timeout, jwtHelper, FactoryUsuario) {
+	try
+	{
+		$scope.resultado = {};
+		$scope.resultado.ver = true;
+		$scope.buscarPerfil = "empleado";
+		if ($auth.isAuthenticated())
+		{
+			$scope.usuario = jwtHelper.decodeToken($auth.getToken());
+			$scope.usuario.logeado = true;
+		    $scope.editar = false;
+		}
+		else
+		{
+			$state.go("inicio");
+		}
+
+	 	$scope.ListadoUsuarios = [];
+	 			FactoryUsuario.BuscarPor("usuariosPorPerfil", $scope.buscarPerfil).then(
+			 		function(respuesta) {     	
+			  			$scope.ListadoUsuarios = respuesta;
+			    	},function(error) {
+			 			$scope.ListadoUsuarios= [];
+			 	});
+	}
+	catch(error)
+	{
+		console.info(error);
+	}
+	$scope.Modificar = function(usuario){
+ 		var param = JSON.stringify(usuario);
+    	$state.go('login.usuario', {usuario:param});
+ 	}
+
+ 	$scope.Bloquear = function(usuario){
+ 		try
+ 		{
+ 			FactoryUsuario.Bloquear(usuario.id);
+			$scope.resultado.ver = true;
+	 		$scope.resultado.estilo = "COLORBIEN";
+			$scope.resultado.mensaje = "Empleado bloqueado exitosamente.";
+			$timeout(function(){
+	 			$state.go('inicio');
+	 		}, 2000);
+ 		}
+	 	catch(error)
+	 	{
+	 		console.info(error);
+	 		$scope.resultado.ver = true;
+	 		$scope.resultado.estilo = "COLORMAL";
+			$scope.resultado.mensaje = "Error al bloquear un empleado.";
+			$timeout(function(){
+	 			$state.go('inicio');
+	 		}, 2000);
+	 	}
+ 	}
+	
+	$scope.Eliminar = function(usuario){
+ 		try
+ 		{
+ 			FactoryUsuario.Eliminar(usuario.id);
+			$scope.resultado.ver = true;
+	 		$scope.resultado.estilo = "COLORBIEN";
+			$scope.resultado.mensaje = "Empleado eliminado exitosamente.";
+			$timeout(function(){
+	 			$state.go('inicio');
+	 		}, 2000);
+ 		}
+	 	catch(error)
+	 	{
+	 		console.info(error);
+	 		$scope.resultado.ver = true;
+	 		$scope.resultado.estilo = "COLORMAL";
+			$scope.resultado.mensaje = "Error al eliminar un empleado.";
+			$timeout(function(){
+	 			$state.go('inicio');
+	 		}, 2000);
+	 	}
+ 	}
+	
+	$scope.Desbloquear = function(usuario){
+		try
+ 		{
+ 			FactoryUsuario.Desbloquear(usuario.id);
+			$scope.resultado.ver = true;
+	 		$scope.resultado.estilo = "COLORBIEN";
+			$scope.resultado.mensaje = "Empleado desbloqueado exitosamente.";
+			$timeout(function(){
+	 			$state.go('inicio');
+	 		}, 2000);
+ 		}
+	 	catch(error)
+	 	{
+	 		console.info(error);
+	 		$scope.resultado.ver = true;
+	 		$scope.resultado.estilo = "COLORMAL";
+			$scope.resultado.mensaje = "Error al desbloquear un empleado.";
+			$timeout(function(){
+	 			$state.go('inicio');
+	 		}, 2000);
+	 	}
+	}
 });
 ;

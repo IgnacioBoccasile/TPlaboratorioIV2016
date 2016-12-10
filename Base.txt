@@ -26,6 +26,15 @@ CREATE TABLE `oferta`
   `fechaFin` DATETIME NOT NULL ,  PRIMARY KEY (`id`)) 
   ENGINE = InnoDB CHARACTER SET latin1 COLLATE latin1_spanish_ci;
 
+CREATE TABLE `pedido` 
+( `id` INT NOT NULL AUTO_INCREMENT , 
+  `descripcion` VARCHAR(250) NOT NULL , 
+  `precio` FLOAT NOT NULL , 
+  `unidades` INT NOT NULL , 
+  `enviado` tinyint(1) NOT NULL ,
+  `fechaPedido` DATETIME NOT NULL ,PRIMARY KEY (`id`)) 
+  ENGINE = InnoDB CHARACTER SET latin1 COLLATE latin1_spanish_ci;
+
 INSERT INTO `usuario` (`id`, `correo`, `clave`, `nombre`, `perfil`, `agregado`) VALUES
 (1, 'admin@admin.com', '123456', 'Administrador', 'admin', 1),
 (2, 'encargado@encargado.com', '123456', 'Encargado', 'encargado', 1),

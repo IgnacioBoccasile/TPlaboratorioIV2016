@@ -7,6 +7,8 @@ require 'clases/producto.php';
 
 require 'clases/oferta.php'; 
 
+require 'clases/pedido.php';
+
 $app = new Slim\App();
 
 $app->get('/', function ($request, $response, $args) 
@@ -212,6 +214,52 @@ $app->put('/oferta/{oferta}', function ($request, $response, $args)
 {
     Oferta::Editar(json_decode($args['oferta']));
 	
+    return $response;
+});
+
+$app->get('/pedidos[/]', function ($request, $response, $args) 
+{
+    $datos=Pedido::Buscar();
+    
+    $response->write(json_encode($datos));
+    
+    return $response;
+});
+
+$app->post('/pedido/{pedido}', function ($request, $response, $args)
+ {
+    $pedido=json_decode($args['pedido']);
+    
+    $response->write(Pedido::Guardar($pedido));
+
+    return $response;
+});
+
+$app->delete('/pedidoEliminar/{id}', function ($request, $response, $args)
+ {
+    Pedido::Eliminar($args['id']);
+    
+    return $response;
+});
+
+$app->delete('/pedidoDesbloquear/{id}', function ($request, $response, $args)
+ {
+    Pedido::Desbloquear($args['id']);
+    
+    return $response;
+});
+
+$app->delete('/pedido/{id}', function ($request, $response, $args) 
+{
+    Pedido::Bloquear($args['id']);
+    
+    return $response;
+});
+
+$app->put('/pedido/{pedido}', function ($request, $response, $args) 
+{
+    Pedido::Editar(json_decode($args['pedido']));
+    
     return $response;
 });
 

@@ -129,6 +129,20 @@ miApp.config(function($stateProvider, $urlRouterProvider, $authProvider){
 		)
 		
 		.state(
+			"login.empleados",
+			{
+				url:"/empleados",
+				cache:false,
+				views:{
+					"contenido": {
+					templateUrl:"vistas/usuario/empleados.html",
+					controller:"EmpleadosCtrl"
+					}
+				}
+			}
+		)
+		
+		.state(
 			"producto",
 			{
 				url:"/producto",
@@ -232,7 +246,57 @@ miApp.config(function($stateProvider, $urlRouterProvider, $authProvider){
 			}
 		)
 		
+		.state(
+			"pedido",
+			{
+				url:"/pedido",
+				cache:false,
+				abstract:true, 
+				templateUrl:"vistas/pedido/abstractaPedido.html"
+			}
+		)
+
+		.state(
+			"pedido.alta",
+			{
+				url:"/alta",
+				cache:false,
+				views:{
+					"contenido": {
+					templateUrl:"vistas/pedido/altaPedido.html",
+					controller:"PedidoAltaCtrl"
+					}
+				}
+			}
+		)
+
+		.state(
+			"pedido.pedidos",
+			{
+				url:"/pedidos",
+				cache:false,
+				views:{
+					"contenido": {
+					templateUrl:"vistas/pedido/pedidos.html",
+					controller:"PedidosCtrl"
+					}
+				}
+			}
+		)
 		
+		.state(
+			"pedido.pedido",
+			{
+				url:"/pedido/:pedido",
+				cache:false,
+				views:{
+					"contenido": {
+					templateUrl:"vistas/pedido/modificarPedido.html",
+					controller:"PedidoModificarCtrl"
+					}
+				}
+			}
+		)
 		
 		.state(
 			"menu",

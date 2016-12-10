@@ -1,6 +1,6 @@
 angular
   .module('TPFBOCCASILE')
-  .controller("OfertaAltaCtrl", function($scope, $auth, $state, $http, $timeout, jwtHelper, FactoryOferta, FactoryRutas) {
+  .controller("PedidoAltaCtrl", function($scope, $auth, $state, $http, $timeout, jwtHelper, FactoryPedido, FactoryRutas) {
 	try
 	{
 		$scope.resultado = {};
@@ -15,13 +15,13 @@ angular
 			$state.go("inicio");
 		}
 		
-		$scope.oferta={};
+		$scope.pedido={};
 	}
  	catch(error)
  	{
  		console.info(error);
  		$scope.resultado.estilo = "COLORERROR";
-		$scope.resultado.mensaje = "Error en el controlador oferta.";
+		$scope.resultado.mensaje = "Error en el controlador pedido.";
 		$timeout(function(){
 		 			$state.go('inicio');
 		 		}, 2000);
@@ -29,18 +29,18 @@ angular
 	$scope.Guardar = function(){
 		try
 		{
-			FactoryOferta.Guardar($scope.oferta).then(
+			FactoryPedido.Guardar($scope.pedido).then(
 				function(respuesta) {  
 					$scope.resultado.ver = true;   	
 			    	$scope.resultado.estilo = "COLORBIEN";
-					$scope.resultado.mensaje = "Oferta guardada exitosamente.";
+					$scope.resultado.mensaje = "Pedido guardado exitosamente.";
 					$timeout(function(){
 		 			$state.go('inicio');
 		 		}, 2000);
 				},function(error) {
 					$scope.resultado.ver = true;
 					$scope.resultado.estilo = "COLORERROR";
-					$scope.resultado.mensaje = "Error al guardar la oferta.";
+					$scope.resultado.mensaje = "Error al guardar el pedido.";
 					console.log(error);
 					$timeout(function(){
 		 			$state.go('inicio');
@@ -54,7 +54,7 @@ angular
 	};
   })
   
-  .controller("OfertaModificarCtrl", function($scope, $auth, $state, $stateParams, $timeout, jwtHelper, FileUploader, FactoryOferta) {
+  .controller("PedidoModificarCtrl", function($scope, $auth, $state, $stateParams, $timeout, jwtHelper, FileUploader, FactoryPedido) {
 
 	try
 	{
@@ -62,8 +62,8 @@ angular
 		$scope.resultado.ver = false;
 		if ($auth.isAuthenticated())
 		{
-			$scope.laoferta = jwtHelper.decodeToken($auth.getToken());
-			$scope.oferta = JSON.parse($stateParams.oferta);
+			$scope.elpedido = jwtHelper.decodeToken($auth.getToken());
+			$scope.pedido = JSON.parse($stateParams.pedido);
 		}
 		else
 		{
@@ -79,10 +79,10 @@ angular
 	$scope.Guardar = function(){
 		try
 		{
-			FactoryOferta.Editar($scope.oferta);
+			FactoryPedido.Editar($scope.pedido);
 			$scope.resultado.ver = true;
 	 		$scope.resultado.estilo = "COLORBIEN";
-			$scope.resultado.mensaje = "Oferta editada exitosamente.";
+			$scope.resultado.mensaje = "Pedido editado exitosamente.";
 			$timeout(function(){
 	 			$state.go('inicio');
 	 		}, 2000);
@@ -93,7 +93,7 @@ angular
 		}
 	};
 })
-  .controller("OfertasCtrl", function($scope, $http, $state, $auth, $timeout, jwtHelper, FactoryOferta) {
+  .controller("PedidosCtrl", function($scope, $http, $state, $auth, $timeout, jwtHelper, FactoryPedido) {
 		try
 		{
 			$scope.resultado = {};
@@ -115,35 +115,36 @@ angular
 				$state.go("inicio");
 			}
 
-		 	FactoryOferta.BuscarTodos().then(
+		 	FactoryPedido.BuscarTodos().then(
 		 		function(respuesta) {     	
-	      			$scope.ListadoOfertas = respuesta;
+	      			$scope.ListadoPedidos = respuesta;
 		    	},function(error) {
-	     			$scope.ListadoOfertas= [];
+	     			$scope.ListadoPedidos= [];
 		 	});
+
 	 	}
 	 	catch(error)
 	 	{
 	 		console.info(error);
 	 		$scope.resultado.ver = true;
 	 		$scope.resultado.estilo = "COLORERROR";
-		    $scope.resultado.mensaje = "Error en el controlador oferta.";
+		    $scope.resultado.mensaje = "Error en el controlador pedido.";
 			$timeout(function(){
 		 			$state.go('inicio');
 		 		}, 2000);
 	 	}
-		$scope.Modificar = function(oferta){
- 		var param = JSON.stringify(oferta);
-    	$state.go('oferta.oferta', {oferta:param});
+		$scope.Modificar = function(pedido){
+ 		var param = JSON.stringify(pedido);
+    	$state.go('pedido.pedido', {pedido:param});
  	}
 
-	 	$scope.Bloquear = function(oferta){
+	 	$scope.Bloquear = function(pedido){
 	 		try
 	 		{
-	 			FactoryOferta.Bloquear(oferta.id);
+	 			FactoryPedido.Bloquear(pedido.id);
  				$scope.resultado.ver = true;
 		 		$scope.resultado.estilo = "COLORBIEN";
-				$scope.resultado.mensaje = "Oferta deshabilitada exitosamente.";
+				$scope.resultado.mensaje = "Pedido deshabilitado exitosamente.";
 
 		 		$timeout(function(){
 		 			$state.go('inicio');
@@ -154,20 +155,20 @@ angular
 		 		console.info(error);
 		 		$scope.resultado.ver = true;
 		 		$scope.resultado.estilo = "COLORERROR";
-				$scope.resultado.mensaje = "Error al deshabilitar una oferta.";
+				$scope.resultado.mensaje = "Error al deshabilitar un pedido.";
 				$timeout(function(){
 		 			$state.go('inicio');
 		 		}, 2000);
 		 	}
 	 	}
 		
-		$scope.Eliminar = function(oferta){
+		$scope.Eliminar = function(pedido){
  		try
  		{
- 			FactoryOferta.Eliminar(oferta.id);
+ 			FactoryPedido.Eliminar(pedido.id);
 			$scope.resultado.ver = true;
 	 		$scope.resultado.estilo = "COLORBIEN";
-			$scope.resultado.mensaje = "Oferta eliminada exitosamente.";
+			$scope.resultado.mensaje = "Pedido eliminado exitosamente.";
 			$timeout(function(){
 	 			$state.go('inicio');
 	 		}, 2000);
@@ -177,20 +178,20 @@ angular
 	 		console.info(error);
 	 		$scope.resultado.ver = true;
 	 		$scope.resultado.estilo = "COLORMAL";
-			$scope.resultado.mensaje = "Error al eliminar una oferta.";
+			$scope.resultado.mensaje = "Error al eliminar un pedido.";
 			$timeout(function(){
 	 			$state.go('inicio');
 	 		}, 2000);
 	 	}
  	}
 		
-		$scope.Desbloquear = function(oferta){
+		$scope.Desbloquear = function(pedido){
 		try
  		{
- 			FactoryOferta.Desbloquear(oferta.id);
+ 			FactoryPedido.Desbloquear(pedido.id);
 			$scope.resultado.ver = true;
 	 		$scope.resultado.estilo = "COLORBIEN";
-			$scope.resultado.mensaje = "Oferta habilitada exitosamente.";
+			$scope.resultado.mensaje = "Pedido habilitado exitosamente.";
 			$timeout(function(){
 	 			$state.go('inicio');
 	 		}, 2000);
@@ -200,7 +201,7 @@ angular
 	 		console.info(error);
 	 		$scope.resultado.ver = true;
 	 		$scope.resultado.estilo = "COLORMAL";
-			$scope.resultado.mensaje = "Error al habilitar una oferta";
+			$scope.resultado.mensaje = "Error al habilitar un pedido";
 			$timeout(function(){
 	 			$state.go('inicio');
 	 		}, 2000);

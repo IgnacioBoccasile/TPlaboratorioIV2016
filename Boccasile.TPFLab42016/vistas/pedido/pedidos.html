@@ -1,0 +1,19 @@
+<head><title>Listado de Pedidos</title></head>
+<div class="intro-header7">
+<div class="animated bounceInDown" style="margin-top:1%" align="center">
+    <div class="{{resultado.estilo}}" ng-show="resultado.ver">
+        <span style="font-size:13px;">{{resultado.mensaje}}</span><br><br>
+    </div>
+	<div class="divListaProductos" style="width:50%;" ng-repeat="pedido in ListadoPedidos">
+		<h4 class="h2Login">{{pedido.descripcion}}</h4>
+		<p style="font-size:13px"><font color="gray">{{pedido.unidades}} unidades. ${{pedido.precio}}. Realizado el {{pedido.fechaPedido}}.</font></font></p>
+		<p style="font-size:13px" ng-if="pedido.enviado==1"><font color = "red">No se ha enviado.</font></p>
+		<p style="font-size:13px" ng-if="pedido.enviado==0"><font color = "green">Enviado.</font></p>
+		<input type="submit" value="Modificar" class="btnLogin" style="width:32%" ng-click="Modificar(pedido)" ng-if="!escliente">
+		<input type="submit" value="Enviar" class="btnLogin" style="width:32%" ng-click="Bloquear(pedido)" ng-if="pedido.enviado==1 && !escliente">
+		<input type="submit" value="Cancelar envío" class="btnLogin" style="width:32%" ng-click="Desbloquear(pedido)" ng-if="pedido.enviado==0 && !escliente">
+		<input type="submit" value="Eliminar" class="btnLogin" style="width:32%" ng-click="Eliminar(pedido)" ng-if="!escliente">
+		<br>
+	</div>
+</div>	
+</div>

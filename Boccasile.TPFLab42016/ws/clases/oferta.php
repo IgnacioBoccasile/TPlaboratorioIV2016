@@ -86,7 +86,7 @@ class Oferta
 	{
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
 			
-			$consulta =$objetoAccesoDato->RetornarConsulta("UPDATE oferta SET descripcion=:descripcion, precio=:precio, fechaInicio=:fechaInicio, fechaFin=:fechaFin WHERE id=:id");
+			$consulta =$objetoAccesoDato->RetornarConsulta("UPDATE oferta SET descripcion=:descripcion, precio=:precio WHERE id=:id");
 			
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
 			
@@ -95,10 +95,6 @@ class Oferta
 			$consulta->bindValue(':descripcion',$oferta->descripcion, PDO::PARAM_STR);
 			
 			$consulta->bindValue(':precio',$oferta->precio, PDO::PARAM_STR);
-			
-			$consulta->bindValue(':fechaInicio',$oferta->fechaInicio, PDO::PARAM_STR);
-			
-			$consulta->bindValue(':fechaFin',$oferta->fechaFin, PDO::PARAM_STR);
 			
 			return $consulta->execute();
 	}
