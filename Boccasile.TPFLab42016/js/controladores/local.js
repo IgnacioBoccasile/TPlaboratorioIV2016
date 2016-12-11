@@ -93,11 +93,12 @@ angular
 		}
 	};
 })
-  .controller("LocalesCtrl", function($scope, $http, $state, $auth, $timeout, jwtHelper, FactoryLocal) {
+  .controller("LocalesCtrl", function($scope, $http, $state, $auth, NgMap, $timeout, jwtHelper, FactoryLocal) {
 		try
 		{
 			$scope.resultado = {};
 			$scope.resultado.ver = false;
+			$scope.LocalVer = 0;
 			if ($auth.isAuthenticated())
 			{
 				$scope.usuarioLogeado = jwtHelper.decodeToken($auth.getToken());
@@ -137,6 +138,19 @@ angular
  		var param = JSON.stringify(local);
     	$state.go('local.local', {local:param});
  	}
+	
+	$scope.Mapa = function(latitud,longitud,id)
+	    {
+	    $scope.LocalVer = 1;
+	    $scope.latitud = latitud;
+   		$scope.longitud = longitud;
+   		$scope.LocalId = id;
+
+	    }
+	    $scope.Ocultar = function()
+	    {
+	    $scope.LocalVer = 0;
+	    }
 		
 	$scope.Eliminar = function(local){
 		try

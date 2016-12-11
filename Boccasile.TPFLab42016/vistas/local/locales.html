@@ -9,7 +9,17 @@
 		<p style="font-size:13px"><font color="gray">{{local.calle}} {{local.numero}}.</font></font></p>
 		<input type="submit" value="Modificar" class="btnLogin" style="width:32%" ng-click="Modificar(local)" ng-if="!escliente">
 		<input type="submit" value="Eliminar" class="btnLogin" style="width:32%" ng-click="Eliminar(local)" ng-if="!escliente">
+		<input type="submit" value="Mostrar Mapa" class="btnLogin" style="width:32%" ng-click="Mapa(local.latitud,local.longitud,local.idLocal)" ng-if="LocalVer==0">
+		<input type="submit" value="Ocultar Mapa" class="btnLogin" style="width:32%" ng-click="Ocultar()" ng-if="LocalVer==1 && LocalId == local.idLocal">
 		<br>
+	</div><br>
+	
+	<div ng-if="LocalVer==1">
+		<center>
+		<ng-map center="[{{latitud}} , {{longitud}}]" style="width:350px; height:350px;">
+			<marker position ="[{{latitud}}, {{longitud}}]"></marker>
+		</ng-map>
+		 </center>
 	</div>
 </div>	
 </div>

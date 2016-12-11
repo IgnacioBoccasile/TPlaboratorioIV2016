@@ -17,8 +17,8 @@
 			<h4 class="h2Login">{{usuario.nombre}}</h4>
 			<p style="font-size:13px"><font color="gray">Su correo es {{usuario.correo}}. Su perfil es {{usuario.perfil}}.</font></p>
 			<p style="font-size:13px" ng-if="usuario.id<5"><font color="red">Al estar cargado por defecto, NO se puede modificar.</font></p>
-			<p style="font-size:13px" ng-if="usuario.agregado==1"><font color = "green">Usuario libre de ingreso.</font></p>
-			<p style="font-size:13px" ng-if="usuario.agregado==0"><font color = "red">Usuario bloqueado</font></p>
+			<p style="font-size:13px" ng-if="usuario.agregado==1"><font color = "green">Libre de ingreso.</font></p>
+			<p style="font-size:13px" ng-if="usuario.agregado==0"><font color = "red">Bloqueado</font></p>
 			<input type="submit" value="Modificar" class="btnLogin" style="width:32%" ng-click="Modificar(usuario)" ng-if="usuario.id>4">
 			<input type="submit" value="Bloquear" class="btnLogin" style="width:32%" ng-click="Bloquear(usuario)" ng-if="usuario.id>4 && usuario.agregado==1">
 			<input type="submit" value="Desbloquear" class="btnLogin" style="width:32%" ng-click="Desbloquear(usuario)" ng-if="usuario.id>4 && usuario.agregado==0">
