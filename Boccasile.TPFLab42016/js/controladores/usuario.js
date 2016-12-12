@@ -38,7 +38,7 @@ angular
 		$scope.usuario.correo = correo;
 		$scope.usuario.clave = clave;
 		$scope.usuario.agregado = agregado;
-		$scope.usuario.copiadeclave = copiadeclave
+		$scope.usuario.copiadeclave = copiadeclave;
 		if($scope.usuario.nombre == "Cliente")
 		{
 			$scope.mibandera=true;

@@ -1,4 +1,4 @@
-var miApp = angular.module('TPFBOCCASILE', ['ui.router', 'ngMap', 'angularFileUpload','satellizer', 'angular-jwt']);
+var miApp = angular.module('TPFBOCCASILE', ['ui.router', 'ngMap','satellizer', 'angular-jwt']);
 
 miApp.config(function($stateProvider, $urlRouterProvider, $authProvider){
 	//proveedor de autentificacion.
