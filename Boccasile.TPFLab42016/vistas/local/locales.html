@@ -1,25 +1,34 @@
 <head><title>Listado de Locales</title></head>
 <div class="intro-header8">
-<div class="animated bounceInDown" style="margin-top:1%" align="center">
+<div class="animated bounceInDown" style="margin-top:1%;margin-left:1%;margin-right:1%;">
     <div class="{{resultado.estilo}}" ng-show="resultado.ver">
         <span style="font-size:13px;">{{resultado.mensaje}}</span><br><br>
     </div>
-	<div class="divListaProductos" style="width:50%;" ng-repeat="local in ListadoLocales">
-		<h4 class="h2Login">Sucursal {{local.localidad}}</h4>
+	<div class="divListaProductos" style="width:47%;" ng-repeat="local in ListadoLocales" align="center">
+		<h4 class="h2Login">{{local.idLocal}}- Sucursal {{local.localidad}}</h4>
 		<p style="font-size:13px"><font color="gray">{{local.calle}} {{local.numero}}.</font></font></p>
+		<div>
 		<input type="submit" value="Modificar" class="btnLogin" style="width:32%" ng-click="Modificar(local)" ng-if="!escliente">
 		<input type="submit" value="Eliminar" class="btnLogin" style="width:32%" ng-click="Eliminar(local)" ng-if="!escliente">
-		<input type="submit" value="Mostrar Mapa" class="btnLogin" style="width:32%" ng-click="Mapa(local.latitud,local.longitud,local.idLocal)" ng-if="LocalVer==0">
+		</div><br>
+		<div>
+		<input type="submit" value="Mostrar Mapa" class="btnLogin" style="width:32%" ng-click="Mapa(local.latitud,local.longitud,local.idLocal)" ng-if="LocalVer==0 && VerOfertas==0">
 		<input type="submit" value="Ocultar Mapa" class="btnLogin" style="width:32%" ng-click="Ocultar()" ng-if="LocalVer==1 && LocalId == local.idLocal">
-		<br>
-	</div><br>
-	
-	<div ng-if="LocalVer==1">
-		<center>
-		<ng-map center="[{{latitud}} , {{longitud}}]" style="width:350px; height:350px;">
-			<marker position ="[{{latitud}}, {{longitud}}]"></marker>
+		<input type="submit" value="Mostrar Ofertas" class="btnLogin" style="width:32%" ng-click="Ofertas(local.idLocal)" ng-if="VerOfertas==0 && LocalVer==0">
+		<input type="submit" value="Ocultar Ofertas" class="btnLogin" style="width:32%" ng-click="OcultarOfertas()" ng-if="VerOfertas==1 && IDLOCAL == local.idLocal">
+		</div>
+		<div ng-if="LocalVer==1 && LocalId == local.idLocal" style="margin-top:3%;">
+		<ng-map center="[{{latitud}} , {{longitud}}]" style="width:700px; height:300px;">
+			<marker position ="[{{latitud}},{{longitud}}]"></marker>
 		</ng-map>
-		 </center>
-	</div>
+		</div>
+		<div style="width:47%; margin-top:3%; margin-bottom:1%;" ng-if="VerOfertas == 1 && IDLOCAL == local.idLocal" ng-repeat="oferta in ListadoOfertas">
+			<h4 class="h2Login" ng-if="oferta.idLocal == IDLOCAL">{{oferta.descripcion}}</h4>
+			<p style="font-size:13px" ng-if="oferta.idLocal == IDLOCAL"><font color="gray">${{oferta.precio}}. <br>Inicia el {{oferta.fechaInicio}}. Finaliza el {{oferta.fechaFin}}.</font></font></p>
+			<p style="font-size:13px" ng-if="oferta.disponible==1 && oferta.idLocal == IDLOCAL"><font color = "green">Vigente</font></p>
+			<p style="font-size:13px" ng-if="oferta.disponible==0 && oferta.idLocal == IDLOCAL"><font color = "red">No está en vigencia</font></p>
+			<br>
+		</div>
+	</div>	
 </div>	
 </div>

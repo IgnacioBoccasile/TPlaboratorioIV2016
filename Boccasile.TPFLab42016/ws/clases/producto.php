@@ -23,7 +23,7 @@ class Producto
 		
 		$consulta->execute();
 		
-		$productoBuscado= $consulta->fetchObject('producto');
+		$producoBuscado= $consulta->fetchObject('producto');
 		
 		return $productoBuscado;					
 	}
@@ -103,13 +103,13 @@ class Producto
 	{
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 		
-		$consulta =$objetoAccesoDato->RetornarConsulta("INSERT INTO producto (nombre,descripcion,precio, vigente) VALUES (:nombre,:descripcion,:precio,1)");
+		$consulta =$objetoAccesoDato->RetornarConsulta("INSERT INTO producto (nombre,descripcion,precio,vigente) VALUES (:nombre,:descripcion,:precio,1)");
 		
 		$consulta->bindValue(':nombre',$producto->nombre, PDO::PARAM_STR);
 		
 		$consulta->bindValue(':descripcion',$producto->descripcion, PDO::PARAM_STR);
 		
-		$consulta->bindValue(':precio', $producto->precio, PDO::PARAM_STR);
+		$consulta->bindValue(':precio',$producto->precio, PDO::PARAM_STR);
 		
 		$consulta->execute();	
 		

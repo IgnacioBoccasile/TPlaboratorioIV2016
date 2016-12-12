@@ -93,12 +93,13 @@ angular
 		}
 	};
 })
-  .controller("LocalesCtrl", function($scope, $http, $state, $auth, NgMap, $timeout, jwtHelper, FactoryLocal) {
+  .controller("LocalesCtrl", function($scope, $http, $state, $auth, NgMap, $timeout, jwtHelper, FactoryLocal, FactoryOferta) {
 		try
 		{
 			$scope.resultado = {};
 			$scope.resultado.ver = false;
 			$scope.LocalVer = 0;
+			$scope.VerOfertas = 0;
 			if ($auth.isAuthenticated())
 			{
 				$scope.usuarioLogeado = jwtHelper.decodeToken($auth.getToken());
@@ -150,6 +151,23 @@ angular
 	    $scope.Ocultar = function()
 	    {
 	    $scope.LocalVer = 0;
+	    }
+		
+		$scope.OcultarOfertas = function()
+	    {
+	     $scope.VerOfertas = 0;
+	    }
+	    $scope.Ofertas = function(id)
+	    {
+	    $scope.VerOfertas = 1;
+	    $scope.IDLOCAL = id;
+		
+		FactoryOferta.BuscarTodos().then(
+		 		function(respuesta) {     	
+	      			$scope.ListadoOfertas = respuesta;
+		    	},function(error) {
+	     			$scope.ListadoOfertas= [];
+		 	});
 	    }
 		
 	$scope.Eliminar = function(local){

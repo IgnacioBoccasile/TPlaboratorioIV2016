@@ -12,6 +12,7 @@
 	    	<font color="black"><input type="text" placeholder="Precio" class="txtLogin" name="precio" ng-model='oferta.precio' required></font>
 	    	<font color="black"><input type="date" class="txtLogin" name="fechaInicio" ng-model='oferta.fechaInicio' required></font>
 			<font color="black"><input type="date" class="txtLogin" name="fechaFin" ng-model='oferta.fechaFin' required></font>
+			<font color="black"><input type="text" placeholder="Nro de Local" class="txtLogin" name="idLocal" ng-model='oferta.idLocal' required></font>
 	    	<input type="submit" value="Guardar oferta" class="btnLogin" ng-if="!formOferta.$invalid" ng-click="Guardar()">
 			</form>
     	</div>

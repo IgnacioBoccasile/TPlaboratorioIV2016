@@ -17,7 +17,6 @@
 				<li><a ui-sref="oferta.alta()" ng-if="logeado && (empleado || encargado)" style="color: white">Agregar una Oferta</a></li>
 				<li><a ui-sref="producto.alta()" ng-if="logeado && !cliente && !admin" style="color: white">Agregar un Producto</a></li>
                 <li><a ui-sref="login.registro()" ng-if="logeado && admin" style="color: white">Agregar Usuario</a></li>
-				<li><a ui-sref="login.registroEC()" ng-if="logeado && cliente" style="color: white">Agregar Cliente</a></li>
 				<li><a ui-sref="login.registroEC()" ng-if="logeado && empleado" style="color: white">Agregar Cliente</a></li>
 				<li><a ui-sref="login.registroEEC()" ng-if="logeado && encargado" style="color: white">Agregar Usuario</a></li>
                 <li><a ng-click="Salir()" style="color: white">Cerrar sesión</a></li>
@@ -30,7 +29,7 @@
 <br><br><br><br><br><br><br><br>
     <div class="container animated bounceInDown">
         <div class="row" style="margin-top:1%">
-			<a ui-sref="local.locales()" ng-if="logeado && admin" style="margin:1%">
+			<a ui-sref="local.locales()" ng-if="logeado && (admin || encargado)" style="margin:1%">
 				<input type="submit" value="Lista de Locales" class="btnLogin2" style="width:30%">
             </a>
 			<a ui-sref="producto.productos()" ng-if="logeado && !cliente && !empleado && !admin" style="margin:1%">
@@ -45,11 +44,14 @@
 			<a ui-sref="login.clientes()" ng-if="logeado && empleado" style="margin:1%">
                 <input type="submit" value="Lista de Clientes" class="btnLogin2" style="width:30%">
             </a>
-			<a ui-sref="oferta.ofertas()" ng-if="logeado && (encargado || cliente)" style="margin:1%">
+			<a ui-sref="local.locales()" ng-if="logeado && cliente" style="margin:1%">
                 <input type="submit" value="Ver Ofertas por Local" class="btnLogin2" style="width:30%">
             </a>
 			<a ui-sref="pedido.pedidos()" ng-if="logeado && (encargado || empleado)" style="margin:1%">
                 <input type="submit" value="Lista de Pedidos" class="btnLogin2" style="width:30%">
+            </a>
+			<a ui-sref="oferta.ofertas()" ng-if="logeado && encargado" style="margin:1%">
+                <input type="submit" value="Listado de Ofertas" class="btnLogin2" style="width:30%">
             </a>
         </div>
     </div>

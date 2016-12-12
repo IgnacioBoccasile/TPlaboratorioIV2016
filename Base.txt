@@ -1,4 +1,4 @@
-No olvidar primero crear la base: mibasetrabajofinal.
+No olvidar primero crear la base: mibaseabm.
 CREATE TABLE `usuario` 
 ( `id` INT NOT NULL AUTO_INCREMENT , 
   `correo` VARCHAR(50) NOT NULL , 
@@ -12,8 +12,7 @@ CREATE TABLE `producto`
 ( `id` INT NOT NULL AUTO_INCREMENT , 
   `nombre` VARCHAR(50) NOT NULL , 
   `descripcion` VARCHAR(250) NOT NULL , 
-  `precio` FLOAT NOT NULL , 
-  `foto` VARCHAR(250) NOT NULL , 
+  `precio` FLOAT NOT NULL ,  
   `vigente` tinyint(1) NOT NULL ,  PRIMARY KEY (`id`)) 
   ENGINE = InnoDB CHARACTER SET latin1 COLLATE latin1_spanish_ci;
 
@@ -23,7 +22,8 @@ CREATE TABLE `oferta`
   `precio` FLOAT NOT NULL ,  
   `disponible` tinyint(1) NOT NULL ,
   `fechaInicio` DATETIME NOT NULL ,
-  `fechaFin` DATETIME NOT NULL ,  PRIMARY KEY (`id`)) 
+  `fechaFin` DATETIME NOT NULL ,
+  `idLocal` INT(10) NOT NULL, PRIMARY KEY (`id`)) 
   ENGINE = InnoDB CHARACTER SET latin1 COLLATE latin1_spanish_ci;
 
 CREATE TABLE `pedido` 
@@ -40,11 +40,32 @@ CREATE TABLE `local`
   `localidad` VARCHAR(250) NOT NULL , 
   `calle` VARCHAR(250) NOT NULL ,
   `numero` INT NOT NULL , 
-  `latitud` DECIMAL(65,30) NOT NULL ,
-  `longitud` DECIMAL(65,30) NOT NULL , PRIMARY KEY (`idLocal`)) 
+  `latitud` DECIMAL(65,7) NOT NULL ,
+  `longitud` DECIMAL(65,7) NOT NULL , PRIMARY KEY (`idLocal`)) 
   ENGINE = InnoDB CHARACTER SET latin1 COLLATE latin1_spanish_ci;
 
 INSERT INTO `usuario` (`id`, `correo`, `clave`, `nombre`, `perfil`, `agregado`) VALUES
 (1, 'admin@admin.com', '123456', 'Administrador', 'admin', 1),
 (2, 'encargado@encargado.com', '123456', 'Encargado', 'encargado', 1),
-(3, 'empleado@empleado.com', '123456', 'Empleado', 'empleado', 1), (4, 'cliente@cliente.com', '123456', 'Cliente', 'cliente', 1);
+(3, 'empleado@empleado.com', '123456', 'Empleado', 'empleado', 1), 
+(4, 'cliente@cliente.com', '123456', 'Cliente', 'cliente', 1);
+
+INSERT INTO `local` (`idLocal`, `localidad`, `calle`, `numero`, `latitud`, `longitud`) VALUES
+(1, 'Lanus Oeste', 'Gobernador Bernardo de Yrigoyen', 359, -34.6801843, -58.3722002),
+(2, 'Lomas de Zamora', 'Francisco Narciso de Laprida', 345, -34.7605082, -58.4039291),
+(3, 'Avellaneda', 'Avenida Bartolomé Mitre', 780, -34.6624750,-58.3666777);
+
+INSERT INTO `oferta` (`id`, `descripcion`, `precio`, `disponible`, `fechaInicio`, `fechaFin`, `idLocal`) VALUES
+(1, '2 Docenas de Empanadas', 360, 2016-12-10 03:00:00, 2016-12-15 03:00:00, 1),
+(2, 'Grande de Muzza y una Sprite Grande', 220, 2016-12-05 03:00:00, 2016-12-14 03:00:00, 2),
+(3, 'Individual de Fugazzeta y una Fanta Chica', 75, 2016-12-08 03:00:00, 2016-12-29 03:00:00, 3);
+
+INSERT INTO `producto` (`id`, `nombre`, `descripcion`, `precio`, `vigente`) VALUES
+(1, 'Empanada', 'Tenemos de Carne, Jamón y Queso y Pollo', 18, 1),
+(2, 'Grande de Muzzarella', 'La clásica pizza de queso y aceitunas', 180, 1),
+(3, 'Bebida', 'Tenemos Coca, Sprite, Fanta y Agua Villa Del Sur', 35, 1),
+(4, 'Individual de Fugazzeta', 'Pizza tamaño chico de cebolla y queso', 50, 1);
+
+Luego de esto:
+
+ALTER TABLE oferta ADD KEY idLocal (idLocal);

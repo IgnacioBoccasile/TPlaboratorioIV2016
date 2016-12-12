@@ -14,6 +14,8 @@ class Oferta
   	public $fechaInicio;
 	
 	public $fechaFin;
+	
+	public $idLocal;
 
 	public static function Cargar($id) 
 	{	
@@ -86,7 +88,7 @@ class Oferta
 	{
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
 			
-			$consulta =$objetoAccesoDato->RetornarConsulta("UPDATE oferta SET descripcion=:descripcion, precio=:precio WHERE id=:id");
+			$consulta =$objetoAccesoDato->RetornarConsulta("UPDATE oferta SET descripcion=:descripcion, precio=:precio, idLocal=:idLocal WHERE id=:id");
 			
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
 			
@@ -96,6 +98,8 @@ class Oferta
 			
 			$consulta->bindValue(':precio',$oferta->precio, PDO::PARAM_STR);
 			
+			$consulta->bindValue(':idLocal',$oferta->idLocal, PDO::PARAM_STR);
+			
 			return $consulta->execute();
 	}
 
@@ -103,7 +107,7 @@ class Oferta
 	{
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 		
-		$consulta =$objetoAccesoDato->RetornarConsulta("INSERT INTO oferta (descripcion,precio,disponible,fechaInicio,fechaFin) VALUES (:descripcion,:precio,1,:fechaInicio,:fechaFin)");
+		$consulta =$objetoAccesoDato->RetornarConsulta("INSERT INTO oferta (descripcion,precio,disponible,fechaInicio,fechaFin,idLocal) VALUES (:descripcion,:precio,1,:fechaInicio,:fechaFin, :idLocal)");
 		
 		$consulta->bindValue(':descripcion',$oferta->descripcion, PDO::PARAM_STR);
 		
@@ -112,6 +116,8 @@ class Oferta
 		$consulta->bindValue(':fechaInicio', $oferta->fechaInicio, PDO::PARAM_STR);
 		
 		$consulta->bindValue(':fechaFin', $oferta->fechaFin, PDO::PARAM_STR);
+		
+		$consulta->bindValue(':idLocal', $oferta->idLocal, PDO::PARAM_STR);
 		
 		$consulta->execute();	
 		

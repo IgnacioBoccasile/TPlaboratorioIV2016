@@ -108,47 +108,17 @@ $app->get('/productos[/]', function ($request, $response, $args)
 {
     $datos=Producto::Buscar();
 	
-    for ($i = 0; $i < count($datos); $i++ )
-	{
-        $datos[$i]->foto=json_decode($datos[$i]->foto);
-    }
+	$response->write(json_encode($datos));
 	
-    return $response->write(json_encode($datos));
+    return $response;
 });
 
 $app->post('/producto/{producto}', function ($request, $response, $args)
  {
     $producto=json_decode($args['producto']);
 	
-    $producto->foto=explode(';',$producto->foto);
-	
-    $arrayFoto = array();
-	
-    if(count($producto->foto) > 0)
-	{
-        for ($i = 0; $i < count($producto->foto); $i++ )
-		{
-            $rutaVieja="fotos/".$producto->foto[$i];
-			
-            $rutaNueva=$producto->nombre. "_". $i .".".PATHINFO($rutaVieja, PATHINFO_EXTENSION);
-			
-            copy($rutaVieja, "fotos/".$rutaNueva);
-			
-            unlink($rutaVieja);
-			
-            $arrayFoto[]=$rutaNueva;
-        } 
-		
-        $producto->foto=json_encode($arrayFoto); 
-    }
+	$response->write(Producto::Guardar($producto));
 
-    return $response->write(Producto::Guardar($producto));
-});
-
-$app->put('/producto/{producto}', function ($request, $response, $args) 
-{
-    Producto::Editar(json_decode($args['producto']));
-	
     return $response;
 });
 
@@ -172,6 +142,15 @@ $app->delete('/producto/{id}', function ($request, $response, $args)
 	
     return $response;
 });
+
+$app->put('/producto/{producto}', function ($request, $response, $args) 
+{
+    Producto::Editar(json_decode($args['producto']));
+	
+    return $response;
+});
+
+
 
 $app->get('/ofertas[/]', function ($request, $response, $args) 
 {

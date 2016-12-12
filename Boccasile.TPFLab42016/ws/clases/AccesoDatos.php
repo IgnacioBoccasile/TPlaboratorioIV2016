@@ -9,7 +9,7 @@ class AccesoDatos
     {
         try 
 		{ 
-            $this->objetoPDO = new PDO('mysql:host=localhost;dbname=mibasetrabajofinal;charset=utf8', 'root', '', array(PDO::ATTR_EMULATE_PREPARES => false,PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+            $this->objetoPDO = new PDO('mysql:host=localhost;dbname=mibaseabm;charset=utf8', 'root', '', array(PDO::ATTR_EMULATE_PREPARES => false,PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 			
             $this->objetoPDO->exec("SET CHARACTER SET utf8");
         } 

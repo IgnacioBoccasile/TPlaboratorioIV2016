@@ -10,6 +10,7 @@
         <h2 class="h2Login">Modificar oferta:</h2>
     	<input type="text" placeholder="Descripcion" class="txtLogin" name="descripcion" ng-model='oferta.descripcion' required>
 	    <input type="text" placeholder="Precio" class="txtLogin" name="precio" ng-model='oferta.precio' required>
+		<input type="text" placeholder="Nro de Local" class="txtLogin" name="idLocal" ng-model='oferta.idLocal' required>
 	    <input type="submit" value="Guardar datos" class="btnLogin" ng-if="!formAlta.$invalid" ng-click="Guardar()">
 		</form>
     </div>
