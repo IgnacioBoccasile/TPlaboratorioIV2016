@@ -1,6 +1,7 @@
 angular
 .module('TPFBOCCASILE')
 .controller('LoginCtrl', function($scope, $state, $auth, jwtHelper) {
+	$scope.mibandera=false;
 	$scope.usuario = {};
 	$scope.resultado = {};
 	$scope.resultado.ver = false;
@@ -18,6 +19,7 @@ angular
 					$scope.resultado.ver = true;
 					$scope.resultado.estilo = "COLORERROR";
 					$scope.resultado.mensaje = "Los datos no coinciden o probablemente usted haya sido bloqueado.";
+					$scope.mibandera = true;
 				}
 					
 				}).catch(function(response){
@@ -33,12 +35,11 @@ angular
 		
 }
 
-	$scope.Acceso = function(nombre, correo, clave, agregado, copiadeclave){
+	$scope.Acceso = function(nombre, correo, clave, agregado){
 		$scope.usuario.nombre = nombre;
 		$scope.usuario.correo = correo;
 		$scope.usuario.clave = clave;
 		$scope.usuario.agregado = agregado;
-		$scope.usuario.copiadeclave = copiadeclave;
 		if($scope.usuario.nombre == "Cliente")
 		{
 			$scope.mibandera=true;
@@ -404,7 +405,7 @@ angular
 		console.info(error);
 	}
 })
-.controller("EmpleadosCtrl", function($scope, $state, $auth, $timeout, jwtHelper, FactoryUsuario) {
+.controller("EmpleadosClientesCtrl", function($scope, $state, $auth, $timeout, jwtHelper, FactoryUsuario) {
 	try
 	{
 		$scope.resultado = {};
@@ -478,5 +479,32 @@ angular
 	 		}, 2000);
 	 	}
 	}
+	
+	$scope.Buscar = function(){
+ 		try
+ 		{
+ 			if ($scope.buscarPerfil == "empleado" || $scope.buscarPerfil == "cliente")
+ 			{
+				$scope.ListadoUsuarios = [];
+	 			FactoryUsuario.BuscarPor("usuariosPorPerfil", $scope.buscarPerfil).then(
+			 		function(respuesta) {     	
+			  			$scope.ListadoUsuarios = respuesta;
+			    	},function(error) {
+			 			$scope.ListadoUsuarios= [];
+			 	});
+ 			}
+
+ 		}
+	 	catch(error)
+	 	{
+	 		console.info(error);
+	 		$scope.resultado.ver = true;
+	 		$scope.resultado.estilo = "COLORMAL";
+			$scope.resultado.mensaje = "Error al bucar por perfil.";
+			$timeout(function(){
+	 			$state.go('inicio');
+	 		}, 2000);
+	 	}
+ 	}
 });
 ;

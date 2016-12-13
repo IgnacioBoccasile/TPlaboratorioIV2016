@@ -1,0 +1,26 @@
+<head><title>Listado de Empleados</title></head>
+<div class="intro-header5">
+<div class="animated bounceInDown" style="margin-top:1%" align="center">	
+ <div align="center"><font color="black"><select ng-click="Buscar()" ng-model="buscarPerfil" class="txtLogin" style="width:20%;">
+	    	<option value="empleado">Filtrar por Empleado</option>
+			<option value="cliente">Filtrar por Cliente</option>
+	    </select></font></div>	
+	
+	<div class="divListaUsuarios" style="width:50%">
+	<div class="{{resultado.estilo}}" ng-show="resultado.ver">
+				<span style="font-size:13px;">{{resultado.mensaje}}</span><br>
+			</div>
+	<div  ng-repeat="usuario in ListadoUsuarios" >
+			
+			<h4 class="h2Login">{{usuario.nombre}}</h4>
+			<p style="font-size:13px"><font color="gray">Su correo es {{usuario.correo}}.</font></p>
+			<p style="font-size:13px" ng-if="usuario.idUsuario<5"><font color="red">Al estar cargado por defecto, NO se puede modificar.</font></p>
+			<p style="font-size:13px" ng-if="usuario.agregado==1"><font color = "green">Libre de ingreso.</font></p>
+			<p style="font-size:13px" ng-if="usuario.agregado==0"><font color = "red">Bloqueado.</font></p>
+			<input type="submit" value="Bloquear" class="btnLogin" style="width:32%" ng-click="Bloquear(usuario)" ng-if="usuario.idUsuario>4 && usuario.agregado==1">
+			<input type="submit" value="Desbloquear" class="btnLogin" style="width:32%" ng-click="Desbloquear(usuario)" ng-if="usuario.idUsuario>4 && usuario.agregado==0">
+			<br><br>
+	</div>
+	</div>
+</div>
+</div>

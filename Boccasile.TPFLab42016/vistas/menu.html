@@ -41,8 +41,8 @@
             <a ui-sref="login.usuarios()" ng-if="logeado && admin && !encargado && !empleado" style="margin:1%">
                 <input type="submit" value="Lista de usuarios" class="btnLogin2" style="width:30%">
             </a>
-			<a ui-sref="login.empleados()" ng-if="logeado && !admin && encargado" style="margin:1%">
-                <input type="submit" value="Lista de empleados" class="btnLogin2" style="width:30%">
+			<a ui-sref="login.empleadosClientes()" ng-if="logeado && !admin && encargado" style="margin:1%">
+                <input type="submit" value="Lista de usuarios" class="btnLogin2" style="width:30%">
             </a>
 			<a ui-sref="login.clientes()" ng-if="logeado && empleado" style="margin:1%">
                 <input type="submit" value="Lista de clientes" class="btnLogin2" style="width:30%">

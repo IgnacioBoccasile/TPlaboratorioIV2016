@@ -115,7 +115,7 @@ angular
 				}
 				if($scope.usuarioLogeado.perfil == "admin")
 				{
-					$scope.mod = true;
+					$scope.mod = false;
 					$scope.elm = true;
 				}
 			}

@@ -79,7 +79,9 @@ INSERT INTO `producto` (`idProducto`, `nombre`, `descripcion`, `precio`, `vigent
 (1, 'Empanada', 'Tenemos de Carne, Jamón y Queso y Pollo', 18, 1),
 (2, 'Grande de Muzzarella', 'La clásica pizza de queso y aceitunas', 180, 1),
 (3, 'Bebida', 'Tenemos Coca, Sprite, Fanta y Agua Villa Del Sur', 35, 1),
-(4, 'Individual de Fugazzeta', 'Pizza tamaño chico de cebolla y queso', 50, 1);
+(4, 'Individual de Fugazzeta', 'Pizza tamaño chico de cebolla y queso', 50, 1),
+(5, 'Calzonne', 'Tenemos de JYQ y verdura', 120, 1),
+(6, 'Porción de Faina', 'Para acompañar nuestras pizzas', 25, 1);
 
 
 

@@ -129,14 +129,14 @@ miApp.config(function($stateProvider, $urlRouterProvider, $authProvider){
 		)
 		
 		.state(
-			"login.empleados",
+			"login.empleadosClientes",
 			{
-				url:"/empleados",
+				url:"/empleadosClientes",
 				cache:false,
 				views:{
 					"contenido": {
-					templateUrl:"vistas/usuario/empleados.html",
-					controller:"EmpleadosCtrl"
+					templateUrl:"vistas/usuario/empleadosClientes.html",
+					controller:"EmpleadosClientesCtrl"
 					}
 				}
 			}
