@@ -11,6 +11,8 @@ require 'clases/pedido.php';
 
 require 'clases/local.php';
 
+require 'clases/pedidoOferta.php';
+
 $app = new Slim\App();
 
 $app->get('/', function ($request, $response, $args) 
@@ -240,6 +242,52 @@ $app->delete('/pedido/{idPedido}', function ($request, $response, $args)
 $app->put('/pedido/{pedido}', function ($request, $response, $args) 
 {
     Pedido::Editar(json_decode($args['pedido']));
+    
+    return $response;
+});
+
+$app->get('/pedidosOfertas[/]', function ($request, $response, $args) 
+{
+    $datos=PedidoOferta::Buscar();
+    
+    $response->write(json_encode($datos));
+    
+    return $response;
+});
+
+$app->post('/pedidoOferta/{pedidoOferta}', function ($request, $response, $args)
+ {
+    $pedidoOferta=json_decode($args['pedidoOferta']);
+    
+    $response->write(PedidoOferta::Guardar($pedidoOferta));
+
+    return $response;
+});
+
+$app->delete('/pedidoOfertaEliminar/{idPedidoOferta}', function ($request, $response, $args)
+ {
+    PedidoOferta::Eliminar($args['idPedidoOferta']);
+    
+    return $response;
+});
+
+$app->delete('/pedidoOfertaDesbloquear/{idPedidoOferta}', function ($request, $response, $args)
+ {
+    PedidoOferta::Desbloquear($args['idPedidoOferta']);
+    
+    return $response;
+});
+
+$app->delete('/pedidoOferta/{idPedidoOferta}', function ($request, $response, $args) 
+{
+    PedidoOferta::Bloquear($args['idPedidoOferta']);
+    
+    return $response;
+});
+
+$app->put('/pedidoOferta/{pedidoOferta}', function ($request, $response, $args) 
+{
+    PedidoOferta::Editar(json_decode($args['pedidoOferta']));
     
     return $response;
 });

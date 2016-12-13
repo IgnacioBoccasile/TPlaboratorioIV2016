@@ -3,7 +3,7 @@
 <div class="animated bounceInDown" style="margin-top:1%" align="center">
 	<div class="divListaProductos" style="width:50%;">
 	<div class="{{resultado.estilo}}" ng-show="resultado.ver">
-        <span style="font-size:13px;">{{resultado.mensaje}}</span><br><br>
+        <span style="font-size:13px;">{{resultado.mensaje}}</span>
     </div>
 	<div ng-repeat="pedido in ListadoPedidos track by $index">
 		<h4 class="h2Login">{{pedido.idPedido}}- {{pedido.descripcion}}</h4>

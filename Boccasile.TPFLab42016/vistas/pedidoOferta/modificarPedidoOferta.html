@@ -1,0 +1,21 @@
+<head><title>Modificación de Pedido</title></head>
+<div class="intro-header9">
+<div class="divLogin animated bounceInRight" name="loginForm" style="margin-top:1%;">
+    <div class="{{resultado.estilo}}" ng-show="resultado.ver">
+        <span style="font-size:13px;">{{resultado.mensaje}}</span><br><br>
+    </div>
+    <font color="black">
+	<div class="row">
+		<form id="formAlta" name="formAlta" enctype="multipart/form-data" novalidate>
+        <h2 class="h2Login">Modificar pedido:</h2><br>
+		<font color="gray">Oferta:</font>
+		<select  ng-model="pedidoOferta.descripcion" class="txtLogin" style="width:100%;"  required>
+				<option ng-repeat="oferta in ListadoOfertas track by $index" value="{{oferta.descripcion}}">{{oferta.descripcion}}</option>  
+		</select>
+		<font color="gray">Unidades:</font>
+		<font color="black"><input type="text" placeholder="Unidades" class="txtLogin" name="unidades" ng-model='pedidoOferta.unidades' required></font>
+	    <input type="submit" value="Guardar datos" class="btnLogin" ng-if="!formAlta.$invalid" ng-click="Guardar()">
+		</form>
+    </div>
+	</font>
+</div>

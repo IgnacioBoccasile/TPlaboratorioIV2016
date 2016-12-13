@@ -299,6 +299,58 @@ miApp.config(function($stateProvider, $urlRouterProvider, $authProvider){
 		)
 		
 		.state(
+			"pedidoOferta",
+			{
+				url:"/pedidoOferta",
+				cache:false,
+				abstract:true, 
+				templateUrl:"vistas/pedidoOferta/abstractaPedidoOferta.html"
+			}
+		)
+
+		.state(
+			"pedidoOferta.alta",
+			{
+				url:"/alta",
+				cache:false,
+				views:{
+					"contenido": {
+					templateUrl:"vistas/pedidoOferta/altaPedidoOferta.html",
+					controller:"PedidoOfertaAltaCtrl"
+					}
+				}
+			}
+		)
+
+		.state(
+			"pedidoOferta.pedidosOfertas",
+			{
+				url:"/pedidosOfertas",
+				cache:false,
+				views:{
+					"contenido": {
+					templateUrl:"vistas/pedidoOferta/pedidosOfertas.html",
+					controller:"PedidosOfertasCtrl"
+					}
+				}
+			}
+		)
+		
+		.state(
+			"pedidoOferta.pedidoOferta",
+			{
+				url:"/pedidoOferta/:pedidoOferta",
+				cache:false,
+				views:{
+					"contenido": {
+					templateUrl:"vistas/pedidoOferta/modificarPedidoOferta.html",
+					controller:"PedidoOfertaModificarCtrl"
+					}
+				}
+			}
+		)
+		
+		.state(
 			"local",
 			{
 				url:"/local",

@@ -47,6 +47,18 @@ CREATE TABLE `local`
   `longitud` DECIMAL(65,7) NOT NULL , PRIMARY KEY (`idLocal`)) 
   ENGINE = InnoDB CHARACTER SET latin1 COLLATE latin1_spanish_ci;
 
+CREATE TABLE `pedidoOferta` 
+( `idPedidoOferta` INT NOT NULL AUTO_INCREMENT , 
+  `descripcion` VARCHAR(250) NOT NULL , 
+  `precio` FLOAT NOT NULL , 
+  `unidades` INT NOT NULL , 
+  `enviado` tinyint(1) NOT NULL ,
+  `fechaPedidoOferta` DATETIME NOT NULL ,
+  `idUsuario` INT(10) NOT NULL ,
+  `idOferta` INT(10) NOT NULL ,
+  `idLocal` INT(10) NOT NULL , PRIMARY KEY (`idPedidoOferta`)) 
+  ENGINE = InnoDB CHARACTER SET latin1 COLLATE latin1_spanish_ci;
+
 INSERT INTO `usuario` (`idUsuario`, `correo`, `clave`, `nombre`, `perfil`, `agregado`) VALUES
 (1, 'admin@admin.com', '123456', 'Administrador', 'admin', 1),
 (2, 'encargado@encargado.com', '123456', 'Encargado', 'encargado', 1),
@@ -78,3 +90,5 @@ ALTER TABLE oferta ADD KEY idLocal (idLocal);
 
 ALTER TABLE pedido ADD KEY idUsuario (idUsuario);
 ALTER TABLE pedido ADD KEY idProducto (idProducto);
+ALTER TABLE pedidoOferta ADD KEY idUsuario (idUsuario);
+ALTER TABLE pedidoOferta ADD KEY idOferta (idOferta);

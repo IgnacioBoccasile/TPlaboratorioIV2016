@@ -92,7 +92,7 @@ class Pedido
 	{
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
 			
-			$consulta =$objetoAccesoDato->RetornarConsulta("UPDATE pedido SET descripcion=:descripcion, unidades=:unidades WHERE idPedido=:idPedido");
+			$consulta =$objetoAccesoDato->RetornarConsulta("UPDATE pedido SET descripcion=:descripcion, unidades=:unidades, precio=:precio WHERE idPedido=:idPedido");
 			
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
 			
@@ -101,6 +101,8 @@ class Pedido
 			$consulta->bindValue(':descripcion',$pedido->descripcion, PDO::PARAM_STR);
 			
 			$consulta->bindValue(':unidades',$pedido->unidades, PDO::PARAM_STR);
+			
+			$consulta->bindValue(':precio',$pedido->precio, PDO::PARAM_STR);
 			
 			return $consulta->execute();
 	}
