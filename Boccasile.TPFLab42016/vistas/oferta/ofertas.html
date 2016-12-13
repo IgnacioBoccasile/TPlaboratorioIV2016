@@ -1,10 +1,11 @@
 <head><title>Listado de Ofertas</title></head>
 <div class="intro-header6">
 <div class="animated bounceInDown" style="margin-top:1%" align="center">
-    <div class="{{resultado.estilo}}" ng-show="resultado.ver">
-        <span style="font-size:13px;">{{resultado.mensaje}}</span><br><br>
+	<div class="divListaProductos" style="width:50%;">
+	<div class="{{resultado.estilo}}" ng-show="resultado.ver">
+        <span style="font-size:13px;">{{resultado.mensaje}}</span><br>
     </div>
-	<div class="divListaProductos" style="width:50%;" ng-repeat="oferta in ListadoOfertas">
+	<div  ng-repeat="oferta in ListadoOfertas">
 		<h4 class="h2Login">{{oferta.descripcion}}</h4>
 		<p style="font-size:13px"><font color="gray">${{oferta.precio}}. <br>Inicia el {{oferta.fechaInicio}}. Finaliza el {{oferta.fechaFin}}.</font></font></p>
 		<p style="font-size:13px" ng-if="oferta.disponible==1"><font color = "green">Vigente en el local nro {{oferta.idLocal}}</font></p>
@@ -13,7 +14,8 @@
 		<input type="submit" value="Deshabilitar" class="btnLogin" style="width:32%" ng-click="Bloquear(oferta)" ng-if="oferta.disponible==1">
 		<input type="submit" value="Habilitar" class="btnLogin" style="width:32%" ng-click="Desbloquear(oferta)" ng-if="oferta.disponible==0">
 		<input type="submit" value="Eliminar" class="btnLogin" style="width:32%" ng-click="Eliminar(oferta)">
-		<br>
+		<br><br>
+	</div>
 	</div>
 </div>	
 </div>

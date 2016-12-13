@@ -1,38 +1,41 @@
-No olvidar primero crear la base: mibaseabm.
+
 CREATE TABLE `usuario` 
-( `id` INT NOT NULL AUTO_INCREMENT , 
+( `idUsuario` INT NOT NULL AUTO_INCREMENT , 
   `correo` VARCHAR(50) NOT NULL , 
   `clave` VARCHAR(30) NOT NULL , 
   `nombre` VARCHAR(50) NOT NULL , 
   `perfil` VARCHAR(30) NOT NULL , 
-  `agregado` tinyint(1) NOT NULL ,  PRIMARY KEY (`id`)) 
+  `agregado` tinyint(1) NOT NULL ,  PRIMARY KEY (`idUsuario`)) 
   ENGINE = InnoDB CHARACTER SET latin1 COLLATE latin1_spanish_ci;
 
 CREATE TABLE `producto` 
-( `id` INT NOT NULL AUTO_INCREMENT , 
+( `idProducto` INT NOT NULL AUTO_INCREMENT , 
   `nombre` VARCHAR(50) NOT NULL , 
   `descripcion` VARCHAR(250) NOT NULL , 
   `precio` FLOAT NOT NULL ,  
-  `vigente` tinyint(1) NOT NULL ,  PRIMARY KEY (`id`)) 
+  `vigente` tinyint(1) NOT NULL ,  PRIMARY KEY (`idProducto`)) 
   ENGINE = InnoDB CHARACTER SET latin1 COLLATE latin1_spanish_ci;
 
 CREATE TABLE `oferta` 
-( `id` INT NOT NULL AUTO_INCREMENT , 
+( `idOferta` INT NOT NULL AUTO_INCREMENT , 
   `descripcion` VARCHAR(250) NOT NULL , 
   `precio` FLOAT NOT NULL ,  
   `disponible` tinyint(1) NOT NULL ,
   `fechaInicio` DATETIME NOT NULL ,
   `fechaFin` DATETIME NOT NULL ,
-  `idLocal` INT(10) NOT NULL, PRIMARY KEY (`id`)) 
+  `idLocal` INT(10) NOT NULL, PRIMARY KEY (`idOferta`)) 
   ENGINE = InnoDB CHARACTER SET latin1 COLLATE latin1_spanish_ci;
 
 CREATE TABLE `pedido` 
-( `id` INT NOT NULL AUTO_INCREMENT , 
+( `idPedido` INT NOT NULL AUTO_INCREMENT , 
   `descripcion` VARCHAR(250) NOT NULL , 
   `precio` FLOAT NOT NULL , 
   `unidades` INT NOT NULL , 
   `enviado` tinyint(1) NOT NULL ,
-  `fechaPedido` DATETIME NOT NULL ,PRIMARY KEY (`id`)) 
+  `fechaPedido` DATETIME NOT NULL ,
+  `idUsuario` INT(10) NOT NULL ,
+  `idProducto` INT(10) NOT NULL ,
+  `idLocal` INT(10) NOT NULL , PRIMARY KEY (`idPedido`)) 
   ENGINE = InnoDB CHARACTER SET latin1 COLLATE latin1_spanish_ci;
 
 CREATE TABLE `local` 
@@ -44,7 +47,7 @@ CREATE TABLE `local`
   `longitud` DECIMAL(65,7) NOT NULL , PRIMARY KEY (`idLocal`)) 
   ENGINE = InnoDB CHARACTER SET latin1 COLLATE latin1_spanish_ci;
 
-INSERT INTO `usuario` (`id`, `correo`, `clave`, `nombre`, `perfil`, `agregado`) VALUES
+INSERT INTO `usuario` (`idUsuario`, `correo`, `clave`, `nombre`, `perfil`, `agregado`) VALUES
 (1, 'admin@admin.com', '123456', 'Administrador', 'admin', 1),
 (2, 'encargado@encargado.com', '123456', 'Encargado', 'encargado', 1),
 (3, 'empleado@empleado.com', '123456', 'Empleado', 'empleado', 1), 
@@ -55,17 +58,23 @@ INSERT INTO `local` (`idLocal`, `localidad`, `calle`, `numero`, `latitud`, `long
 (2, 'Lomas de Zamora', 'Francisco Narciso de Laprida', 345, -34.7605082, -58.4039291),
 (3, 'Avellaneda', 'Avenida Bartolomé Mitre', 780, -34.6624750,-58.3666777);
 
-INSERT INTO `oferta` (`id`, `descripcion`, `precio`, `disponible`, `fechaInicio`, `fechaFin`, `idLocal`) VALUES
-(1, '2 Docenas de Empanadas', 360, 2016-12-10 03:00:00, 2016-12-15 03:00:00, 1),
-(2, 'Grande de Muzza y una Sprite Grande', 220, 2016-12-05 03:00:00, 2016-12-14 03:00:00, 2),
-(3, 'Individual de Fugazzeta y una Fanta Chica', 75, 2016-12-08 03:00:00, 2016-12-29 03:00:00, 3);
+INSERT INTO `oferta` (`idOferta`, `descripcion`, `precio`, `disponible`, `fechaInicio`, `fechaFin`, `idLocal`) VALUES
+(1, '2 Docenas de Empanadas', 360, 1, '2016-12-10 03:00:00', '2016-12-15 03:00:00', 1),
+(2, 'Grande de Muzza y una Sprite Grande', 1,  220, '2016-12-05 03:00:00', '2016-12-14 03:00:00', 2),
+(3, 'Individual de Fugazzeta y una Fanta Chica',1,  75, '2016-12-29 03:00:00', '2016-12-08 03:00:00', 3);
 
-INSERT INTO `producto` (`id`, `nombre`, `descripcion`, `precio`, `vigente`) VALUES
+INSERT INTO `producto` (`idProducto`, `nombre`, `descripcion`, `precio`, `vigente`) VALUES
 (1, 'Empanada', 'Tenemos de Carne, Jamón y Queso y Pollo', 18, 1),
 (2, 'Grande de Muzzarella', 'La clásica pizza de queso y aceitunas', 180, 1),
 (3, 'Bebida', 'Tenemos Coca, Sprite, Fanta y Agua Villa Del Sur', 35, 1),
 (4, 'Individual de Fugazzeta', 'Pizza tamaño chico de cebolla y queso', 50, 1);
 
+
+
 Luego de esto:
 
+
 ALTER TABLE oferta ADD KEY idLocal (idLocal);
+
+ALTER TABLE pedido ADD KEY idUsuario (idUsuario);
+ALTER TABLE pedido ADD KEY idProducto (idProducto);

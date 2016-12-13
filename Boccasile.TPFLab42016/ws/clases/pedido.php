@@ -3,7 +3,7 @@ require_once"AccesoDatos.php";
 
 class Pedido
 {
-	public $id;
+	public $idPedido;
 	
 	public $descripcion;
 	
@@ -14,14 +14,20 @@ class Pedido
   	public $enviado;
 	
 	public $fechaPedido;
+	
+	public $idUsuario;
+	
+	public $idProducto;
+	
+	public $idLocal;
 
-	public static function Cargar($id) 
+	public static function Cargar($idPedido) 
 	{	
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 		
-		$consulta =$objetoAccesoDato->RetornarConsulta("SELECT * FROM pedido WHERE id =:id");
+		$consulta =$objetoAccesoDato->RetornarConsulta("SELECT * FROM pedido WHERE idPedido =:idPedido");
 		
-		$consulta->bindValue(':id', $id, PDO::PARAM_INT);
+		$consulta->bindValue(':idPedido', $idPedido, PDO::PARAM_INT);
 		
 		$consulta->execute();
 		
@@ -43,39 +49,39 @@ class Pedido
 		return $arrPedido;
 	}
 	
-	public static function Bloquear($id)
+	public static function Bloquear($idPedido)
 	{	
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
 		
-		$consulta =$objetoAccesoDato->RetornarConsulta("UPDATE pedido SET enviado=0 WHERE id=:id");
+		$consulta =$objetoAccesoDato->RetornarConsulta("UPDATE pedido SET enviado=0 WHERE idPedido=:idPedido");
 		
-		$consulta->bindValue(':id',$id, PDO::PARAM_INT);
+		$consulta->bindValue(':idPedido',$idPedido, PDO::PARAM_INT);
 		
 		$consulta->execute();
 		
 		return $consulta->rowCount();	
 	}
 	
-	public static function Desbloquear($id)
+	public static function Desbloquear($idPedido)
 	{	
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 		
-		$consulta =$objetoAccesoDato->RetornarConsulta("UPDATE pedido SET enviado=1 WHERE id=:id");
+		$consulta =$objetoAccesoDato->RetornarConsulta("UPDATE pedido SET enviado=1 WHERE idPedido=:idPedido");
 		
-		$consulta->bindValue(':id',$id, PDO::PARAM_INT);
+		$consulta->bindValue(':idPedido',$idPedido, PDO::PARAM_INT);
 		
 		$consulta->execute();
 		
 		return $consulta->rowCount();
 	}
 	
-	public static function Eliminar($id)
+	public static function Eliminar($idPedido)
 	{	
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 		
-		$consulta =$objetoAccesoDato->RetornarConsulta("DELETE FROM pedido WHERE id=:id");	
+		$consulta =$objetoAccesoDato->RetornarConsulta("DELETE FROM pedido WHERE idPedido=:idPedido");	
 		
-		$consulta->bindValue(':id',$id, PDO::PARAM_INT);
+		$consulta->bindValue(':idPedido',$idPedido, PDO::PARAM_INT);
 		
 		$consulta->execute();
 		
@@ -86,15 +92,13 @@ class Pedido
 	{
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
 			
-			$consulta =$objetoAccesoDato->RetornarConsulta("UPDATE pedido SET descripcion=:descripcion, precio=:precio, unidades=:unidades WHERE id=:id");
+			$consulta =$objetoAccesoDato->RetornarConsulta("UPDATE pedido SET descripcion=:descripcion, unidades=:unidades WHERE idPedido=:idPedido");
 			
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
 			
-			$consulta->bindValue(':id',$pedido->id, PDO::PARAM_INT);
+			$consulta->bindValue(':idPedido',$pedido->idPedido, PDO::PARAM_INT);
 			
 			$consulta->bindValue(':descripcion',$pedido->descripcion, PDO::PARAM_STR);
-			
-			$consulta->bindValue(':precio',$pedido->precio, PDO::PARAM_STR);
 			
 			$consulta->bindValue(':unidades',$pedido->unidades, PDO::PARAM_STR);
 			
@@ -105,7 +109,7 @@ class Pedido
 	{
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 		
-		$consulta =$objetoAccesoDato->RetornarConsulta("INSERT INTO pedido (descripcion,precio,unidades,enviado,fechaPedido) VALUES (:descripcion,:precio,:unidades,1,:fechaPedido)");
+		$consulta =$objetoAccesoDato->RetornarConsulta("INSERT INTO pedido (descripcion,precio,unidades,enviado,fechaPedido,idUsuario,idProducto,idLocal) VALUES (:descripcion,:precio,:unidades,1,:fechaPedido,:idUsuario,:idProducto,:idLocal)");
 		
 		$consulta->bindValue(':descripcion',$pedido->descripcion, PDO::PARAM_STR);
 		
@@ -114,6 +118,12 @@ class Pedido
 		$consulta->bindValue(':unidades', $pedido->unidades, PDO::PARAM_STR);
 		
 		$consulta->bindValue(':fechaPedido', $pedido->fechaPedido, PDO::PARAM_STR);
+		
+		$consulta->bindValue(':idUsuario',$pedido->idUsuario, PDO::PARAM_STR);
+			
+		$consulta->bindValue(':idProducto',$pedido->idProducto, PDO::PARAM_STR);
+			
+		$consulta->bindValue(':idLocal',$pedido->idLocal, PDO::PARAM_STR);
 		
 		$consulta->execute();	
 		

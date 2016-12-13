@@ -54,7 +54,7 @@ angular
 	};
   })
   
-  .controller("OfertaModificarCtrl", function($scope, $auth, $state, $stateParams, $timeout, jwtHelper, FileUploader, FactoryOferta) {
+  .controller("OfertaModificarCtrl", function($scope, $auth, $state, $stateParams, $timeout, jwtHelper, FactoryOferta) {
 
 	try
 	{
@@ -140,7 +140,7 @@ angular
 	 	$scope.Bloquear = function(oferta){
 	 		try
 	 		{
-	 			FactoryOferta.Bloquear(oferta.id);
+	 			FactoryOferta.Bloquear(oferta.idOferta);
  				$scope.resultado.ver = true;
 		 		$scope.resultado.estilo = "COLORBIEN";
 				$scope.resultado.mensaje = "Oferta deshabilitada exitosamente.";
@@ -164,7 +164,7 @@ angular
 		$scope.Eliminar = function(oferta){
  		try
  		{
- 			FactoryOferta.Eliminar(oferta.id);
+ 			FactoryOferta.Eliminar(oferta.idOferta);
 			$scope.resultado.ver = true;
 	 		$scope.resultado.estilo = "COLORBIEN";
 			$scope.resultado.mensaje = "Oferta eliminada exitosamente.";
@@ -187,7 +187,7 @@ angular
 		$scope.Desbloquear = function(oferta){
 		try
  		{
- 			FactoryOferta.Desbloquear(oferta.id);
+ 			FactoryOferta.Desbloquear(oferta.idOferta);
 			$scope.resultado.ver = true;
 	 		$scope.resultado.estilo = "COLORBIEN";
 			$scope.resultado.mensaje = "Oferta habilitada exitosamente.";

@@ -38,9 +38,9 @@ $app->get('/usuariosPorPerfil/{perfil}', function ($request, $response, $args)
     return $response;
 });
 
-$app->get('/usuario/{id}', function ($request, $response, $args) 
+$app->get('/usuario/{idUsuario}', function ($request, $response, $args) 
 {
-    $usuario=Usuario::Cargar($args['id']);
+    $usuario=Usuario::Cargar($args['idUsuario']);
 	
     $response->write(json_encode($usuario));
 	
@@ -83,23 +83,23 @@ $app->put('/usuario/{usuario}', function ($request, $response, $args)
     return $response;
 });
 
-$app->delete('/usuario/{id}', function ($request, $response, $args)
+$app->delete('/usuario/{idUsuario}', function ($request, $response, $args)
  {
-    Usuario::Bloquear($args['id']);
+    Usuario::Bloquear($args['idUsuario']);
 	
     return $response;
 });
 
-$app->delete('/usuarioEliminar/{id}', function ($request, $response, $args)
+$app->delete('/usuarioEliminar/{idUsuario}', function ($request, $response, $args)
  {
-    Usuario::Eliminar($args['id']);
+    Usuario::Eliminar($args['idUsuario']);
 	
     return $response;
 });
 
-$app->delete('/usuarioDesbloquear/{id}', function ($request, $response, $args)
+$app->delete('/usuarioDesbloquear/{idUsuario}', function ($request, $response, $args)
  {
-    Usuario::Desbloquear($args['id']);
+    Usuario::Desbloquear($args['idUsuario']);
 	
     return $response;
 });
@@ -122,23 +122,23 @@ $app->post('/producto/{producto}', function ($request, $response, $args)
     return $response;
 });
 
-$app->delete('/productoEliminar/{id}', function ($request, $response, $args)
+$app->delete('/productoEliminar/{idProducto}', function ($request, $response, $args)
  {
-    Producto::Eliminar($args['id']);
+    Producto::Eliminar($args['idProducto']);
 	
     return $response;
 });
 
-$app->delete('/productoDesbloquear/{id}', function ($request, $response, $args)
+$app->delete('/productoDesbloquear/{idProducto}', function ($request, $response, $args)
  {
-    Producto::Desbloquear($args['id']);
+    Producto::Desbloquear($args['idProducto']);
 	
     return $response;
 });
 
-$app->delete('/producto/{id}', function ($request, $response, $args) 
+$app->delete('/producto/{idProducto}', function ($request, $response, $args) 
 {
-    Producto::Bloquear($args['id']);
+    Producto::Bloquear($args['idProducto']);
 	
     return $response;
 });
@@ -170,23 +170,23 @@ $app->post('/oferta/{oferta}', function ($request, $response, $args)
     return $response;
 });
 
-$app->delete('/ofertaEliminar/{id}', function ($request, $response, $args)
+$app->delete('/ofertaEliminar/{idOferta}', function ($request, $response, $args)
  {
-    Oferta::Eliminar($args['id']);
+    Oferta::Eliminar($args['idOferta']);
 	
     return $response;
 });
 
-$app->delete('/ofertaDesbloquear/{id}', function ($request, $response, $args)
+$app->delete('/ofertaDesbloquear/{idOferta}', function ($request, $response, $args)
  {
-    Oferta::Desbloquear($args['id']);
+    Oferta::Desbloquear($args['idOferta']);
 	
     return $response;
 });
 
-$app->delete('/oferta/{id}', function ($request, $response, $args) 
+$app->delete('/oferta/{idOferta}', function ($request, $response, $args) 
 {
-    Oferta::Bloquear($args['id']);
+    Oferta::Bloquear($args['idOferta']);
 	
     return $response;
 });
@@ -216,23 +216,23 @@ $app->post('/pedido/{pedido}', function ($request, $response, $args)
     return $response;
 });
 
-$app->delete('/pedidoEliminar/{id}', function ($request, $response, $args)
+$app->delete('/pedidoEliminar/{idPedido}', function ($request, $response, $args)
  {
-    Pedido::Eliminar($args['id']);
+    Pedido::Eliminar($args['idPedido']);
     
     return $response;
 });
 
-$app->delete('/pedidoDesbloquear/{id}', function ($request, $response, $args)
+$app->delete('/pedidoDesbloquear/{idPedido}', function ($request, $response, $args)
  {
-    Pedido::Desbloquear($args['id']);
+    Pedido::Desbloquear($args['idPedido']);
     
     return $response;
 });
 
-$app->delete('/pedido/{id}', function ($request, $response, $args) 
+$app->delete('/pedido/{idPedido}', function ($request, $response, $args) 
 {
-    Pedido::Bloquear($args['id']);
+    Pedido::Bloquear($args['idPedido']);
     
     return $response;
 });

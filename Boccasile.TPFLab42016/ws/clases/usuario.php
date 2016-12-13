@@ -3,7 +3,7 @@ require_once"AccesoDatos.php";
 
 class Usuario
 {
-	public $id;
+	public $idUsuario;
 	
  	public $correo;
 	
@@ -19,9 +19,9 @@ class Usuario
 	{	
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 		
-		$consulta =$objetoAccesoDato->RetornarConsulta("SELECT * FROM usuario WHERE id =:id");
+		$consulta =$objetoAccesoDato->RetornarConsulta("SELECT * FROM usuario WHERE idUsuario =:idUsuario");
 		
-		$consulta->bindValue(':id', $idParametro, PDO::PARAM_INT);
+		$consulta->bindValue(':idUsuario', $idParametro, PDO::PARAM_INT);
 		
 		$consulta->execute();
 		
@@ -79,39 +79,39 @@ class Usuario
 		return $arrUsuarios;
 	}
 
-	public static function Bloquear($id)
+	public static function Bloquear($idUsuario)
 	{	
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 		
-		$consulta =$objetoAccesoDato->RetornarConsulta("UPDATE usuario SET agregado=0 WHERE id=:id");
+		$consulta =$objetoAccesoDato->RetornarConsulta("UPDATE usuario SET agregado=0 WHERE idUsuario=:idUsuario");
 		
-		$consulta->bindValue(':id',$id, PDO::PARAM_INT);
+		$consulta->bindValue(':idUsuario',$idUsuario, PDO::PARAM_INT);
 		
 		$consulta->execute();
 		
 		return $consulta->rowCount();
 	}
 	
-	public static function Desbloquear($id)
+	public static function Desbloquear($idUsuario)
 	{	
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 		
-		$consulta =$objetoAccesoDato->RetornarConsulta("UPDATE usuario SET agregado=1 WHERE id=:id");
+		$consulta =$objetoAccesoDato->RetornarConsulta("UPDATE usuario SET agregado=1 WHERE idUsuario=:idUsuario");
 		
-		$consulta->bindValue(':id',$id, PDO::PARAM_INT);
+		$consulta->bindValue(':idUsuario',$idUsuario, PDO::PARAM_INT);
 		
 		$consulta->execute();
 		
 		return $consulta->rowCount();
 	}
 	
-	public static function Eliminar($id)
+	public static function Eliminar($idUsuario)
 	{	
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 		
-		$consulta =$objetoAccesoDato->RetornarConsulta("DELETE FROM usuario WHERE id=:id");	
+		$consulta =$objetoAccesoDato->RetornarConsulta("DELETE FROM usuario WHERE idUsuario=:idUsuario");	
 		
-		$consulta->bindValue(':id',$id, PDO::PARAM_INT);
+		$consulta->bindValue(':idUsuario',$idUsuario, PDO::PARAM_INT);
 		
 		$consulta->execute();
 		
@@ -123,11 +123,11 @@ class Usuario
 	{
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 		
-		$consulta =$objetoAccesoDato->RetornarConsulta("UPDATE usuario SET nombre=:nombre, correo=:correo WHERE id=:id");
+		$consulta =$objetoAccesoDato->RetornarConsulta("UPDATE usuario SET nombre=:nombre, correo=:correo WHERE idUsuario=:idUsuario");
 		
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
 		
-		$consulta->bindValue(':id',$usuario->id, PDO::PARAM_INT);
+		$consulta->bindValue(':idUsuario',$usuario->idUsuario, PDO::PARAM_INT);
 		
 		$consulta->bindValue(':nombre',$usuario->nombre, PDO::PARAM_STR);
 		

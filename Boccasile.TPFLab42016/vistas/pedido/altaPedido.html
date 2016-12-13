@@ -4,14 +4,24 @@
 	    <div class="{{resultado.estilo}}" ng-show="resultado.ver">
 	        <span style="font-size:13px;">{{resultado.mensaje}}</span><br><br>
 	    </div>
-        <h2 class="h2Login">Complete los campos:</h2>
+        <h2 class="h2Login">Complete los campos:</h2><br>
     <div class="row">
 	    <div class="col-lg-12">
 			<form id="formPedido" name="formPedido" enctype="multipart/form-data" novalidate>
-    		<font color="black"><input type="text" placeholder="Descripcion" class="txtLogin" name="descripcion" ng-model='pedido.descripcion' required></font>
+			<font color="gray" align="left">Seleccione un Producto:</font>
+			<font color="black"><hidden ng-init="pedido.descripcion='Empanada'">
+			<select  ng-model="pedido.descripcion"  class="txtLogin" style="width:100%;"required>
+			    	<option ng-repeat="producto in ListadoProductos track by $index" value="{{producto.nombre}}">{{producto.nombre}}</option>  
+		    </select></font>
 			<font color="black"><input type="text" placeholder="Unidades" class="txtLogin" name="unidades" ng-model='pedido.unidades' required></font>
-	    	<font color="black"><input type="text" placeholder="Precio" class="txtLogin" name="precio" ng-model='pedido.precio' required></font>
+			<font color="gray" align="left">Indique la Fecha:</font>
 	    	<font color="black"><input type="date" class="txtLogin" name="fechaPedido" ng-model='pedido.fechaPedido' required></font>
+			<font color="black" ng-if="usuario.perfil!='cliente'"><input type="text" placeholder="Nro del cliente" class="txtLogin" name="idUsuario" ng-model='pedido.idUsuario' required></font>
+			<font color="gray" align="left">Seleccione un Local:</font>
+			<font color="black"><hidden ng-init="pedido.idLocal='1'"></hidden>
+			<select  ng-model="pedido.idLocal"  class="txtLogin" style="width:100%;" required>
+			    	<option ng-repeat="local in ListadoLocales track by $index" value="{{local.idLocal}}">{{local.localidad}}</option>  
+		    </select></font>
 	    	<input type="submit" value="Guardar pedido" class="btnLogin" ng-if="!formPedido.$invalid" ng-click="Guardar()">
 			</form>
     	</div>

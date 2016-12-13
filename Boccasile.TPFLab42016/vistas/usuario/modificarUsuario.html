@@ -7,10 +7,12 @@
     <font color="black">
 	<div class="row">
 		<form id="formAlta" name="formAlta" enctype="multipart/form-data" novalidate>
-        <h2 class="h2Login">Modificar cuenta:</h2>
+        <h2 class="h2Login">Modificar cuenta:</h2><br>
+		<font color="gray">Nombre:</font>
     	<input type="text" placeholder="Nombre" class="txtLogin" name="nombre" ng-model='usuario.nombre' required>
+		<font color="gray">Correo:</font>
 	    <input type="email" placeholder="Email" class="txtLogin" name="correo" ng-model='usuario.correo' required>
-	    <input type="submit" value="Guardar Datos" class="btnLogin" ng-if="!formAlta.$invalid" ng-click="Guardar()">
+	    <input type="submit" value="Guardar datos" class="btnLogin" ng-if="!formAlta.$invalid" ng-click="Guardar()">
 		</form>
     </div>
 	</font>

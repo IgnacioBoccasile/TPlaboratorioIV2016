@@ -7,9 +7,12 @@
     <font color="black">
 	<div class="row">
 		<form id="formAlta" name="formAlta" enctype="multipart/form-data" novalidate>
-        <h2 class="h2Login">Modificar oferta:</h2>
+        <h2 class="h2Login">Modificar oferta:</h2><br>
+		<font color="gray">Descripción:</font>
     	<input type="text" placeholder="Descripcion" class="txtLogin" name="descripcion" ng-model='oferta.descripcion' required>
+		<font color="gray">Precio:</font>
 	    <input type="text" placeholder="Precio" class="txtLogin" name="precio" ng-model='oferta.precio' required>
+		<font color="gray">Nro de Local:</font>
 		<input type="text" placeholder="Nro de Local" class="txtLogin" name="idLocal" ng-model='oferta.idLocal' required>
 	    <input type="submit" value="Guardar datos" class="btnLogin" ng-if="!formAlta.$invalid" ng-click="Guardar()">
 		</form>

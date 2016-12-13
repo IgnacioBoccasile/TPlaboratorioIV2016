@@ -1,20 +1,22 @@
 <head><title>Listado de Empleados</title></head>
 <div class="intro-header5">
 <div class="animated bounceInDown" style="margin-top:1%" align="center">		
+	
+	<div class="divListaUsuarios" style="width:50%">
 	<div class="{{resultado.estilo}}" ng-show="resultado.ver">
-				<span style="font-size:13px;">{{resultado.mensaje}}</span><br><br>
+				<span style="font-size:13px;">{{resultado.mensaje}}</span><br>
 			</div>
-	<div class="divListaUsuarios" ng-repeat="usuario in ListadoUsuarios" style="width:50%">
+	<div  ng-repeat="usuario in ListadoUsuarios" >
 			
 			<h4 class="h2Login">{{usuario.nombre}}</h4>
 			<p style="font-size:13px"><font color="gray">Su correo es {{usuario.correo}}.</font></p>
-			<p style="font-size:13px" ng-if="usuario.id<5"><font color="red">Al estar cargado por defecto, NO se puede modificar.</font></p>
+			<p style="font-size:13px" ng-if="usuario.idUsuario<5"><font color="red">Al estar cargado por defecto, NO se puede modificar.</font></p>
 			<p style="font-size:13px" ng-if="usuario.agregado==1"><font color = "green">Libre de ingreso.</font></p>
 			<p style="font-size:13px" ng-if="usuario.agregado==0"><font color = "red">Bloqueado.</font></p>
-			<input type="submit" value="Modificar" class="btnLogin" style="width:32%" ng-click="Modificar(usuario)" ng-if="usuario.id>4">
-			<input type="submit" value="Bloquear" class="btnLogin" style="width:32%" ng-click="Bloquear(usuario)" ng-if="usuario.id>4 && usuario.agregado==1">
-			<input type="submit" value="Desbloquear" class="btnLogin" style="width:32%" ng-click="Desbloquear(usuario)" ng-if="usuario.id>4 && usuario.agregado==0">
-			<input type="submit" value="Eliminar" class="btnLogin" style="width:32%" ng-click="Eliminar(usuario)" ng-if="usuario.id>4">
+			<input type="submit" value="Bloquear" class="btnLogin" style="width:32%" ng-click="Bloquear(usuario)" ng-if="usuario.idUsuario>4 && usuario.agregado==1">
+			<input type="submit" value="Desbloquear" class="btnLogin" style="width:32%" ng-click="Desbloquear(usuario)" ng-if="usuario.idUsuario>4 && usuario.agregado==0">
+			<br><br>
+	</div>
 	</div>
 </div>
 </div>

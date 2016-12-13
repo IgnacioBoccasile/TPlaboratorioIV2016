@@ -54,7 +54,7 @@ angular
 	};
   })
   
-  .controller("LocalModificarCtrl", function($scope, $auth, $state, $stateParams, $timeout, jwtHelper, FileUploader, FactoryLocal) {
+  .controller("LocalModificarCtrl", function($scope, $auth, $state, $stateParams, $timeout, jwtHelper, FactoryLocal) {
 
 	try
 	{
@@ -105,12 +105,19 @@ angular
 				$scope.usuarioLogeado = jwtHelper.decodeToken($auth.getToken());
 				if($scope.usuarioLogeado.perfil == "cliente")
 				{
-				    $scope.escliente = true;
+				    $scope.mod = false;
+					$scope.elm = false;
 				}
-				else
+				if($scope.usuarioLogeado.perfil == "encargado")
 				{
-				    $scope.escliente = false;
-				}	
+					$scope.mod = true;
+					$scope.elm = false;
+				}
+				if($scope.usuarioLogeado.perfil == "admin")
+				{
+					$scope.mod = true;
+					$scope.elm = true;
+				}
 			}
 			else
 			{

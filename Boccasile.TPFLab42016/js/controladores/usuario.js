@@ -163,6 +163,7 @@ angular
 		if ($auth.isAuthenticated())
 		{
 			$scope.usuarioLogeado = jwtHelper.decodeToken($auth.getToken());
+			
 		}
 
 	}
@@ -198,7 +199,7 @@ angular
 	};
 })
 
-.controller("UsuarioModificarCtrl", function($scope, $auth, $state, $stateParams, $timeout, jwtHelper, FileUploader, FactoryUsuario) {
+.controller("UsuarioModificarCtrl", function($scope, $auth, $state, $stateParams, $timeout, jwtHelper, FactoryUsuario) {
 	try
 	{
 		$scope.resultado = {};
@@ -272,7 +273,7 @@ angular
  	$scope.Bloquear = function(usuario){
  		try
  		{
- 			FactoryUsuario.Bloquear(usuario.id);
+ 			FactoryUsuario.Bloquear(usuario.idUsuario);
 			$scope.resultado.ver = true;
 	 		$scope.resultado.estilo = "COLORBIEN";
 			$scope.resultado.mensaje = "Usuario bloqueado exitosamente.";
@@ -295,7 +296,7 @@ angular
 	$scope.Eliminar = function(usuario){
  		try
  		{
- 			FactoryUsuario.Eliminar(usuario.id);
+ 			FactoryUsuario.Eliminar(usuario.idUsuario);
 			$scope.resultado.ver = true;
 	 		$scope.resultado.estilo = "COLORBIEN";
 			$scope.resultado.mensaje = "Usuario eliminado exitosamente.";
@@ -318,7 +319,7 @@ angular
 	$scope.Desbloquear = function(usuario){
 		try
  		{
- 			FactoryUsuario.Desbloquear(usuario.id);
+ 			FactoryUsuario.Desbloquear(usuario.idUsuario);
 			$scope.resultado.ver = true;
 	 		$scope.resultado.estilo = "COLORBIEN";
 			$scope.resultado.mensaje = "Usuario desbloqueado exitosamente.";
@@ -432,15 +433,10 @@ angular
 	{
 		console.info(error);
 	}
-	$scope.Modificar = function(usuario){
- 		var param = JSON.stringify(usuario);
-    	$state.go('login.usuario', {usuario:param});
- 	}
-
  	$scope.Bloquear = function(usuario){
  		try
  		{
- 			FactoryUsuario.Bloquear(usuario.id);
+ 			FactoryUsuario.Bloquear(usuario.idUsuario);
 			$scope.resultado.ver = true;
 	 		$scope.resultado.estilo = "COLORBIEN";
 			$scope.resultado.mensaje = "Empleado bloqueado exitosamente.";
@@ -460,33 +456,10 @@ angular
 	 	}
  	}
 	
-	$scope.Eliminar = function(usuario){
- 		try
- 		{
- 			FactoryUsuario.Eliminar(usuario.id);
-			$scope.resultado.ver = true;
-	 		$scope.resultado.estilo = "COLORBIEN";
-			$scope.resultado.mensaje = "Empleado eliminado exitosamente.";
-			$timeout(function(){
-	 			$state.go('inicio');
-	 		}, 2000);
- 		}
-	 	catch(error)
-	 	{
-	 		console.info(error);
-	 		$scope.resultado.ver = true;
-	 		$scope.resultado.estilo = "COLORMAL";
-			$scope.resultado.mensaje = "Error al eliminar un empleado.";
-			$timeout(function(){
-	 			$state.go('inicio');
-	 		}, 2000);
-	 	}
- 	}
-	
 	$scope.Desbloquear = function(usuario){
 		try
  		{
- 			FactoryUsuario.Desbloquear(usuario.id);
+ 			FactoryUsuario.Desbloquear(usuario.idUsuario);
 			$scope.resultado.ver = true;
 	 		$scope.resultado.estilo = "COLORBIEN";
 			$scope.resultado.mensaje = "Empleado desbloqueado exitosamente.";

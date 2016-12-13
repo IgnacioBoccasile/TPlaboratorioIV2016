@@ -7,11 +7,16 @@
     <font color="black">
 	<div class="row">
 		<form id="formAlta" name="formAlta" enctype="multipart/form-data" novalidate>
-        <h2 class="h2Login">Modificar local:</h2>
+        <h2 class="h2Login">Modificar local:</h2><br>
+		<font color="gray">Localidad:</font>
     	<input type="text" placeholder="Localidad" class="txtLogin" name="localidad" ng-model='local.localidad' required>
+		<font color="gray">Calle:</font>
 		<input type="text" placeholder="Calle" class="txtLogin" name="calle" ng-model='local.calle' required>
+		<font color="gray">Nro:</font>
 		<input type="text" placeholder="Nro" class="txtLogin" name="numero" ng-model='local.numero' required>
+		<font color="gray">Latitud:</font>
 		<input type="text" placeholder="Latitud" class="txtLogin" name="latitud" ng-model='local.latitud' required>
+		<font color="gray">Longitud:</font>
 		<input type="text" placeholder="Longitud" class="txtLogin" name="longitud" ng-model='local.longitud' required>
 	    <input type="submit" value="Guardar datos" class="btnLogin" ng-if="!formAlta.$invalid" ng-click="Guardar()">
 		</form>

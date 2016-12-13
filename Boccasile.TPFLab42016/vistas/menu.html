@@ -12,13 +12,14 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-				<li><a ui-sref="local.alta()" ng-if="logeado && admin" style="color: white">Agregar un Local</a></li>
-			    <li><a ui-sref="pedido.alta()" ng-if="logeado && (empleado || encargado)" style="color: white">Agregar un Pedido</a></li>
-				<li><a ui-sref="oferta.alta()" ng-if="logeado && (empleado || encargado)" style="color: white">Agregar una Oferta</a></li>
-				<li><a ui-sref="producto.alta()" ng-if="logeado && !cliente && !admin" style="color: white">Agregar un Producto</a></li>
-                <li><a ui-sref="login.registro()" ng-if="logeado && admin" style="color: white">Agregar Usuario</a></li>
-				<li><a ui-sref="login.registroEC()" ng-if="logeado && empleado" style="color: white">Agregar Cliente</a></li>
-				<li><a ui-sref="login.registroEEC()" ng-if="logeado && encargado" style="color: white">Agregar Usuario</a></li>
+				<li><a ui-sref="local.alta()" ng-if="logeado && admin" style="color: white">Nuevo Local</a></li>
+			    <li><a ui-sref="pedido.alta()" ng-if="logeado && (empleado || encargado)" style="color: white">Registrar Pedido</a></li>
+				<li><a ui-sref="pedido.alta()" ng-if="logeado && cliente" style="color: white">Hacer un Pedido</a></li>
+				<li><a ui-sref="oferta.alta()" ng-if="logeado && (empleado || encargado)" style="color: white">Nueva Oferta</a></li>
+				<li><a ui-sref="producto.alta()" ng-if="logeado && !cliente && !admin" style="color: white">Nuevo Producto</a></li>
+                <li><a ui-sref="login.registro()" ng-if="logeado && admin" style="color: white">Nuevo Usuario</a></li>
+				<li><a ui-sref="login.registroEC()" ng-if="logeado && empleado" style="color: white">Nuevo Cliente</a></li>
+				<li><a ui-sref="login.registroEEC()" ng-if="logeado && encargado" style="color: white">Nuevo Usuario</a></li>
                 <li><a ng-click="Salir()" style="color: white">Cerrar sesión</a></li>
             </ul>
         </div>
@@ -51,7 +52,7 @@
                 <input type="submit" value="Lista de Pedidos" class="btnLogin2" style="width:30%">
             </a>
 			<a ui-sref="oferta.ofertas()" ng-if="logeado && encargado" style="margin:1%">
-                <input type="submit" value="Listado de Ofertas" class="btnLogin2" style="width:30%">
+                <input type="submit" value="Lista de Ofertas" class="btnLogin2" style="width:30%">
             </a>
         </div>
     </div>

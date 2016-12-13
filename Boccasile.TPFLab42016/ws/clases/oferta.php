@@ -3,7 +3,7 @@ require_once"AccesoDatos.php";
 
 class Oferta
 {
-	public $id;
+	public $idOferta;
 	
 	public $descripcion;
 	
@@ -17,13 +17,13 @@ class Oferta
 	
 	public $idLocal;
 
-	public static function Cargar($id) 
+	public static function Cargar($idOferta) 
 	{	
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 		
-		$consulta =$objetoAccesoDato->RetornarConsulta("SELECT * FROM oferta WHERE id =:id");
+		$consulta =$objetoAccesoDato->RetornarConsulta("SELECT * FROM oferta WHERE idOferta =:idOferta");
 		
-		$consulta->bindValue(':id', $id, PDO::PARAM_INT);
+		$consulta->bindValue(':idOferta', $idOferta, PDO::PARAM_INT);
 		
 		$consulta->execute();
 		
@@ -45,39 +45,39 @@ class Oferta
 		return $arrOferta;
 	}
 	
-	public static function Bloquear($id)
+	public static function Bloquear($idOferta)
 	{	
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
 		
-		$consulta =$objetoAccesoDato->RetornarConsulta("UPDATE oferta SET disponible=0 WHERE id=:id");
+		$consulta =$objetoAccesoDato->RetornarConsulta("UPDATE oferta SET disponible=0 WHERE idOferta=:idOferta");
 		
-		$consulta->bindValue(':id',$id, PDO::PARAM_INT);
+		$consulta->bindValue(':idOferta',$idOferta, PDO::PARAM_INT);
 		
 		$consulta->execute();
 		
 		return $consulta->rowCount();	
 	}
 	
-	public static function Desbloquear($id)
+	public static function Desbloquear($idOferta)
 	{	
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 		
-		$consulta =$objetoAccesoDato->RetornarConsulta("UPDATE oferta SET disponible=1 WHERE id=:id");
+		$consulta =$objetoAccesoDato->RetornarConsulta("UPDATE oferta SET disponible=1 WHERE idOferta=:idOferta");
 		
-		$consulta->bindValue(':id',$id, PDO::PARAM_INT);
+		$consulta->bindValue(':idOferta',$idOferta, PDO::PARAM_INT);
 		
 		$consulta->execute();
 		
 		return $consulta->rowCount();
 	}
 	
-	public static function Eliminar($id)
+	public static function Eliminar($idOferta)
 	{	
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 		
-		$consulta =$objetoAccesoDato->RetornarConsulta("DELETE FROM oferta WHERE id=:id");	
+		$consulta =$objetoAccesoDato->RetornarConsulta("DELETE FROM oferta WHERE idOferta=:idOferta");	
 		
-		$consulta->bindValue(':id',$id, PDO::PARAM_INT);
+		$consulta->bindValue(':idOferta',$idOferta, PDO::PARAM_INT);
 		
 		$consulta->execute();
 		
@@ -88,11 +88,11 @@ class Oferta
 	{
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
 			
-			$consulta =$objetoAccesoDato->RetornarConsulta("UPDATE oferta SET descripcion=:descripcion, precio=:precio, idLocal=:idLocal WHERE id=:id");
+			$consulta =$objetoAccesoDato->RetornarConsulta("UPDATE oferta SET descripcion=:descripcion, precio=:precio, idLocal=:idLocal WHERE idOferta=:idOferta");
 			
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
 			
-			$consulta->bindValue(':id',$oferta->id, PDO::PARAM_INT);
+			$consulta->bindValue(':idOferta',$oferta->idOferta, PDO::PARAM_INT);
 			
 			$consulta->bindValue(':descripcion',$oferta->descripcion, PDO::PARAM_STR);
 			

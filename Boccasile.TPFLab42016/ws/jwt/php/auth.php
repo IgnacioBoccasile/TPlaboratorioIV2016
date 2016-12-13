@@ -20,6 +20,8 @@ if ($usuarioBuscado != null)
 	
 	$token["perfil"] = $usuarioBuscado->perfil;
 	
+	$token["idUsuario"] = $usuarioBuscado->idUsuario;
+	
 	$token["iat"] = time();
 	
 	$token["exp"] = time()+30000;

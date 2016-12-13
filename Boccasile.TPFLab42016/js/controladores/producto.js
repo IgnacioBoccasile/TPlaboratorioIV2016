@@ -57,7 +57,7 @@ angular
 	};
   })
   
-  .controller("ProductoModificarCtrl", function($scope, $auth, $state, $stateParams, $timeout, jwtHelper, FileUploader, FactoryProducto) {
+  .controller("ProductoModificarCtrl", function($scope, $auth, $state, $stateParams, $timeout, jwtHelper, FactoryProducto) {
 
 	try
 	{
@@ -135,7 +135,7 @@ angular
 	 	$scope.Bloquear = function(producto){
 	 		try
 	 		{
-	 			FactoryProducto.Bloquear(producto.id);
+	 			FactoryProducto.Bloquear(producto.idProducto);
  				$scope.resultado.ver = true;
 		 		$scope.resultado.estilo = "COLORBIEN";
 				$scope.resultado.mensaje = "Producto deshabilitado exitosamente.";
@@ -159,7 +159,7 @@ angular
 		$scope.Eliminar = function(producto){
  		try
  		{
- 			FactoryProducto.Eliminar(producto.id);
+ 			FactoryProducto.Eliminar(producto.idProducto);
 			$scope.resultado.ver = true;
 	 		$scope.resultado.estilo = "COLORBIEN";
 			$scope.resultado.mensaje = "Producto eliminado exitosamente.";
@@ -182,7 +182,7 @@ angular
 		$scope.Desbloquear = function(producto){
 		try
  		{
- 			FactoryProducto.Desbloquear(producto.id);
+ 			FactoryProducto.Desbloquear(producto.idProducto);
 			$scope.resultado.ver = true;
 	 		$scope.resultado.estilo = "COLORBIEN";
 			$scope.resultado.mensaje = "Producto habilitado exitosamente.";
