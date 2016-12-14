@@ -33,22 +33,22 @@
     <div class="container animated bounceInDown">
         <div class="row" style="margin-top:1%">
 			<a ui-sref="local.locales()" ng-if="logeado && (admin || encargado)" style="margin:1%">
-				<input type="submit" value="Lista de locales" class="btnLogin2" style="width:30%">
+				<input type="submit" value="Locales" class="btnLogin2" style="width:30%">
             </a>
 			<a ui-sref="producto.productos()" ng-if="logeado && !cliente && !empleado && !admin" style="margin:1%">
-				<input type="submit" value="Lista de productos" class="btnLogin2" style="width:30%">
+				<input type="submit" value="Productos" class="btnLogin2" style="width:30%">
             </a>
             <a ui-sref="login.usuarios()" ng-if="logeado && admin && !encargado && !empleado" style="margin:1%">
-                <input type="submit" value="Lista de usuarios" class="btnLogin2" style="width:30%">
+                <input type="submit" value="Usuarios" class="btnLogin2" style="width:30%">
             </a>
 			<a ui-sref="login.empleadosClientes()" ng-if="logeado && !admin && encargado" style="margin:1%">
-                <input type="submit" value="Lista de usuarios" class="btnLogin2" style="width:30%">
+                <input type="submit" value="Usuarios" class="btnLogin2" style="width:30%">
             </a>
 			<a ui-sref="login.clientes()" ng-if="logeado && empleado" style="margin:1%">
-                <input type="submit" value="Lista de clientes" class="btnLogin2" style="width:30%">
+                <input type="submit" value="Clientes" class="btnLogin2" style="width:30%">
             </a>
 			<a ui-sref="local.locales()" ng-if="logeado && cliente" style="margin:1%">
-                <input type="submit" value="Ver ofertas por local" class="btnLogin2" style="width:30%">
+                <input type="submit" value="Ofertas por local" class="btnLogin2" style="width:30%">
             </a>
 			<a ui-sref="pedido.pedidos()" ng-if="logeado && (encargado || empleado)" style="margin:1%">
                 <input type="submit" value="Pedidos de productos" class="btnLogin2" style="width:30%">
@@ -57,7 +57,13 @@
                 <input type="submit" value="Pedidos de ofertas" class="btnLogin2" style="width:30%">
             </a>
 			<a ui-sref="oferta.ofertas()" ng-if="logeado && encargado" style="margin:1%">
-                <input type="submit" value="Lista de ofertas" class="btnLogin2" style="width:30%">
+                <input type="submit" value="Ofertas" class="btnLogin2" style="width:30%">
+            </a>
+			<a ui-sref="grafico.grafico()" ng-if="logeado && admin" style="margin:1%">
+                <input type="submit" value="Ventas de productos por local" class="btnLogin2" style="width:30%">
+            </a>
+			<a ui-sref="graficoOfertas.graficoOfertas()" ng-if="logeado && admin" style="margin:1%">
+                <input type="submit" value="Ventas de ofertas por local" class="btnLogin2" style="width:30%">
             </a>
         </div>
     </div>

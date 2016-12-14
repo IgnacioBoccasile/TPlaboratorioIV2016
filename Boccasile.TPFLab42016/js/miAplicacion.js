@@ -19,6 +19,54 @@ miApp.config(function($stateProvider, $urlRouterProvider, $authProvider){
 				controller:"InicioCtrl"
 			}
 		)
+		
+		.state(
+			"grafico",
+			{
+				url:"/grafico",
+				cache:false,
+				abstract:true,
+				templateUrl:"vistas/grafico/abstractaGrafico.html"
+			}
+		)
+		
+		.state(
+			"grafico.grafico",
+			{
+				url:"/grafico",
+				cache:false,
+				views:{
+					"contenido": {
+						templateUrl:"vistas/grafico/grafico.html",
+						controller:"GraficoCtrl"
+					}
+				}
+			}
+		)
+		
+		.state(
+			"graficoOfertas",
+			{
+				url:"/graficoOfertas",
+				cache:false,
+				abstract:true,
+				templateUrl:"vistas/graficoOfertas/abstractaGraficoOfertas.html"
+			}
+		)
+		
+		.state(
+			"graficoOfertas.graficoOfertas",
+			{
+				url:"/graficoOfertas",
+				cache:false,
+				views:{
+					"contenido": {
+						templateUrl:"vistas/graficoOfertas/graficoOfertas.html",
+						controller:"GraficoOfertasCtrl"
+					}
+				}
+			}
+		)
 
 		.state(
 			"login",
