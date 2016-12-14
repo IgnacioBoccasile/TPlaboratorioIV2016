@@ -62,19 +62,6 @@ class PedidoOferta
 		return $consulta->rowCount();	
 	}
 	
-	public static function Desbloquear($idPedidoOferta)
-	{	
-		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-		
-		$consulta =$objetoAccesoDato->RetornarConsulta("UPDATE pedidoOferta SET enviado=1 WHERE idPedidoOferta=:idPedidoOferta");
-		
-		$consulta->bindValue(':idPedidoOferta',$idPedidoOferta, PDO::PARAM_INT);
-		
-		$consulta->execute();
-		
-		return $consulta->rowCount();
-	}
-	
 	public static function Eliminar($idPedidoOferta)
 	{	
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 

@@ -12,6 +12,7 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
+				<li><a ui-sref="pedidoOferta.alta()" ng-if="logeado && cliente" style="color: white">Realizar encuesta de satisfacción</a></li>
 				<li><a ui-sref="local.alta()" ng-if="logeado && admin" style="color: white">Nuevo local</a></li>
 				<li><a ui-sref="pedidoOferta.alta()" ng-if="logeado && (empleado || encargado)" style="color: white">Registrar pedido de oferta</a></li>
 			    <li><a ui-sref="pedido.alta()" ng-if="logeado && (empleado || encargado)" style="color: white">Registrar pedido de producto</a></li>

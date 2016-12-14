@@ -1,7 +1,6 @@
 angular
 .module('TPFBOCCASILE')
 .controller('LoginCtrl', function($scope, $state, $auth, jwtHelper) {
-	$scope.mibandera=false;
 	$scope.usuario = {};
 	$scope.resultado = {};
 	$scope.resultado.ver = false;
@@ -19,7 +18,6 @@ angular
 					$scope.resultado.ver = true;
 					$scope.resultado.estilo = "COLORERROR";
 					$scope.resultado.mensaje = "Los datos no coinciden o probablemente usted haya sido bloqueado.";
-					$scope.mibandera = true;
 				}
 					
 				}).catch(function(response){
@@ -40,15 +38,6 @@ angular
 		$scope.usuario.correo = correo;
 		$scope.usuario.clave = clave;
 		$scope.usuario.agregado = agregado;
-		if($scope.usuario.nombre == "Cliente")
-		{
-			$scope.mibandera=true;
-		}
-		
-		else
-		{
-			$scope.mibandera=false;
-		}
 	}
 })
 

@@ -170,14 +170,12 @@ angular
 				    $scope.modi = false;
 					$scope.eli = false;
 					$scope.bloq = false;
-					$scope.des = false;
 				}
 				if($scope.usuarioLogeado.perfil == "encargado")
 				{
 				    $scope.modi = true;
 					$scope.eli = true;
 					$scope.bloq = true;
-					$scope.des = true;
 				}
 				
 
@@ -271,28 +269,5 @@ angular
 	 		}, 2000);
 	 	}
  	}
-		
-		$scope.Desbloquear = function(pedido){
-		try
- 		{
- 			FactoryPedido.Desbloquear(pedido.idPedido);
-			$scope.resultado.ver = true;
-	 		$scope.resultado.estilo = "COLORBIEN";
-			$scope.resultado.mensaje = "Ahora el pedido se encuentra pendiente.";
-			$timeout(function(){
-	 			$state.go('inicio');
-	 		}, 2000);
- 		}
-	 	catch(error)
-	 	{
-	 		console.info(error);
-	 		$scope.resultado.ver = true;
-	 		$scope.resultado.estilo = "COLORMAL";
-			$scope.resultado.mensaje = "Error al volver pendiente el pedido.";
-			$timeout(function(){
-	 			$state.go('inicio');
-	 		}, 2000);
-	 	}
-	}
   });
 ;

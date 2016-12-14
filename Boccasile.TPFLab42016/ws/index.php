@@ -225,13 +225,6 @@ $app->delete('/pedidoEliminar/{idPedido}', function ($request, $response, $args)
     return $response;
 });
 
-$app->delete('/pedidoDesbloquear/{idPedido}', function ($request, $response, $args)
- {
-    Pedido::Desbloquear($args['idPedido']);
-    
-    return $response;
-});
-
 $app->delete('/pedido/{idPedido}', function ($request, $response, $args) 
 {
     Pedido::Bloquear($args['idPedido']);
@@ -267,13 +260,6 @@ $app->post('/pedidoOferta/{pedidoOferta}', function ($request, $response, $args)
 $app->delete('/pedidoOfertaEliminar/{idPedidoOferta}', function ($request, $response, $args)
  {
     PedidoOferta::Eliminar($args['idPedidoOferta']);
-    
-    return $response;
-});
-
-$app->delete('/pedidoOfertaDesbloquear/{idPedidoOferta}', function ($request, $response, $args)
- {
-    PedidoOferta::Desbloquear($args['idPedidoOferta']);
     
     return $response;
 });

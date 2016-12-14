@@ -62,19 +62,6 @@ class Pedido
 		return $consulta->rowCount();	
 	}
 	
-	public static function Desbloquear($idPedido)
-	{	
-		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-		
-		$consulta =$objetoAccesoDato->RetornarConsulta("UPDATE pedido SET enviado=1 WHERE idPedido=:idPedido");
-		
-		$consulta->bindValue(':idPedido',$idPedido, PDO::PARAM_INT);
-		
-		$consulta->execute();
-		
-		return $consulta->rowCount();
-	}
-	
 	public static function Eliminar($idPedido)
 	{	
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 

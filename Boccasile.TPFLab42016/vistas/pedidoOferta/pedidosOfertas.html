@@ -11,9 +11,8 @@
 		<p style="font-size:13px"><font color="gray" ng-repeat="local in ListadoLocales track by $index" ng-if="pedidoOferta.idLocal==local.idLocal">Registrado en sucursal {{local.localidad}}.</font><p>
 		<p style="font-size:13px" ng-if="pedidoOferta.enviado==1"><font color = "red">Pendiente.</font></p>
 		<p style="font-size:13px" ng-if="pedidoOferta.enviado==0"><font color = "green">Cerrado.</font></p>
-		<input type="submit" value="Modificar" class="btnLogin" style="width:32%" ng-click="Modificar(pedidoOferta)" ng-if="modi">
+		<input type="submit" value="Modificar" class="btnLogin" style="width:32%" ng-click="Modificar(pedidoOferta)" ng-if="modi && pedidoOferta.enviado==1">
 		<input type="submit" value="Cerrar" class="btnLogin" style="width:32%" ng-click="Bloquear(pedidoOferta)" ng-if="pedidoOferta.enviado==1 && bloq">
-		<input type="submit" value="Pendiente" class="btnLogin" style="width:32%" ng-click="Desbloquear(pedidoOferta)" ng-if="pedidoOferta.enviado==0 && des">
 		<input type="submit" value="Eliminar" class="btnLogin" style="width:32%" ng-click="Eliminar(pedidoOferta)" ng-if="eli">
 		<br><br>
 	</div>

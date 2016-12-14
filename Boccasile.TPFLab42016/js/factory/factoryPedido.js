@@ -9,7 +9,6 @@ angular
     objeto.Cargar = Cargar;
     objeto.Bloquear = Bloquear;
 	objeto.Eliminar = Eliminar;
-	objeto.Desbloquear = Desbloquear;
 	objeto.Editar = Editar;
 
     function BuscarPor(entidad, parametro){
@@ -35,10 +34,6 @@ angular
 	function Eliminar(parametro){
       return Servicio.Eliminar('pedidoEliminar', parametro);
     } 	
-	
-	function Desbloquear(parametro){
-      return Servicio.Desbloquear('pedidoDesbloquear', parametro);
-    } 
 
     function Guardar(parametro){
       return Servicio.Guardar('pedido', JSON.stringify(parametro));
